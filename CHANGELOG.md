@@ -21,3 +21,7 @@
 ## [0.0.4] - 24.03.2020 
 
 * Cleanup.
+
+## [0.0.5] - 24.03.2020
+
+* Using firebase_crashlytics instead of flutter_crashlytics now.

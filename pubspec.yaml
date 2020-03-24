@@ -14,7 +14,7 @@ dependencies:
   # Google/Firebase Analytics
   firebase_analytics: ^5.0.11
   # Google/Firebase Crashlytics, logging crashes
-  flutter_crashlytics: ^1.0.0
+  firebase_crashlytics : ^0.1.3+3
   # Service locator
   get_it: ^4.0.1
   # Internationalization
