@@ -2,7 +2,7 @@ name: eggnstone_flutter
 copyright: 2020 Mark Eggenstein
 description: A collection of Flutter tools.
 homepage: https://eggnstone.dev
-version: 0.0.1-pre1
+version: 0.0.1-pre2
 
 environment:
   sdk: ">=2.1.0 <3.0.0"
