@@ -2,7 +2,7 @@ name: eggnstone_flutter
 copyright: 2020 Mark Eggenstein
 description: A collection of Flutter tools.
 homepage: https://eggnstone.dev
-version: 0.0.1-pre2
+version: 0.0.1
 
 environment:
   sdk: ">=2.1.0 <3.0.0"
@@ -12,7 +12,7 @@ dependencies:
     sdk: flutter
 
   # Google/Firebase Analytics
-  #firebase_analytics: ^5.0.11
+  firebase_analytics: ^5.0.11
   # Google/Firebase Crashlytics, logging crashes
   #flutter_crashlytics: ^1.0.0
   # Service locator
@@ -27,6 +27,6 @@ dev_dependencies:
     sdk: flutter
 
   # Mocking
-  #mockito: ^4.1.1
+  mockito: ^4.1.1
 
 flutter:

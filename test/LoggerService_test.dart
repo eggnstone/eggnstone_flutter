@@ -7,43 +7,10 @@ const String TIME_REGEX = r'\d{2}:\d{2}:\d{2}';
 
 void main()
 {
-    testIsEnabled();
     testLogDebug();
     testLogInfo();
     testLogWarning();
     testLogError();
-}
-
-void testIsEnabled()
-{
-    group('isEnabled', ()
-    {
-        test('Logger created disabled => is not enabled', ()
-        {
-            LoggerService logger = LoggerService(false);
-            expect(logger.isEnabled, isFalse);
-        });
-
-        test('Logger created enabled => is enabled', ()
-        {
-            LoggerService logger = LoggerService(true);
-            expect(logger.isEnabled, isTrue);
-        });
-
-        test('Logger later enabled => is enabled', ()
-        {
-            LoggerService logger = LoggerService(false);
-            logger.isEnabled = true;
-            expect(logger.isEnabled, isTrue);
-        });
-
-        test('Logger later disabled => is not enabled', ()
-        {
-            LoggerService logger = LoggerService(true);
-            logger.isEnabled = false;
-            expect(logger.isEnabled, isFalse);
-        });
-    });
 }
 
 void testLogDebug()

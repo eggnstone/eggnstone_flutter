@@ -5,3 +5,7 @@
 ## [0.0.1-pre2] - 24.03.2020 
 
 * Removed ILoggerService (YAGNI).
+
+## [0.0.1] - 24.03.2020 
+
+* Added AnalyticsService.
