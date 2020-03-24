@@ -1,7 +1,6 @@
+import 'package:eggnstone_flutter/services/logger/LoggerMixin.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_analytics/observer.dart';
-
-import '../logger/LoggerMixin.dart';
 
 /// Requires [LoggerService]
 class AnalyticsService
@@ -19,18 +18,22 @@ class AnalyticsService
     bool _isEnabled;
     String _currentScreen;
 
-    /// Requires [LoggerService]
-    factory AnalyticsService(bool startEnabled)
-    => AnalyticsService.mockable(FirebaseAnalytics(), startEnabled);
-
-    /// Requires [LoggerService]
-    AnalyticsService.mockable(FirebaseAnalytics firebaseAnalytics, bool startEnabled)
-        : _firebaseAnalytics = firebaseAnalytics,
-            _firebaseAnalyticsObserver = FirebaseAnalyticsObserver(analytics: firebaseAnalytics)
+    AnalyticsService._internal(this._firebaseAnalytics, this._firebaseAnalyticsObserver, this._isEnabled)
     {
         assert(logger != null, 'Unable to find via GetIt: Logger');
-        _isEnabled = startEnabled;
-        _firebaseAnalytics.setAnalyticsCollectionEnabled(startEnabled);
+    }
+
+    /// Requires [LoggerService]
+    static Future<AnalyticsService> create(bool startEnabled)
+    => AnalyticsService.createMockable(FirebaseAnalytics(), startEnabled);
+
+    /// Requires [LoggerService]
+    static Future<AnalyticsService> createMockable(FirebaseAnalytics firebaseAnalytics, bool startEnabled)
+    async
+    {
+        var instance = AnalyticsService._internal(firebaseAnalytics, FirebaseAnalyticsObserver(analytics: firebaseAnalytics), startEnabled);
+        await instance._firebaseAnalytics.setAnalyticsCollectionEnabled(startEnabled);
+        return instance;
     }
 
     FirebaseAnalyticsObserver getObserver()

@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:eggnstone_flutter/eggnstone_flutter.dart';
+import 'package:eggnstone_flutter/services/logger/LoggerService.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 const String TIME_REGEX = r'\d{2}:\d{2}:\d{2}';

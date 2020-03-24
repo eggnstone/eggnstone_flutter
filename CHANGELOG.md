@@ -13,3 +13,7 @@
 ## [0.0.2] - 24.03.2020 
 
 * Added AnalyticsNavigatorObserver.
+
+## [0.0.3] - 24.03.2020 
+
+* Added DartTools and CrashlyticsService.

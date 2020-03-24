@@ -1,7 +1,6 @@
+import 'package:eggnstone_flutter/services/analytics/AnalyticsService.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get_it/get_it.dart';
-
-import '../analytics/AnalyticsService.dart';
 
 typedef String ScreenNameExtractor(RouteSettings settings);
 
