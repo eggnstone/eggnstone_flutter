@@ -17,3 +17,7 @@
 ## [0.0.3] - 24.03.2020 
 
 * Added DartTools and CrashlyticsService.
+
+## [0.0.4] - 24.03.2020 
+
+* Cleanup.

@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:eggnstone_flutter/services/logger/LoggerMixin.dart';
-import 'package:eggnstone_flutter/tools/DartTools.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_crashlytics/flutter_crashlytics.dart';
 
@@ -36,65 +36,60 @@ class CrashlyticsService
     {
         FlutterError.onError = (FlutterErrorDetails details)
         {
-            logger.logInfo('FlutterError.onError');
-            if (DartTools.isDebugBuild())
-            {
-                // In development mode simply print to console.
-                logger.logError('##################################################');
-                logger.logError(_isEnabled ? 'Crashlytics: ' : 'Dummy-Crashlytics: ');
+            logger.logError('##################################################');
+            logger.logError(_isEnabled ? 'Crashlytics:' : 'Disabled-Crashlytics:');
 
+            if (logger.isEnabled)
+            {
+                // TODO: move to LoggerService
                 FlutterError.dumpErrorToConsole(details);
-
-                if (details.stack == null)
-                    logger.logInfo('No stacktrace available.');
-                else
-                    logger.logInfo(details.stack.toString());
-
-                logger.logError('##################################################');
             }
+
+            if (details.stack == null)
+                logger.logError('No stacktrace available.');
             else
+                logger.logError(details.stack.toString());
+
+            logger.logError('##################################################');
+
+            if (_isEnabled)
             {
-                // In production mode report to the application zone to report to Crashlytics.
-                if (_isEnabled)
-                    Zone.current.handleUncaughtError(details.exception, details.stack);
+                // Report to the application zone to report to Crashlytics.
+                Zone.current.handleUncaughtError(details.exception, details.stack);
             }
         };
 
         if (_isEnabled)
-            await _flutterCrashlytics.initialize();
+            if (kIsWeb)
+                logger.logDebug('Crashlytics not yet supported for web: not calling FlutterCrashlytics.initialize()');
+            else
+                await _flutterCrashlytics.initialize();
     }
 
     void setEnabled(bool newValue)
-    {
-        logger.logInfo('Crashlytics.setEnabled($newValue)');
-        _isEnabled = newValue;
-    }
+    => _isEnabled = newValue;
 
     void run(Widget app)
     {
-        if (_isEnabled)
-            runZoned<Future<Null>>(()
+        runZoned<Future<Null>>(()
+        async
+        {
+            runApp(app);
+        },
+            onError: (dynamic error, StackTrace stackTrace)
             async
             {
-                runApp(app);
-            },
-                onError: (dynamic error, StackTrace stackTrace)
-                async
-                {
-                    // Whenever an error occurs, call the `reportCrash` function. This will send
-                    // Dart errors to our dev console or Crashlytics depending on the environment.
-                    if (DartTools.isDebugBuild())
-                    {
-                        logger.logError('##################################################');
-                        logger.logError(error.toString());
-                        logger.logError(stackTrace.toString());
-                        logger.logError('##################################################');
-                    }
+                logger.logError('##################################################');
+                logger.logError(error.toString());
+                logger.logError(stackTrace.toString());
+                logger.logError('##################################################');
+
+                if (_isEnabled)
+                    if (kIsWeb)
+                        logger.logDebug('Crashlytics not yet supported for web: not calling FlutterCrashlytics.reportCrash()');
                     else
                         await _flutterCrashlytics.reportCrash(error, stackTrace, forceCrash: false);
-                });
-        else
-            runApp(app);
+            });
     }
 
 /*

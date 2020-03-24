@@ -17,7 +17,7 @@ class AnalyticsNavigatorObserver extends NavigatorObserver
         super.didPush(route, previousRoute);
 
         if (route is PageRoute)
-            _sendScreenView(route);
+            _setCurrentScreen(route);
     }
 
     @override
@@ -26,7 +26,7 @@ class AnalyticsNavigatorObserver extends NavigatorObserver
         super.didReplace(newRoute: newRoute, oldRoute: oldRoute);
 
         if (newRoute is PageRoute)
-            _sendScreenView(newRoute);
+            _setCurrentScreen(newRoute);
     }
 
     @override
@@ -35,10 +35,10 @@ class AnalyticsNavigatorObserver extends NavigatorObserver
         super.didPop(route, previousRoute);
 
         if (previousRoute is PageRoute && route is PageRoute)
-            _sendScreenView(previousRoute);
+            _setCurrentScreen(previousRoute);
     }
 
-    void _sendScreenView(PageRoute<dynamic> route)
+    void _setCurrentScreen(PageRoute<dynamic> route)
     {
         String screenName = nameExtractor(route.settings);
         if (screenName != null)

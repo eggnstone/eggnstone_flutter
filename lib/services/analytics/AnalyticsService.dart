@@ -1,6 +1,10 @@
+import 'dart:async';
+
+import 'package:eggnstone_flutter/eggnstone_flutter.dart';
 import 'package:eggnstone_flutter/services/logger/LoggerMixin.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_analytics/observer.dart';
+import 'package:flutter/foundation.dart';
 
 /// Requires [LoggerService]
 class AnalyticsService
@@ -32,7 +36,12 @@ class AnalyticsService
     async
     {
         var instance = AnalyticsService._internal(firebaseAnalytics, FirebaseAnalyticsObserver(analytics: firebaseAnalytics), startEnabled);
-        await instance._firebaseAnalytics.setAnalyticsCollectionEnabled(startEnabled);
+
+        if (kIsWeb)
+            instance.logger.logDebug('Analytics not fully supported for web: not calling FirebaseAnalytics.setAnalyticsCollectionEnabled()');
+        else
+            instance._firebaseAnalytics.setAnalyticsCollectionEnabled(startEnabled);
+
         return instance;
     }
 
@@ -44,9 +53,12 @@ class AnalyticsService
 
     set isEnabled(bool newValue)
     {
-        logger.logInfo('Analytics.isEnabled($newValue)');
         _isEnabled = newValue;
-        _firebaseAnalytics.setAnalyticsCollectionEnabled(newValue);
+
+        if (kIsWeb)
+            logger.logDebug('Analytics not fully supported for web: not calling FirebaseAnalytics.setAnalyticsCollectionEnabled()');
+        else
+            _firebaseAnalytics.setAnalyticsCollectionEnabled(newValue);
     }
 
     String get currentScreen
@@ -54,13 +66,15 @@ class AnalyticsService
 
     set currentScreen(String newValue)
     {
+        logger.logInfo((_isEnabled ? 'Analytics' : 'Disabled-Analytics') + ': setCurrentScreen: ' + newValue);
+
         _currentScreen = newValue;
 
-        String s = _isEnabled ? 'Analytics: ' : 'Dummy-Analytics: ';
-        logger.logInfo(s + 'setCurrentScreen: ' + newValue);
-
         if (_isEnabled)
-            _firebaseAnalytics.setCurrentScreen(screenName: newValue, screenClassOverride: newValue);
+            if (kIsWeb)
+                logger.logDebug('Analytics not fully supported for web: not calling FirebaseAnalytics.setCurrentScreen()');
+            else
+                _firebaseAnalytics.setCurrentScreen(screenName: newValue, screenClassOverride: newValue);
     }
 
     void log(String name, [Map<String, dynamic> params])
@@ -148,7 +162,7 @@ class AnalyticsService
 
         if (foundError == false)
         {
-            String s = (_isEnabled ? 'Analytics: ' : 'Dummy-Analytics: ') + name;
+            String s = (_isEnabled ? 'Analytics' : 'Disabled-Analytics') + ': ' + name;
 
             if (params != null)
                 for (String key in params.keys)
@@ -172,17 +186,17 @@ class AnalyticsService
 
     void setUserProperty(String name, String value, {bool force = false})
     {
+        logger.logInfo((_isEnabled ? 'Analytics' : 'Disabled-Analytics') + ': setUserProperty: name=$name value=$value force=$force');
+
         if (_isEnabled || force)
             _firebaseAnalytics.setUserProperty(name: name, value: value);
-
-        logger.logInfo((_isEnabled ? 'Analytics' : 'Dummy-Analytics') + ': setUserProperty: name=$name value=$value force=$force');
     }
 
     void setUserId(String value)
     {
+        logger.logInfo((_isEnabled ? 'Analytics' : 'Disabled-Analytics') + ': setUserId: $value');
+
         if (_isEnabled)
             _firebaseAnalytics.setUserId(value);
-
-        logger.logInfo((_isEnabled ? 'Analytics' : 'Dummy-Analytics') + ': setUserId: $value');
     }
 }
