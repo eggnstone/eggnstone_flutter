@@ -1,4 +1,9 @@
 library eggnstone_flutter;
 
+export 'services/analytics/AnalyticsMixin.dart';
+export 'services/analytics/AnalyticsService.dart';
 export 'services/logger/LoggerMixin.dart';
 export 'services/logger/LoggerService.dart';
+
+//export 'services/crashlytics/CrashlyticsMixin.dart';
+//export 'services/crashlytics/CrashlyticsService.dart';

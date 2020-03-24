@@ -9,3 +9,7 @@
 ## [0.0.1] - 24.03.2020 
 
 * Added AnalyticsService.
+
+## [0.0.2] - 24.03.2020 
+
+* Added AnalyticsNavigatorObserver.
