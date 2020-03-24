@@ -38,7 +38,7 @@ class AnalyticsService
         var instance = AnalyticsService._internal(firebaseAnalytics, FirebaseAnalyticsObserver(analytics: firebaseAnalytics), startEnabled);
 
         if (kIsWeb)
-            instance.logger.logDebug('Analytics not fully supported for web: not calling FirebaseAnalytics.setAnalyticsCollectionEnabled()');
+            instance.logger.logDebug('Analytics not yet supported for web: not calling FirebaseAnalytics.setAnalyticsCollectionEnabled()');
         else
             instance._firebaseAnalytics.setAnalyticsCollectionEnabled(startEnabled);
 
@@ -56,7 +56,7 @@ class AnalyticsService
         _isEnabled = newValue;
 
         if (kIsWeb)
-            logger.logDebug('Analytics not fully supported for web: not calling FirebaseAnalytics.setAnalyticsCollectionEnabled()');
+            logger.logDebug('Analytics not yet supported for web: not calling FirebaseAnalytics.setAnalyticsCollectionEnabled()');
         else
             _firebaseAnalytics.setAnalyticsCollectionEnabled(newValue);
     }
@@ -72,7 +72,7 @@ class AnalyticsService
 
         if (_isEnabled)
             if (kIsWeb)
-                logger.logDebug('Analytics not fully supported for web: not calling FirebaseAnalytics.setCurrentScreen()');
+                logger.logDebug('Analytics not yet supported for web: not calling FirebaseAnalytics.setCurrentScreen()');
             else
                 _firebaseAnalytics.setCurrentScreen(screenName: newValue, screenClassOverride: newValue);
     }
@@ -109,13 +109,16 @@ class AnalyticsService
             logger.logError('# Error: Event name "$name" is too long! Is=${name.length} Max=${AnalyticsService.MAX_EVENT_NAME_LENGTH}');
 
             if (_isEnabled)
-                _firebaseAnalytics.logEvent(
-                    name: 'AnalyticsError',
-                    parameters: {
-                        'EventName': name.length <= AnalyticsService.MAX_PARAM_VALUE_LENGTH ? name : name.substring(0, AnalyticsService.MAX_PARAM_VALUE_LENGTH),
-                        'Message': 'Event name is too long! Is=${name.length} Max=${AnalyticsService.MAX_EVENT_NAME_LENGTH}'
-                    }
-                );
+                if (kIsWeb)
+                    logger.logDebug('Analytics not yet supported for web: not calling FirebaseAnalytics.logEvent()');
+                else
+                    _firebaseAnalytics.logEvent(
+                        name: 'AnalyticsError',
+                        parameters: {
+                            'EventName': name.length <= AnalyticsService.MAX_PARAM_VALUE_LENGTH ? name : name.substring(0, AnalyticsService.MAX_PARAM_VALUE_LENGTH),
+                            'Message': 'Event name is too long! Is=${name.length} Max=${AnalyticsService.MAX_EVENT_NAME_LENGTH}'
+                        }
+                    );
         }
 
         if (params != null)
@@ -129,14 +132,17 @@ class AnalyticsService
                     logger.logError('# Error: Param name "$key" is too long! Is=${key.length} Max=${AnalyticsService.MAX_PARAM_NAME_LENGTH}');
 
                     if (_isEnabled)
-                        _firebaseAnalytics.logEvent(
-                            name: 'AnalyticsError',
-                            parameters: {
-                                'EventName': name.length <= AnalyticsService.MAX_PARAM_VALUE_LENGTH ? name : name.substring(0, AnalyticsService.MAX_PARAM_VALUE_LENGTH),
-                                'ParamName': key.length <= AnalyticsService.MAX_PARAM_VALUE_LENGTH ? key : key.substring(0, AnalyticsService.MAX_PARAM_VALUE_LENGTH),
-                                'Message': 'Param name is too long! Is=${key.length} Max=${AnalyticsService.MAX_PARAM_NAME_LENGTH}'
-                            }
-                        );
+                        if (kIsWeb)
+                            logger.logDebug('Analytics not yet supported for web: not calling FirebaseAnalytics.logEvent()');
+                        else
+                            _firebaseAnalytics.logEvent(
+                                name: 'AnalyticsError',
+                                parameters: {
+                                    'EventName': name.length <= AnalyticsService.MAX_PARAM_VALUE_LENGTH ? name : name.substring(0, AnalyticsService.MAX_PARAM_VALUE_LENGTH),
+                                    'ParamName': key.length <= AnalyticsService.MAX_PARAM_VALUE_LENGTH ? key : key.substring(0, AnalyticsService.MAX_PARAM_VALUE_LENGTH),
+                                    'Message': 'Param name is too long! Is=${key.length} Max=${AnalyticsService.MAX_PARAM_NAME_LENGTH}'
+                                }
+                            );
                 }
 
                 Object value = params[key];
@@ -147,15 +153,18 @@ class AnalyticsService
                     logger.logError('# Error: Param value of "$key" is too long! Is=${value.length} Max=${AnalyticsService.MAX_PARAM_VALUE_LENGTH} Value: $value');
 
                     if (_isEnabled)
-                        _firebaseAnalytics.logEvent(
-                            name: 'AnalyticsError',
-                            parameters: {
-                                'EventName': name.length <= AnalyticsService.MAX_PARAM_VALUE_LENGTH ? name : name.substring(0, AnalyticsService.MAX_PARAM_VALUE_LENGTH),
-                                'ParamName': key.length <= AnalyticsService.MAX_PARAM_VALUE_LENGTH ? key : key.substring(0, AnalyticsService.MAX_PARAM_VALUE_LENGTH),
-                                'ParamValue': value.substring(0, AnalyticsService.MAX_PARAM_VALUE_LENGTH),
-                                'Message': 'Param value is too long! Is=${value.length} Max=${AnalyticsService.MAX_PARAM_VALUE_LENGTH}'
-                            }
-                        );
+                        if (kIsWeb)
+                            logger.logDebug('Analytics not yet supported for web: not calling FirebaseAnalytics.logEvent()');
+                        else
+                            _firebaseAnalytics.logEvent(
+                                name: 'AnalyticsError',
+                                parameters: {
+                                    'EventName': name.length <= AnalyticsService.MAX_PARAM_VALUE_LENGTH ? name : name.substring(0, AnalyticsService.MAX_PARAM_VALUE_LENGTH),
+                                    'ParamName': key.length <= AnalyticsService.MAX_PARAM_VALUE_LENGTH ? key : key.substring(0, AnalyticsService.MAX_PARAM_VALUE_LENGTH),
+                                    'ParamValue': value.substring(0, AnalyticsService.MAX_PARAM_VALUE_LENGTH),
+                                    'Message': 'Param value is too long! Is=${value.length} Max=${AnalyticsService.MAX_PARAM_VALUE_LENGTH}'
+                                }
+                            );
                 }
             }
         }
@@ -171,7 +180,10 @@ class AnalyticsService
             logger.logInfo(s);
 
             if (_isEnabled)
-                _firebaseAnalytics.logEvent(name: name, parameters: params);
+                if (kIsWeb)
+                    logger.logDebug('Analytics not yet supported for web: not calling FirebaseAnalytics.logEvent()');
+                else
+                    _firebaseAnalytics.logEvent(name: name, parameters: params);
         }
     }
 
@@ -189,7 +201,10 @@ class AnalyticsService
         logger.logInfo((_isEnabled ? 'Analytics' : 'Disabled-Analytics') + ': setUserProperty: name=$name value=$value force=$force');
 
         if (_isEnabled || force)
-            _firebaseAnalytics.setUserProperty(name: name, value: value);
+            if (kIsWeb)
+                logger.logDebug('Analytics not yet supported for web: not calling FirebaseAnalytics.setUserProperty()');
+            else
+                _firebaseAnalytics.setUserProperty(name: name, value: value);
     }
 
     void setUserId(String value)
@@ -197,6 +212,9 @@ class AnalyticsService
         logger.logInfo((_isEnabled ? 'Analytics' : 'Disabled-Analytics') + ': setUserId: $value');
 
         if (_isEnabled)
-            _firebaseAnalytics.setUserId(value);
+            if (kIsWeb)
+                logger.logDebug('Analytics not yet supported for web: not calling FirebaseAnalytics.setUserId()');
+            else
+                _firebaseAnalytics.setUserId(value);
     }
 }
