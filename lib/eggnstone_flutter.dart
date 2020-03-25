@@ -9,3 +9,4 @@ export 'services/crashlytics/CrashlyticsService.dart';
 export 'services/logger/LoggerMixin.dart';
 export 'services/logger/LoggerService.dart';
 export 'tools/DartTools.dart';
+export 'tools/StringTools.dart';

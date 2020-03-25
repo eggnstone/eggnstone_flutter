@@ -1,14 +1,17 @@
 import 'dart:async';
 
+import 'package:eggnstone_flutter/eggnstone_flutter.dart';
 import 'package:eggnstone_flutter/services/logger/LoggerMixin.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 
-/// Requires [ILoggerService]
+/// Requires [IAnalyticsService, LoggerService]
 class CrashlyticsService
-    with LoggerMixin
+    with AnalyticsMixin, LoggerMixin
 {
+    static const String ANALYTICS_KEY__CRASHLYTICS_FOR_WEB = 'CrashlyticsForWeb';
+
     final Crashlytics _crashlytics;
 
     bool _isEnabled;
@@ -54,7 +57,19 @@ class CrashlyticsService
 
             if (_isEnabled)
                 if (kIsWeb)
+                {
                     logger.logDebug('Crashlytics not yet supported for web: not calling Crashlytics.recordFlutterError()');
+
+                    Map<String, dynamic> map = {};
+
+                    if (details.exception != null)
+                        map['Exception'] = StringTools.shortenForAnalytics(details.exception.toString());
+
+                    if (details.stack != null)
+                        map['StackTrace'] = StringTools.shortenForAnalytics(details.stack.toString());
+
+                    analytics.log(ANALYTICS_KEY__CRASHLYTICS_FOR_WEB, map);
+                }
                 else
                     _crashlytics.recordFlutterError(details);
         };
@@ -79,7 +94,19 @@ class CrashlyticsService
 
                 if (_isEnabled)
                     if (kIsWeb)
+                    {
                         logger.logDebug('Crashlytics not yet supported for web: not calling Crashlytics.recordError()');
+
+                        Map<String, dynamic> map = {};
+
+                        if (exception != null)
+                            map['Exception'] = StringTools.shortenForAnalytics(exception.toString());
+
+                        if (stackTrace != null)
+                            map['StackTrace'] = StringTools.shortenForAnalytics(stackTrace.toString());
+
+                        analytics.log(ANALYTICS_KEY__CRASHLYTICS_FOR_WEB, map);
+                    }
                     else
                         _crashlytics.recordError(exception, stackTrace);
             });

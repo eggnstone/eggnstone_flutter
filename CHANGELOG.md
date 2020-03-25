@@ -40,4 +40,8 @@
 
 ## [0.1.2] - 25.03.2020
 
-* Added more already existing method to IAnalyticsService.
+* Added more already existing methods to IAnalyticsService.
+
+## [0.1.3] - 25.03.2020
+
+* Crashlytics does not support web yet, logging to Analytics instead.
