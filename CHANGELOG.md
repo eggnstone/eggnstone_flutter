@@ -49,3 +49,7 @@
 ## [0.1.4] - 25.03.2020
 
 * Added SharedPreferencesService.
+
+## [0.1.5] - 
+
+* 
