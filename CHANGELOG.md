@@ -45,3 +45,7 @@
 ## [0.1.3] - 25.03.2020
 
 * Crashlytics does not support web yet, logging to Analytics instead.
+
+## [0.1.4] - 
+
+* 
