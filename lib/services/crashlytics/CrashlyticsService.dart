@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:eggnstone_flutter/eggnstone_flutter.dart';
-import 'package:eggnstone_flutter/services/logger/LoggerMixin.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';

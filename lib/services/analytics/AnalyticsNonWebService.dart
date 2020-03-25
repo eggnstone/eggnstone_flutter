@@ -1,8 +1,6 @@
 import 'dart:async';
 
 import 'package:eggnstone_flutter/eggnstone_flutter.dart';
-import 'package:eggnstone_flutter/services/analytics/IAnalyticsService.dart';
-import 'package:eggnstone_flutter/services/logger/LoggerMixin.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 
 /// Requires [LoggerService]

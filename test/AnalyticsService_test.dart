@@ -1,6 +1,4 @@
-import 'package:eggnstone_flutter/services/analytics/AnalyticsNonWebService.dart';
-import 'package:eggnstone_flutter/services/analytics/IAnalyticsService.dart';
-import 'package:eggnstone_flutter/services/logger/LoggerService.dart';
+import 'package:eggnstone_flutter/eggnstone_flutter.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:get_it/get_it.dart';
