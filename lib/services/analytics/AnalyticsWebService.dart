@@ -4,7 +4,6 @@ import 'package:eggnstone_flutter/eggnstone_flutter.dart';
 import 'package:eggnstone_flutter/services/analytics/IAnalyticsService.dart';
 import 'package:eggnstone_flutter/services/logger/LoggerMixin.dart';
 import 'package:firebase/firebase.dart' as FirebaseWeb;
-import 'package:firebase_analytics/observer.dart';
 
 /// Requires [LoggerService]
 class AnalyticsService
@@ -19,7 +18,7 @@ class AnalyticsService
 
     final FirebaseWeb.Analytics _firebaseAnalytics;
 
-    //final FirebaseAnalyticsObserver _firebaseAnalyticsObserver;
+    //final RouteObserver<PageRoute<dynamic>> _firebaseAnalyticsObserver;
 
     bool _isEnabled;
     String _currentScreen;
@@ -35,32 +34,31 @@ class AnalyticsService
     => AnalyticsService.createMockable(FirebaseWeb.analytics(), startEnabled);
 
     /// Requires [LoggerService]
-    static Future<IAnalyticsService> createMockable(FirebaseWeb.Analytics firebaseAnalytics, bool startEnabled)
+    static Future<IAnalyticsService> createMockable(FirebaseWeb.Analytics firebaseWebAnalytics, bool startEnabled)
     async
     {
-        var instance = AnalyticsService._internal(firebaseAnalytics, /*FirebaseAnalyticsObserver(analytics: firebaseAnalytics),*/ startEnabled);
+        //var firebaseWebAnalyticsObserver = FirebaseWebAnalyticsObserver(analytics: firebaseWebAnalytics);
+        var instance = AnalyticsService._internal(firebaseWebAnalytics, /*firebaseWebAnalyticsObserver,*/ startEnabled);
         instance._firebaseAnalytics.setAnalyticsCollectionEnabled(startEnabled);
         return instance;
     }
 
-    FirebaseAnalyticsObserver getObserver()
-    {
-        throw Exception('NYI');
-        //return _firebaseAnalyticsObserver;
-    }
-
+    @override
     bool get isEnabled
     => _isEnabled;
 
+    @override
     set isEnabled(bool newValue)
     {
         _isEnabled = newValue;
         _firebaseAnalytics.setAnalyticsCollectionEnabled(newValue);
     }
 
+    @override
     String get currentScreen
     => _currentScreen;
 
+    @override
     set currentScreen(String newValue)
     {
         logger.logInfo((_isEnabled ? 'Analytics' : 'Disabled-Analytics') + ': setCurrentScreen: ' + newValue);
@@ -74,6 +72,11 @@ class AnalyticsService
         }
     }
 
+    /*@override
+    RouteObserver<PageRoute<dynamic>> getObserver()
+    => _firebaseAnalyticsObserver;*/
+
+    @override
     void log(String name, [Map<String, dynamic> params])
     {
         assert(name != null);
@@ -172,15 +175,19 @@ class AnalyticsService
         }
     }
 
+    @override
     void logAction(String name, String action)
     => log(name, {'Action': action});
 
+    @override
     void logValue(String name, Object value)
     => log(name, {'Value': value});
 
+    @override
     void logActionAndValue(String name, String action, Object value)
     => log(name, {'Action': action, 'Value': value});
 
+    @override
     void setUserProperty(String name, String value, {bool force = false})
     {
         logger.logInfo((_isEnabled ? 'Analytics' : 'Disabled-Analytics') + ': setUserProperty: name=$name value=$value force=$force');
@@ -195,6 +202,7 @@ class AnalyticsService
         }
     }
 
+    @override
     void setUserId(String value)
     {
         logger.logInfo((_isEnabled ? 'Analytics' : 'Disabled-Analytics') + ': setUserId: $value');
@@ -203,6 +211,13 @@ class AnalyticsService
             _firebaseAnalytics.setUserId(value);
     }
 }
+
+/*class FirebaseWebAnalyticsObserver extends RouteObserver<PageRoute<dynamic>>
+{
+    final FirebaseWeb.Analytics analytics;
+
+    FirebaseWebAnalyticsObserver({@required this.analytics});
+}*/
 
 /*
 class MyCustomParamsJsImpl extends analytics_interop.CustomParamsJsImpl

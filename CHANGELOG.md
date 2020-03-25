@@ -37,3 +37,7 @@
 ## [0.1.1] - 25.03.2020
 
 * Added missing export.
+
+## [0.1.2] - 25.03.2020
+
+* Added more already existing method to IAnalyticsService.
