@@ -8,5 +8,7 @@ export 'services/crashlytics/CrashlyticsMixin.dart';
 export 'services/crashlytics/CrashlyticsService.dart';
 export 'services/logger/LoggerMixin.dart';
 export 'services/logger/LoggerService.dart';
+export 'services/shared_preferences/SharedPreferencesMixin.dart';
+export 'services/shared_preferences/SharedPreferencesService.dart';
 export 'tools/DartTools.dart';
 export 'tools/StringTools.dart';
