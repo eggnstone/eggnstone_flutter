@@ -25,3 +25,7 @@
 ## [0.0.5] - 24.03.2020
 
 * Using firebase_crashlytics instead of flutter_crashlytics now.
+
+## [0.0.6] - 25.03.2020
+
+* Using firebase.analytics for web, because firebase_analytics does not support web yet.

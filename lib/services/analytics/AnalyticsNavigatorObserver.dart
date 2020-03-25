@@ -1,4 +1,4 @@
-import 'package:eggnstone_flutter/services/analytics/AnalyticsService.dart';
+import 'package:eggnstone_flutter/services/analytics/IAnalyticsService.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get_it/get_it.dart';
 
@@ -43,7 +43,7 @@ class AnalyticsNavigatorObserver extends NavigatorObserver
         String screenName = nameExtractor(route.settings);
         if (screenName != null)
             GetIt.instance
-                .get<AnalyticsService>()
+                .get<IAnalyticsService>()
                 .currentScreen = screenName;
     }
 }

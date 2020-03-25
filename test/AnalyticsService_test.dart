@@ -1,4 +1,5 @@
-import 'package:eggnstone_flutter/services/analytics/AnalyticsService.dart';
+import 'package:eggnstone_flutter/services/analytics/AnalyticsNonWebService.dart';
+import 'package:eggnstone_flutter/services/analytics/IAnalyticsService.dart';
 import 'package:eggnstone_flutter/services/logger/LoggerService.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -35,7 +36,7 @@ void testLog()
         test('Only with name, empty name', ()
         async
         {
-            AnalyticsService analytics = await AnalyticsService.createMockable(MockFirebaseAnalytics(), true);
+            IAnalyticsService analytics = await AnalyticsService.createMockable(MockFirebaseAnalytics(), true);
             analytics.log('');
             verifyNever(logger.logInfo(any));
             verifyNever(logger.logDebug(any));
@@ -46,7 +47,7 @@ void testLog()
         test('Only with name, length ok', ()
         async
         {
-            AnalyticsService analytics = await AnalyticsService.createMockable(MockFirebaseAnalytics(), true);
+            IAnalyticsService analytics = await AnalyticsService.createMockable(MockFirebaseAnalytics(), true);
             analytics.log('Test');
             verify(logger.logInfo(argThat(equals('Analytics: Test'))));
             verifyNever(logger.logDebug(any));
@@ -57,7 +58,7 @@ void testLog()
         test('Only with name, length barely ok', ()
         async
         {
-            AnalyticsService analytics = await AnalyticsService.createMockable(MockFirebaseAnalytics(), true);
+            IAnalyticsService analytics = await AnalyticsService.createMockable(MockFirebaseAnalytics(), true);
             analytics.log(TEXT_40);
             verify(logger.logInfo(argThat(equals('Analytics: ' + TEXT_40))));
             verifyNever(logger.logDebug(any));
@@ -68,7 +69,7 @@ void testLog()
         test('Only with name, length too long', ()
         async
         {
-            AnalyticsService analytics = await AnalyticsService.createMockable(MockFirebaseAnalytics(), true);
+            IAnalyticsService analytics = await AnalyticsService.createMockable(MockFirebaseAnalytics(), true);
             analytics.log(TEXT_41);
 
             verifyInOrder([

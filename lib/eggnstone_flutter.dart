@@ -2,7 +2,7 @@ library eggnstone_flutter;
 
 export 'services/analytics/AnalyticsMixin.dart';
 export 'services/analytics/AnalyticsNavigatorObserver.dart';
-export 'services/analytics/AnalyticsService.dart';
+export 'services/analytics/AnalyticsNonWebService.dart' if (dart.library.html) 'services/analytics/AnalyticsWebService.dart';
 export 'services/crashlytics/CrashlyticsMixin.dart';
 export 'services/crashlytics/CrashlyticsService.dart';
 export 'services/logger/LoggerMixin.dart';
