@@ -33,3 +33,7 @@
 ## [0.1.0] - 25.03.2020
 
 * Good enough for v0.1.0.
+
+## [0.1.1] - 25.03.2020
+
+* Added missing export.
