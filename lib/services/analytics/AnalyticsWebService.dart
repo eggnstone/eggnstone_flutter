@@ -27,7 +27,7 @@ class AnalyticsService
     AnalyticsService._internal(this._firebaseAnalytics, /*this._firebaseAnalyticsObserver,*/ this._isEnabled)
     {
         assert(logger != null, 'Unable to find via GetIt: Logger');
-        logger.logDebug('AnalyticsService for Web created.');
+        //logger.logDebug('AnalyticsService for Web created.');
     }
 
     /// Requires [LoggerService]
