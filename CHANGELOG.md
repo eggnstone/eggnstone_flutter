@@ -50,6 +50,6 @@
 
 * Added SharedPreferencesService.
 
-## [0.1.5] - 
+## [0.1.5] - 31.03.2020
 
-* 
+* Added LoggerMixin.staticLogger.
