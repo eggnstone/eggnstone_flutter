@@ -81,3 +81,7 @@
 ## [0.1.12] - 04.05.2020
 
 * Added generic AnalyticsNavigatorObserver.
+
+## [0.1.13] - 04.05.2020
+
+* Decoupled CrashlyticsService from GoogleAnalyticsService.

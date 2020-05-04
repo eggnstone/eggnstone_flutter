@@ -24,8 +24,8 @@ class CrashlyticsService
     }
 
     /// Requires [LoggerService]
-    static Future<CrashlyticsService> create(bool startEnabled)
-    => CrashlyticsService.createMockable(Crashlytics(), null, startEnabled);
+    static Future<CrashlyticsService> create(CrashReporterCallback alternativeCrashReporter, bool startEnabled)
+    => CrashlyticsService.createMockable(Crashlytics(), alternativeCrashReporter, startEnabled);
 
     /// Requires [LoggerService]
     static Future<CrashlyticsService> createMockable(Crashlytics crashlytics, CrashReporterCallback alternativeCrashReporter, bool startEnabled)
