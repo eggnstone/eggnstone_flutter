@@ -8,7 +8,9 @@ abstract class IAnalyticsService
 
     set currentScreen(String newValue);
 
-    //RouteObserver<PageRoute<dynamic>> getObserver();
+    // TODO: shorten strings instead of expecting shortened strings
+
+    // TODO: replace log* with track*
 
     void log(String name, [Map<String, dynamic> params]);
 
