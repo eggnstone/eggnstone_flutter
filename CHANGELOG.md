@@ -53,3 +53,7 @@
 ## [0.1.5] - 31.03.2020
 
 * Added LoggerMixin.staticLogger.
+
+## [0.1.6] - 04.05.2020
+
+* Decoupled CrashlyticsService from GoogleAnalyticsService.

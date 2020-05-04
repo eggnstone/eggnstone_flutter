@@ -1,5 +1,14 @@
 class StringTools
 {
+    // TODO: use extension method
+    static bool isNullOrEmpty(String s)
+    => (s == null || s.length == 0);
+
+    // TODO: use extension method
+    static bool isNotNullNorEmpty(String s)
+    => (s != null && s.length > 0);
+
+    // TODO: deprecate
     static shortenForAnalytics(Object o)
     {
         if (o == null)
@@ -13,6 +22,7 @@ class StringTools
         return s.length <= 100 ? s : s.substring(0, 100);
     }
 
+    // TODO: deprecate
     static shortenUrlForAnalytics(String url)
     {
         if (url == null)
