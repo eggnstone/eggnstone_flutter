@@ -16,8 +16,6 @@ class GoogleAnalyticsService
 
     final FirebaseAnalytics _firebaseAnalytics;
 
-    //final RouteObserver<PageRoute<dynamic>> _firebaseAnalyticsObserver;
-
     bool _isEnabled;
     String _currentScreen;
 
@@ -58,17 +56,13 @@ class GoogleAnalyticsService
     @override
     set currentScreen(String newValue)
     {
-        logger.logInfo((_isEnabled ? 'Analytics' : 'Disabled-Analytics') + ': setCurrentScreen: ' + newValue);
+        logger.logInfo((_isEnabled ? 'GoogleAnalytics' : 'Disabled-GoogleAnalytics') + ': setCurrentScreen: ' + newValue);
 
         _currentScreen = newValue;
 
         if (_isEnabled)
             _firebaseAnalytics.setCurrentScreen(screenName: newValue, screenClassOverride: newValue);
     }
-
-    /*@override
-    RouteObserver<PageRoute<dynamic>> getObserver()
-    => _firebaseAnalyticsObserver;*/
 
     @override
     void log(String name, [Map<String, dynamic> params])
@@ -88,7 +82,7 @@ class GoogleAnalyticsService
                 if (params[key] == null)
                 {
                     params.remove(key);
-                    logger.logInfo('Analytics: Removed key with null value: $key');
+                    logger.logInfo('GoogleAnalytics: Removed key with null value: $key');
                 }
             }
         }
@@ -156,7 +150,7 @@ class GoogleAnalyticsService
 
         if (foundError == false)
         {
-            String s = (_isEnabled ? 'Analytics' : 'Disabled-Analytics') + ': ' + name;
+            String s = (_isEnabled ? 'GoogleAnalytics' : 'Disabled-GoogleAnalytics') + ': ' + name;
 
             if (params != null)
                 for (String key in params.keys)
@@ -184,7 +178,7 @@ class GoogleAnalyticsService
     @override
     void setUserProperty(String name, String value, {bool force = false})
     {
-        logger.logInfo((_isEnabled ? 'Analytics' : 'Disabled-Analytics') + ': setUserProperty: name=$name value=$value force=$force');
+        logger.logInfo((_isEnabled ? 'GoogleAnalytics' : 'Disabled-GoogleAnalytics') + ': setUserProperty: name=$name value=$value force=$force');
 
         if (_isEnabled || force)
             _firebaseAnalytics.setUserProperty(name: name, value: value);
@@ -193,7 +187,7 @@ class GoogleAnalyticsService
     @override
     void setUserId(String value)
     {
-        logger.logInfo((_isEnabled ? 'Analytics' : 'Disabled-Analytics') + ': setUserId: $value');
+        logger.logInfo((_isEnabled ? 'GoogleAnalytics' : 'Disabled-GoogleAnalytics') + ': setUserId: $value');
 
         if (_isEnabled)
             _firebaseAnalytics.setUserId(value);
