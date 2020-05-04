@@ -57,3 +57,7 @@
 ## [0.1.6] - 04.05.2020
 
 * Decoupled CrashlyticsService from GoogleAnalyticsService.
+
+## [0.1.7] - 04.05.2020
+
+* Renamed Analytics* to GoogleAnalytics*

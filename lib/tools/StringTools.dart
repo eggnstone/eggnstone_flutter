@@ -8,7 +8,7 @@ class StringTools
     static bool isNotNullNorEmpty(String s)
     => (s != null && s.length > 0);
 
-    // TODO: deprecate
+    // TODO: deprecate and move to GoogleAnalytics
     static shortenForAnalytics(Object o)
     {
         if (o == null)
@@ -22,7 +22,7 @@ class StringTools
         return s.length <= 100 ? s : s.substring(0, 100);
     }
 
-    // TODO: deprecate
+    // TODO: deprecate and move to GoogleAnalytics
     static shortenUrlForAnalytics(String url)
     {
         if (url == null)

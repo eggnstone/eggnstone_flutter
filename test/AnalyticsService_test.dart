@@ -34,7 +34,7 @@ void testLog()
         test('Only with name, empty name', ()
         async
         {
-            IAnalyticsService analytics = await AnalyticsService.createMockable(MockFirebaseAnalytics(), true);
+            IGoogleAnalyticsService analytics = await GoogleAnalyticsService.createMockable(MockFirebaseAnalytics(), true);
             analytics.log('');
             verifyNever(logger.logInfo(any));
             verifyNever(logger.logDebug(any));
@@ -45,7 +45,7 @@ void testLog()
         test('Only with name, length ok', ()
         async
         {
-            IAnalyticsService analytics = await AnalyticsService.createMockable(MockFirebaseAnalytics(), true);
+            IGoogleAnalyticsService analytics = await GoogleAnalyticsService.createMockable(MockFirebaseAnalytics(), true);
             analytics.log('Test');
             verify(logger.logInfo(argThat(equals('Analytics: Test'))));
             verifyNever(logger.logDebug(any));
@@ -56,7 +56,7 @@ void testLog()
         test('Only with name, length barely ok', ()
         async
         {
-            IAnalyticsService analytics = await AnalyticsService.createMockable(MockFirebaseAnalytics(), true);
+            IGoogleAnalyticsService analytics = await GoogleAnalyticsService.createMockable(MockFirebaseAnalytics(), true);
             analytics.log(TEXT_40);
             verify(logger.logInfo(argThat(equals('Analytics: ' + TEXT_40))));
             verifyNever(logger.logDebug(any));
@@ -67,7 +67,7 @@ void testLog()
         test('Only with name, length too long', ()
         async
         {
-            IAnalyticsService analytics = await AnalyticsService.createMockable(MockFirebaseAnalytics(), true);
+            IGoogleAnalyticsService analytics = await GoogleAnalyticsService.createMockable(MockFirebaseAnalytics(), true);
             analytics.log(TEXT_41);
 
             verifyInOrder([

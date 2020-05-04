@@ -4,9 +4,9 @@ import 'package:eggnstone_flutter/eggnstone_flutter.dart';
 import 'package:firebase/firebase.dart' as FirebaseWeb;
 
 /// Requires [LoggerService]
-class AnalyticsService
+class GoogleAnalyticsService
     with LoggerMixin
-    implements IAnalyticsService
+    implements IGoogleAnalyticsService
 {
     static const String EVENT_NAME__TUTORIAL_BEGIN = 'tutorial_begin';
     static const String EVENT_NAME__TUTORIAL_COMPLETE = 'tutorial_complete';
@@ -21,22 +21,22 @@ class AnalyticsService
     bool _isEnabled;
     String _currentScreen;
 
-    AnalyticsService._internal(this._firebaseAnalytics, /*this._firebaseAnalyticsObserver,*/ this._isEnabled)
+    GoogleAnalyticsService._internal(this._firebaseAnalytics, /*this._firebaseAnalyticsObserver,*/ this._isEnabled)
     {
         assert(logger != null, 'Unable to find via GetIt: Logger');
         //logger.logDebug('AnalyticsService for Web created.');
     }
 
     /// Requires [LoggerService]
-    static Future<IAnalyticsService> create(bool startEnabled)
-    => AnalyticsService.createMockable(FirebaseWeb.analytics(), startEnabled);
+    static Future<IGoogleAnalyticsService> create(bool startEnabled)
+    => GoogleAnalyticsService.createMockable(FirebaseWeb.analytics(), startEnabled);
 
     /// Requires [LoggerService]
-    static Future<IAnalyticsService> createMockable(FirebaseWeb.Analytics firebaseWebAnalytics, bool startEnabled)
+    static Future<IGoogleAnalyticsService> createMockable(FirebaseWeb.Analytics firebaseWebAnalytics, bool startEnabled)
     async
     {
         //var firebaseWebAnalyticsObserver = FirebaseWebAnalyticsObserver(analytics: firebaseWebAnalytics);
-        var instance = AnalyticsService._internal(firebaseWebAnalytics, /*firebaseWebAnalyticsObserver,*/ startEnabled);
+        var instance = GoogleAnalyticsService._internal(firebaseWebAnalytics, /*firebaseWebAnalyticsObserver,*/ startEnabled);
         instance._firebaseAnalytics.setAnalyticsCollectionEnabled(startEnabled);
         return instance;
     }
@@ -100,18 +100,18 @@ class AnalyticsService
         // Check limits (https://support.google.com/firebase/answer/9237506?hl=en)
         bool foundError = false;
 
-        if (name.length > AnalyticsService.MAX_EVENT_NAME_LENGTH)
+        if (name.length > GoogleAnalyticsService.MAX_EVENT_NAME_LENGTH)
         {
             foundError = true;
             logger.logError('##################################################');
-            logger.logError('# Error: Event name "$name" is too long! Is=${name.length} Max=${AnalyticsService.MAX_EVENT_NAME_LENGTH}');
+            logger.logError('# Error: Event name "$name" is too long! Is=${name.length} Max=${GoogleAnalyticsService.MAX_EVENT_NAME_LENGTH}');
 
             if (_isEnabled)
                 _firebaseAnalytics.logEvent(
                     'AnalyticsError',
                     {
-                        'EventName': name.length <= AnalyticsService.MAX_PARAM_VALUE_LENGTH ? name : name.substring(0, AnalyticsService.MAX_PARAM_VALUE_LENGTH),
-                        'Message': 'Event name is too long! Is=${name.length} Max=${AnalyticsService.MAX_EVENT_NAME_LENGTH}'
+                        'EventName': name.length <= GoogleAnalyticsService.MAX_PARAM_VALUE_LENGTH ? name : name.substring(0, GoogleAnalyticsService.MAX_PARAM_VALUE_LENGTH),
+                        'Message': 'Event name is too long! Is=${name.length} Max=${GoogleAnalyticsService.MAX_EVENT_NAME_LENGTH}'
                     }
                 );
         }
@@ -120,38 +120,38 @@ class AnalyticsService
         {
             for (String key in params.keys)
             {
-                if (key.length > AnalyticsService.MAX_PARAM_NAME_LENGTH)
+                if (key.length > GoogleAnalyticsService.MAX_PARAM_NAME_LENGTH)
                 {
                     foundError = true;
                     logger.logError('##################################################');
-                    logger.logError('# Error: Param name "$key" is too long! Is=${key.length} Max=${AnalyticsService.MAX_PARAM_NAME_LENGTH}');
+                    logger.logError('# Error: Param name "$key" is too long! Is=${key.length} Max=${GoogleAnalyticsService.MAX_PARAM_NAME_LENGTH}');
 
                     if (_isEnabled)
                         _firebaseAnalytics.logEvent(
                             'AnalyticsError',
                             {
-                                'EventName': name.length <= AnalyticsService.MAX_PARAM_VALUE_LENGTH ? name : name.substring(0, AnalyticsService.MAX_PARAM_VALUE_LENGTH),
-                                'ParamName': key.length <= AnalyticsService.MAX_PARAM_VALUE_LENGTH ? key : key.substring(0, AnalyticsService.MAX_PARAM_VALUE_LENGTH),
-                                'Message': 'Param name is too long! Is=${key.length} Max=${AnalyticsService.MAX_PARAM_NAME_LENGTH}'
+                                'EventName': name.length <= GoogleAnalyticsService.MAX_PARAM_VALUE_LENGTH ? name : name.substring(0, GoogleAnalyticsService.MAX_PARAM_VALUE_LENGTH),
+                                'ParamName': key.length <= GoogleAnalyticsService.MAX_PARAM_VALUE_LENGTH ? key : key.substring(0, GoogleAnalyticsService.MAX_PARAM_VALUE_LENGTH),
+                                'Message': 'Param name is too long! Is=${key.length} Max=${GoogleAnalyticsService.MAX_PARAM_NAME_LENGTH}'
                             }
                         );
                 }
 
                 Object value = params[key];
-                if (value is String && value.length > AnalyticsService.MAX_PARAM_VALUE_LENGTH)
+                if (value is String && value.length > GoogleAnalyticsService.MAX_PARAM_VALUE_LENGTH)
                 {
                     foundError = true;
                     logger.logError('##################################################');
-                    logger.logError('# Error: Param value of "$key" is too long! Is=${value.length} Max=${AnalyticsService.MAX_PARAM_VALUE_LENGTH} Value: $value');
+                    logger.logError('# Error: Param value of "$key" is too long! Is=${value.length} Max=${GoogleAnalyticsService.MAX_PARAM_VALUE_LENGTH} Value: $value');
 
                     if (_isEnabled)
                         _firebaseAnalytics.logEvent(
                             'AnalyticsError',
                             {
-                                'EventName': name.length <= AnalyticsService.MAX_PARAM_VALUE_LENGTH ? name : name.substring(0, AnalyticsService.MAX_PARAM_VALUE_LENGTH),
-                                'ParamName': key.length <= AnalyticsService.MAX_PARAM_VALUE_LENGTH ? key : key.substring(0, AnalyticsService.MAX_PARAM_VALUE_LENGTH),
-                                'ParamValue': value.substring(0, AnalyticsService.MAX_PARAM_VALUE_LENGTH),
-                                'Message': 'Param value is too long! Is=${value.length} Max=${AnalyticsService.MAX_PARAM_VALUE_LENGTH}'
+                                'EventName': name.length <= GoogleAnalyticsService.MAX_PARAM_VALUE_LENGTH ? name : name.substring(0, GoogleAnalyticsService.MAX_PARAM_VALUE_LENGTH),
+                                'ParamName': key.length <= GoogleAnalyticsService.MAX_PARAM_VALUE_LENGTH ? key : key.substring(0, GoogleAnalyticsService.MAX_PARAM_VALUE_LENGTH),
+                                'ParamValue': value.substring(0, GoogleAnalyticsService.MAX_PARAM_VALUE_LENGTH),
+                                'Message': 'Param value is too long! Is=${value.length} Max=${GoogleAnalyticsService.MAX_PARAM_VALUE_LENGTH}'
                             }
                         );
                 }
