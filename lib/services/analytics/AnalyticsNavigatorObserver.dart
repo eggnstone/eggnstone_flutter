@@ -7,7 +7,7 @@ typedef String ScreenNameExtractor(RouteSettings settings);
 String defaultNameExtractor(RouteSettings settings)
 => settings.name;
 
-class GoogleAnalyticsNavigatorObserver extends NavigatorObserver
+class AnalyticsNavigatorObserver extends NavigatorObserver
 {
     final ScreenNameExtractor nameExtractor = defaultNameExtractor;
 
@@ -43,7 +43,7 @@ class GoogleAnalyticsNavigatorObserver extends NavigatorObserver
         String screenName = nameExtractor(route.settings);
         if (screenName != null)
             GetIt.instance
-                .get<IGoogleAnalyticsService>()
+                .get<IAnalyticsService>()
                 .currentScreen = screenName;
     }
 }

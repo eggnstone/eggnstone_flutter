@@ -77,3 +77,7 @@
 ## [0.1.11] - 04.05.2020
 
 * Added generic Analytics.
+
+## [0.1.12] - 04.05.2020
+
+* Added generic AnalyticsNavigatorObserver.
