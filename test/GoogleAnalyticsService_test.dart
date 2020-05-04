@@ -29,13 +29,13 @@ void testLog()
     GetIt.instance.registerSingleton<LoggerService>(logger);
     //GetIt.instance.registerSingleton<LoggerService>(LoggerService(true));
 
-    group('log with name only', ()
+    group('track with name only', ()
     {
         test('Only with name, empty name', ()
         async
         {
             IGoogleAnalyticsService analytics = await GoogleAnalyticsService.createMockable(MockFirebaseAnalytics(), true);
-            analytics.log('');
+            analytics.track('');
             verifyNever(logger.logInfo(any));
             verifyNever(logger.logDebug(any));
             verifyNever(logger.logWarning(any));
@@ -46,7 +46,7 @@ void testLog()
         async
         {
             IGoogleAnalyticsService analytics = await GoogleAnalyticsService.createMockable(MockFirebaseAnalytics(), true);
-            analytics.log('Test');
+            analytics.track('Test');
             verify(logger.logInfo(argThat(equals('Analytics: Test'))));
             verifyNever(logger.logDebug(any));
             verifyNever(logger.logWarning(any));
@@ -57,7 +57,7 @@ void testLog()
         async
         {
             IGoogleAnalyticsService analytics = await GoogleAnalyticsService.createMockable(MockFirebaseAnalytics(), true);
-            analytics.log(TEXT_40);
+            analytics.track(TEXT_40);
             verify(logger.logInfo(argThat(equals('Analytics: ' + TEXT_40))));
             verifyNever(logger.logDebug(any));
             verifyNever(logger.logWarning(any));
@@ -68,7 +68,7 @@ void testLog()
         async
         {
             IGoogleAnalyticsService analytics = await GoogleAnalyticsService.createMockable(MockFirebaseAnalytics(), true);
-            analytics.log(TEXT_41);
+            analytics.track(TEXT_41);
 
             verifyInOrder([
                 logger.logError('##################################################'),

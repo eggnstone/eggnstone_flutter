@@ -85,3 +85,7 @@
 ## [0.1.13] - 04.05.2020
 
 * Decoupled CrashlyticsService from GoogleAnalyticsService.
+
+## [0.1.14] - 04.05.2020
+
+* Improved and expanded analytics.

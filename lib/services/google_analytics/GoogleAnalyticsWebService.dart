@@ -16,12 +16,10 @@ class GoogleAnalyticsService
 
     final FirebaseWeb.Analytics _firebaseAnalytics;
 
-    //final RouteObserver<PageRoute<dynamic>> _firebaseAnalyticsObserver;
-
     bool _isEnabled;
     String _currentScreen;
 
-    GoogleAnalyticsService._internal(this._firebaseAnalytics, /*this._firebaseAnalyticsObserver,*/ this._isEnabled)
+    GoogleAnalyticsService._internal(this._firebaseAnalytics, this._isEnabled)
     {
         assert(logger != null, 'Unable to find via GetIt: Logger');
         //logger.logDebug('AnalyticsService for Web created.');
@@ -35,8 +33,7 @@ class GoogleAnalyticsService
     static Future<IGoogleAnalyticsService> createMockable(FirebaseWeb.Analytics firebaseWebAnalytics, bool startEnabled)
     async
     {
-        //var firebaseWebAnalyticsObserver = FirebaseWebAnalyticsObserver(analytics: firebaseWebAnalytics);
-        var instance = GoogleAnalyticsService._internal(firebaseWebAnalytics, /*firebaseWebAnalyticsObserver,*/ startEnabled);
+        var instance = GoogleAnalyticsService._internal(firebaseWebAnalytics, startEnabled);
         instance._firebaseAnalytics.setAnalyticsCollectionEnabled(startEnabled);
         return instance;
     }
@@ -64,126 +61,103 @@ class GoogleAnalyticsService
         _currentScreen = newValue;
 
         if (_isEnabled)
-        {
             _firebaseAnalytics.setCurrentScreen(newValue);
-            //_firebaseAnalytics.setCurrentScreen(screenName: newValue, screenClassOverride: newValue);
-        }
     }
 
-    /*@override
-    RouteObserver<PageRoute<dynamic>> getObserver()
-    => _firebaseAnalyticsObserver;*/
-
     @override
-    void log(String name, [Map<String, dynamic> params])
+    Future track(String name, [Map<String, dynamic> params])
+    async
     {
         assert(name != null);
 
         if (name.length == 0)
             return;
 
-        if (params != null)
-        {
-            // remove null params as they prevent the logging
-            List<String> keys = params.keys.toList(growable: false);
-            for (int i = 0; i < keys.length; i++)
-            {
-                String key = keys[i];
-                if (params[key] == null)
-                {
-                    params.remove(key);
-                    logger.logInfo('GoogleAnalytics: Removed key with null value: $key');
-                }
-            }
-        }
-
         // Check limits (https://support.google.com/firebase/answer/9237506?hl=en)
-        bool foundError = false;
 
         if (name.length > GoogleAnalyticsService.MAX_EVENT_NAME_LENGTH)
-        {
-            foundError = true;
-            logger.logError('##################################################');
-            logger.logError('# Error: Event name "$name" is too long! Is=${name.length} Max=${GoogleAnalyticsService.MAX_EVENT_NAME_LENGTH}');
+            name = name.substring(0, GoogleAnalyticsService.MAX_EVENT_NAME_LENGTH);
 
-            if (_isEnabled)
-                _firebaseAnalytics.logEvent(
-                    'AnalyticsError',
-                    {
-                        'EventName': name.length <= GoogleAnalyticsService.MAX_PARAM_VALUE_LENGTH ? name : name.substring(0, GoogleAnalyticsService.MAX_PARAM_VALUE_LENGTH),
-                        'Message': 'Event name is too long! Is=${name.length} Max=${GoogleAnalyticsService.MAX_EVENT_NAME_LENGTH}'
-                    }
-                );
-        }
-
+        Map<String, dynamic> safeParams;
         if (params != null)
         {
+            safeParams = {};
+
             for (String key in params.keys)
             {
-                if (key.length > GoogleAnalyticsService.MAX_PARAM_NAME_LENGTH)
-                {
-                    foundError = true;
-                    logger.logError('##################################################');
-                    logger.logError('# Error: Param name "$key" is too long! Is=${key.length} Max=${GoogleAnalyticsService.MAX_PARAM_NAME_LENGTH}');
-
-                    if (_isEnabled)
-                        _firebaseAnalytics.logEvent(
-                            'AnalyticsError',
-                            {
-                                'EventName': name.length <= GoogleAnalyticsService.MAX_PARAM_VALUE_LENGTH ? name : name.substring(0, GoogleAnalyticsService.MAX_PARAM_VALUE_LENGTH),
-                                'ParamName': key.length <= GoogleAnalyticsService.MAX_PARAM_VALUE_LENGTH ? key : key.substring(0, GoogleAnalyticsService.MAX_PARAM_VALUE_LENGTH),
-                                'Message': 'Param name is too long! Is=${key.length} Max=${GoogleAnalyticsService.MAX_PARAM_NAME_LENGTH}'
-                            }
-                        );
-                }
-
                 Object value = params[key];
-                if (value is String && value.length > GoogleAnalyticsService.MAX_PARAM_VALUE_LENGTH)
-                {
-                    foundError = true;
-                    logger.logError('##################################################');
-                    logger.logError('# Error: Param value of "$key" is too long! Is=${value.length} Max=${GoogleAnalyticsService.MAX_PARAM_VALUE_LENGTH} Value: $value');
+                if (value == null)
+                    continue;
 
-                    if (_isEnabled)
-                        _firebaseAnalytics.logEvent(
-                            'AnalyticsError',
-                            {
-                                'EventName': name.length <= GoogleAnalyticsService.MAX_PARAM_VALUE_LENGTH ? name : name.substring(0, GoogleAnalyticsService.MAX_PARAM_VALUE_LENGTH),
-                                'ParamName': key.length <= GoogleAnalyticsService.MAX_PARAM_VALUE_LENGTH ? key : key.substring(0, GoogleAnalyticsService.MAX_PARAM_VALUE_LENGTH),
-                                'ParamValue': value.substring(0, GoogleAnalyticsService.MAX_PARAM_VALUE_LENGTH),
-                                'Message': 'Param value is too long! Is=${value.length} Max=${GoogleAnalyticsService.MAX_PARAM_VALUE_LENGTH}'
-                            }
-                        );
+                if (key.length > GoogleAnalyticsService.MAX_PARAM_NAME_LENGTH)
+                    key = key.substring(0, GoogleAnalyticsService.MAX_PARAM_NAME_LENGTH);
+
+                if (value is String)
+                {
+                    String valueString = value;
+                    if (valueString.length > GoogleAnalyticsService.MAX_PARAM_VALUE_LENGTH)
+                        valueString = valueString.substring(0, GoogleAnalyticsService.MAX_PARAM_VALUE_LENGTH);
+
+                    safeParams[key] = valueString;
                 }
+                else
+                    safeParams[key] = value;
             }
         }
 
-        if (foundError == false)
-        {
-            String s = (_isEnabled ? 'GoogleAnalytics' : 'Disabled-GoogleAnalytics') + ': ' + name;
+        String s = (_isEnabled ? 'GoogleAnalytics' : 'Disabled-GoogleAnalytics') + ': ' + name;
 
-            if (params != null)
-                for (String key in params.keys)
-                    s += ' $key=${params[key]}';
+        if (safeParams != null)
+            for (String key in safeParams.keys)
+                s += ' $key=${safeParams[key]}';
 
-            logger.logInfo(s);
+        logger.logInfo(s);
 
-            if (_isEnabled)
-                _firebaseAnalytics.logEvent(name, params);
-        }
+        if (_isEnabled)
+            _firebaseAnalytics.logEvent(name, safeParams);
     }
 
     @override
-    void logAction(String name, String action)
-    => log(name, {'Action': action});
+    void trackAction(String name, String action)
+    => track(name, {'Action': action});
 
     @override
-    void logValue(String name, Object value)
-    => log(name, {'Value': value});
+    void trackValue(String name, Object value)
+    => track(name, {'Value': value});
 
     @override
-    void logActionAndValue(String name, String action, Object value)
-    => log(name, {'Action': action, 'Value': value});
+    void trackActionAndValue(String name, String action, Object value)
+    => track(name, {'Action': action, 'Value': value});
+
+    @override
+    Future trackWarning(String source, Map<String, dynamic> params)
+    async
+    {
+        logger.logInfo((_isEnabled ? 'GoogleAnalytics' : 'Disabled-GoogleAnalytics') + ': trackWarning: $source / $params');
+
+        if (_isEnabled)
+            await track('Warning', params);
+    }
+
+    @override
+    Future trackError(String source, Map<String, dynamic> params)
+    async
+    {
+        logger.logInfo((_isEnabled ? 'GoogleAnalytics' : 'Disabled-GoogleAnalytics') + ': trackError: $source / $params');
+
+        if (_isEnabled)
+            await track('Error', params);
+    }
+
+    @override
+    Future trackErrorWithException(String source, dynamic e, dynamic stackTrace)
+    async
+    {
+        logger.logInfo((_isEnabled ? 'GoogleAnalytics' : 'Disabled-GoogleAnalytics') + ': trackErrorWithException: $source / $e / $stackTrace');
+
+        if (_isEnabled)
+            await track('Error', {'ErrorMessage': e.toString(), 'StackTrace': stackTrace?.toString()});
+    }
 
     @override
     void setUserProperty(String name, String value, {bool force = false})

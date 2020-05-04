@@ -1,24 +1,8 @@
-abstract class IGoogleAnalyticsService
+import 'package:eggnstone_flutter/services/analytics/IAnalyticsService.dart';
+
+abstract class IGoogleAnalyticsService extends IAnalyticsService
 {
-    bool get isEnabled;
-
-    set isEnabled(bool newValue);
-
-    String get currentScreen;
-
-    set currentScreen(String newValue);
-
     // TODO: shorten strings instead of expecting shortened strings
-
-    // TODO: replace log* with track*
-
-    void log(String name, [Map<String, dynamic> params]);
-
-    void logAction(String name, String action);
-
-    void logValue(String name, Object value);
-
-    void logActionAndValue(String name, String action, Object value);
 
     void setUserProperty(String name, String value, {bool force = false});
 

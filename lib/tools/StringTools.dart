@@ -8,7 +8,7 @@ class StringTools
     static bool isNotNullNorEmpty(String s)
     => (s != null && s.length > 0);
 
-    // TODO: deprecate and move to GoogleAnalytics
+/*// TODO: deprecate and move to GoogleAnalytics
     static shortenForAnalytics(Object o)
     {
         if (o == null)
@@ -39,5 +39,5 @@ class StringTools
         // Limit to 100 chars (https://support.google.com/firebase/answer/9237506?hl=en)
         // cut, preserving the tail
         return url.length <= 100 ? url : url.substring(url.length - 100);
-    }
+    }*/
 }
