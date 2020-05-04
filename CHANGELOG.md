@@ -73,3 +73,7 @@
 ## [0.1.10] - 04.05.2020
 
 * Added generic Analytics.
+
+## [0.1.11] - 04.05.2020
+
+* Added generic Analytics.
