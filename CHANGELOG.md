@@ -93,3 +93,7 @@
 ## [0.1.15] - 04.05.2020
 
 * Improved and expanded analytics.
+
+## [0.1.16] - 04.05.2020
+
+* Fixed DartTools.isReleaseBuild.

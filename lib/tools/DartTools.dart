@@ -9,10 +9,5 @@ class DartTools
     }
 
     static bool isReleaseBuild()
-    {
-        bool isRelease = true;
-        assert(isRelease = false);
-
-        return isRelease;
-    }
+    => isDebugBuild() == false;
 }
