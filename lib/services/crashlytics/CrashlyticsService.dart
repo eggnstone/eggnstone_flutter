@@ -5,41 +5,43 @@ import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 
-/// Requires [IAnalyticsService, LoggerService]
+typedef CrashReporterCallback = Function(Map<String, dynamic> params);
+
+/// Requires [LoggerService]
 class CrashlyticsService
-    with AnalyticsMixin, LoggerMixin
+    with LoggerMixin
 {
     static const String ANALYTICS_KEY__CRASHLYTICS_FOR_WEB = 'CrashlyticsForWeb';
 
     final Crashlytics _crashlytics;
+    final CrashReporterCallback _additionalCrashReporterCallback;
 
     bool _isEnabled;
 
-    CrashlyticsService._internal(this._crashlytics, this._isEnabled)
+    CrashlyticsService._internal(this._crashlytics, this._additionalCrashReporterCallback, this._isEnabled)
     {
         assert(logger != null, 'Unable to find via GetIt: Logger');
     }
 
     /// Requires [LoggerService]
     static Future<CrashlyticsService> create(bool startEnabled)
-    => CrashlyticsService.createMockable(Crashlytics(), startEnabled);
+    => CrashlyticsService.createMockable(Crashlytics(), null, startEnabled);
 
     /// Requires [LoggerService]
-    static Future<CrashlyticsService> createMockable(Crashlytics crashlytics, bool startEnabled)
+    static Future<CrashlyticsService> createMockable(Crashlytics crashlytics, CrashReporterCallback alternativeCrashReporter, bool startEnabled)
     async
     {
-        var instance = CrashlyticsService._internal(crashlytics, startEnabled);
+        var instance = CrashlyticsService._internal(crashlytics, alternativeCrashReporter, startEnabled);
         instance._init();
         return instance;
     }
 
-    Future<void> _init()
-    async
+    void _init()
     {
         FlutterError.onError = (FlutterErrorDetails details)
         {
             logger.logError('##################################################');
-            logger.logError(_isEnabled ? 'Crashlytics:' : 'Disabled-Crashlytics:');
+            logger.logError('# CrashlyticsService/FlutterError.onError ');
 
             if (logger.isEnabled)
             {
@@ -55,22 +57,54 @@ class CrashlyticsService
             logger.logError('##################################################');
 
             if (_isEnabled)
-                if (kIsWeb)
+            {
+                try
                 {
-                    logger.logDebug('Crashlytics not yet supported for web: not calling Crashlytics.recordFlutterError()');
+                    _crashlytics.recordFlutterError(details);
+                }
+                catch (e2, stackTrace2)
+                {
+                    logger.logError('##################################################');
+                    logger.logError('# CrashlyticsService/FlutterError.onError._crashlytics.recordFlutterError');
+                    logger.logError(e2.toString());
 
-                    Map<String, dynamic> map = {};
+                    if (stackTrace2 == null)
+                        logger.logError('No stacktrace available.');
+                    else
+                        logger.logError(stackTrace2.toString());
 
-                    if (details.exception != null)
-                        map['Exception'] = StringTools.shortenForAnalytics(details.exception.toString());
+                    logger.logError('##################################################');
+                }
+
+                if (_additionalCrashReporterCallback != null)
+                {
+                    Map<String, dynamic> map =
+                    {
+                        'Exception': details.exception.toString()
+                    };
 
                     if (details.stack != null)
-                        map['StackTrace'] = StringTools.shortenForAnalytics(details.stack.toString());
+                        map['StackTrace'] = details.stack.toString();
 
-                    analytics.log(ANALYTICS_KEY__CRASHLYTICS_FOR_WEB, map);
+                    try
+                    {
+                        _additionalCrashReporterCallback(map);
+                    }
+                    catch (e2, stackTrace2)
+                    {
+                        logger.logError('##################################################');
+                        logger.logError('# CrashlyticsService/FlutterError.onError._additionalCrashReporterCallback');
+                        logger.logError(e2.toString());
+
+                        if (stackTrace2 == null)
+                            logger.logError('No stacktrace available.');
+                        else
+                            logger.logError(stackTrace2.toString());
+
+                        logger.logError('##################################################');
+                    }
                 }
-                else
-                    _crashlytics.recordFlutterError(details);
+            }
         };
     }
 
@@ -84,30 +118,68 @@ class CrashlyticsService
         {
             runApp(app);
         },
-            onError: (dynamic exception, StackTrace stackTrace)
+            onError: (e, stackTrace)
             {
                 logger.logError('##################################################');
-                logger.logError(exception.toString());
-                logger.logError(stackTrace.toString());
+                logger.logError('# CrashlyticsService.run.runZoned.onError');
+                logger.logError(e.toString());
+
+                if (stackTrace == null)
+                    logger.logError('No stacktrace available.');
+                else
+                    logger.logError(stackTrace.toString());
+
                 logger.logError('##################################################');
 
                 if (_isEnabled)
-                    if (kIsWeb)
+                {
+                    try
                     {
-                        logger.logDebug('Crashlytics not yet supported for web: not calling Crashlytics.recordError()');
+                        _crashlytics.recordError(e, stackTrace);
+                    }
+                    catch (e2, stackTrace2)
+                    {
+                        logger.logError('##################################################');
+                        logger.logError('# CrashlyticsService.run.runZoned.onError._crashlytics.recordError');
+                        logger.logError(e2.toString());
 
-                        Map<String, dynamic> map = {};
+                        if (stackTrace2 == null)
+                            logger.logError('No stacktrace available.');
+                        else
+                            logger.logError(stackTrace2.toString());
 
-                        if (exception != null)
-                            map['Exception'] = StringTools.shortenForAnalytics(exception.toString());
+                        logger.logError('##################################################');
+                    }
+
+                    if (_additionalCrashReporterCallback != null)
+                    {
+                        Map<String, dynamic> map =
+                        {
+                            'Exception': e.toString()
+                        };
 
                         if (stackTrace != null)
-                            map['StackTrace'] = StringTools.shortenForAnalytics(stackTrace.toString());
+                            map['StackTrace'] = stackTrace.toString();
 
-                        analytics.log(ANALYTICS_KEY__CRASHLYTICS_FOR_WEB, map);
+                        try
+                        {
+                            _additionalCrashReporterCallback(map);
+                        }
+                        catch (e2, stackTrace2)
+                        {
+                            logger.logError('##################################################');
+                            logger.logError('# CrashlyticsService.run.runZoned.onError._additionalCrashReporterCallback');
+                            logger.logError(e2.toString());
+
+                            if (stackTrace2 == null)
+                                logger.logError('No stacktrace available.');
+                            else
+                                logger.logError(stackTrace2.toString());
+
+                            logger.logError('##################################################');
+                        }
                     }
-                    else
-                        _crashlytics.recordError(exception, stackTrace);
+                }
             });
     }
 }
