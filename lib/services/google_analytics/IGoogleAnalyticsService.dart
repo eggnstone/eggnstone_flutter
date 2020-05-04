@@ -1,5 +1,3 @@
-// TODO: rename Analytics to GoogleAnalytics
-
 abstract class IGoogleAnalyticsService
 {
     bool get isEnabled;
