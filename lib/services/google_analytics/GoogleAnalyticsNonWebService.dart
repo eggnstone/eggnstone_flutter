@@ -156,7 +156,7 @@ class GoogleAnalyticsService
         logger.logInfo((_isEnabled ? 'GoogleAnalytics' : 'Disabled-GoogleAnalytics') + ': trackErrorWithException: $source / $e / $stackTrace');
 
         if (_isEnabled)
-            await track('Error', {'ErrorMessage': e.toString(), 'StackTrace': stackTrace?.toString()});
+            await track('Error', {'Message': e.toString(), 'StackTrace': stackTrace?.toString()});
     }
 
     @override
