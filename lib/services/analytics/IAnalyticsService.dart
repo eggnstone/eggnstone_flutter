@@ -8,5 +8,9 @@ abstract class IAnalyticsService
 
     set currentScreen(String newValue);
 
-    void track(String name, [Map<String, dynamic> params]);
+    Future track(String name, [Map<String, dynamic> params]);
+
+    Future trackError(String source, String details);
+
+    Future trackErrorWithException(String source, dynamic e, dynamic stackTrace);
 }
