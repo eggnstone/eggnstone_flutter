@@ -8,5 +8,5 @@ abstract class IAnalyticsService
 
     set currentScreen(String newValue);
 
-    void log(String name, [Map<String, dynamic> params]);
+    void track(String name, [Map<String, dynamic> params]);
 }
