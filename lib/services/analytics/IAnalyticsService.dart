@@ -14,6 +14,8 @@ abstract class IAnalyticsService
 
     Future trackError(String source, Map<String, dynamic> params);
 
+    Future trackWarningWithException(String source, dynamic e, dynamic stackTrace);
+
     Future trackErrorWithException(String source, dynamic e, dynamic stackTrace);
 
     void trackAction(String name, String action);

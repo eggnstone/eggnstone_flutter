@@ -150,6 +150,16 @@ class GoogleAnalyticsService
     }
 
     @override
+    Future trackWarningWithException(String source, dynamic e, dynamic stackTrace)
+    async
+    {
+        logger.logInfo((_isEnabled ? 'GoogleAnalytics' : 'Disabled-GoogleAnalytics') + ': trackWarningWithException: $source / $e / $stackTrace');
+
+        if (_isEnabled)
+            await track('Warning', {'Message': e.toString(), 'StackTrace': stackTrace?.toString()});
+    }
+
+    @override
     Future trackErrorWithException(String source, dynamic e, dynamic stackTrace)
     async
     {
