@@ -24,7 +24,7 @@ dependencies:
   # stable: 0.16.0
   intl: ^0.16.1
   # Storing+retrieving settings
-  shared_preferences: ^0.5.7
+  shared_preferences: ^0.5.7+1
 
 dev_dependencies:
   flutter_test:

@@ -10,9 +10,9 @@ abstract class IAnalyticsService
 
     Future track(String name, [Map<String, dynamic> params]);
 
-    Future trackWarning(String source, Map<String, dynamic> params);
+    Future trackWarning(String message, [Map<String, dynamic> params]);
 
-    Future trackError(String source, Map<String, dynamic> params);
+    Future trackError(String message, [Map<String, dynamic> params]);
 
     Future trackWarningWithException(String source, dynamic e, dynamic stackTrace);
 

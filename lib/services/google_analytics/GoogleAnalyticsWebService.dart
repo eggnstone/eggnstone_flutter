@@ -130,20 +130,30 @@ class GoogleAnalyticsService
     => track(name, {'Action': action, 'Value': value});
 
     @override
-    Future trackWarning(String source, Map<String, dynamic> params)
+    Future trackWarning(String message, [Map<String, dynamic> params])
     async
     {
-        logger.logInfo((_isEnabled ? 'GoogleAnalytics' : 'Disabled-GoogleAnalytics') + ': trackWarning: $source / $params');
+        logger.logInfo((_isEnabled ? 'GoogleAnalytics' : 'Disabled-GoogleAnalytics') + ': trackWarning: $message / $params');
+
+        if (params == null)
+            params = {};
+
+        params['Message'] = message;
 
         if (_isEnabled)
             await track('Warning', params);
     }
 
     @override
-    Future trackError(String source, Map<String, dynamic> params)
+    Future trackError(String message, [Map<String, dynamic> params])
     async
     {
-        logger.logInfo((_isEnabled ? 'GoogleAnalytics' : 'Disabled-GoogleAnalytics') + ': trackError: $source / $params');
+        logger.logInfo((_isEnabled ? 'GoogleAnalytics' : 'Disabled-GoogleAnalytics') + ': trackError: $message / $params');
+
+        if (params == null)
+            params = {};
+
+        params['Message'] = message;
 
         if (_isEnabled)
             await track('Error', params);
