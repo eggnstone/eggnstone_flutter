@@ -105,3 +105,7 @@
 ## [0.1.18] - 05.05.2020
 
 * Added SharedPreferencesMixin.staticSharedPreferences.
+
+## [0.1.19] - 07.05.2020
+
+* Analytics: trackWarning/trackError: Renamed source to message, made params optional.
