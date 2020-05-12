@@ -5,7 +5,7 @@ homepage: https://eggnstone.dev
 version: 0.1.19
 
 environment:
-  sdk: ">=2.1.0 <3.0.0"
+  sdk: ">=2.7.0 <3.0.0"
 
 dependencies:
   flutter:
@@ -20,11 +20,9 @@ dependencies:
   # Service locator
   get_it: ^4.0.2
   # Internationalization
-  # beta: ^0.16.1
-  # stable: 0.16.0
   intl: ^0.16.1
   # Storing+retrieving settings
-  shared_preferences: ^0.5.7+1
+  shared_preferences: ^0.5.7+2
 
 dev_dependencies:
   flutter_test:
