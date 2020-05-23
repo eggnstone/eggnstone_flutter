@@ -109,3 +109,7 @@
 ## [0.1.19] - 07.05.2020
 
 * Analytics: trackWarning/trackError: Renamed source to message, made params optional.
+
+## [0.1.20] - 23.05.2020
+
+* Crashlytics: Added CrashlyticsSource.

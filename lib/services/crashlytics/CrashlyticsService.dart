@@ -80,7 +80,8 @@ class CrashlyticsService
                 {
                     Map<String, dynamic> map =
                     {
-                        'Exception': details.exception.toString()
+                        'Exception': details.exception.toString(),
+                        'CrashlyticsSource': 'CrashlyticsService/FlutterError.onError'
                     };
 
                     if (details.stack != null)
@@ -155,7 +156,8 @@ class CrashlyticsService
                     {
                         Map<String, dynamic> map =
                         {
-                            'Exception': e.toString()
+                            'Exception': e.toString(),
+                            'CrashlyticsSource': 'CrashlyticsService.run.runZoned.onError'
                         };
 
                         if (stackTrace != null)
