@@ -11,7 +11,7 @@ export 'package:eggnstone_flutter/services/logger/LoggerMixin.dart';
 export 'package:eggnstone_flutter/services/logger/LoggerService.dart';
 export 'package:eggnstone_flutter/services/shared_preferences/SharedPreferencesMixin.dart';
 export 'package:eggnstone_flutter/services/shared_preferences/SharedPreferencesService.dart';
-export 'package:eggnstone_flutter/services/url_launcher/UrlLauncher.dart';
 export 'package:eggnstone_flutter/services/url_launcher/UrlLauncherMixin.dart';
+export 'package:eggnstone_flutter/services/url_launcher/UrlLauncherService.dart';
 export 'package:eggnstone_flutter/tools/DartTools.dart';
 export 'package:eggnstone_flutter/tools/StringTools.dart';

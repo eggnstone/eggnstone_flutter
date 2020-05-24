@@ -1,7 +1,7 @@
 import 'package:eggnstone_flutter/services/analytics/AnalyticsMixin.dart';
 import 'package:url_launcher/url_launcher.dart' as ul;
 
-class UrlLauncher
+class UrlLauncherService
     with AnalyticsMixin
 {
     static const String URL_LAUNCHER = 'UrlLauncher';

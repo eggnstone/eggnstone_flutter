@@ -1,11 +1,11 @@
-import 'package:eggnstone_flutter/services/url_launcher/UrlLauncher.dart';
+import 'package:eggnstone_flutter/services/url_launcher/UrlLauncherService.dart';
 import 'package:get_it/get_it.dart';
 
 mixin UrlLauncherMixin
 {
-    static UrlLauncher get staticUrlLauncher
-    => GetIt.instance.get<UrlLauncher>();
+    static UrlLauncherService get staticUrlLauncher
+    => GetIt.instance.get<UrlLauncherService>();
 
-    UrlLauncher get urlLauncher
-    => GetIt.instance.get<UrlLauncher>();
+    UrlLauncherService get urlLauncher
+    => GetIt.instance.get<UrlLauncherService>();
 }

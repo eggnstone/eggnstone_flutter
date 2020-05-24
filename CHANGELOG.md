@@ -117,3 +117,7 @@
 ## [0.1.21] - 24.05.2020
 
 * Added UrlLauncher.
+
+## [0.1.22] - 24.05.2020
+
+* Renamed UrlLauncher to UrlLauncherService.
