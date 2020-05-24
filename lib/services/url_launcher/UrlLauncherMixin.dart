@@ -3,7 +3,7 @@ import 'package:get_it/get_it.dart';
 
 mixin UrlLauncherMixin
 {
-    static UrlLauncher get staticUrlLauncherTools
+    static UrlLauncher get staticUrlLauncher
     => GetIt.instance.get<UrlLauncher>();
 
     UrlLauncher get urlLauncher

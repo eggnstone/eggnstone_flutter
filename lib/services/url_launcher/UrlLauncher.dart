@@ -9,7 +9,7 @@ class UrlLauncher
     void launch(String url, String source)
     async
     {
-        Map<String, dynamic> params = { 'Url': url};
+        Map<String, dynamic> params = {'Url': url};
 
         if (source != null)
             params['Source'] = source;
