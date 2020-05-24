@@ -113,3 +113,7 @@
 ## [0.1.20] - 23.05.2020
 
 * Crashlytics: Added CrashlyticsSource.
+
+## [0.1.21] - 24.05.2020
+
+* Added UrlLauncher.
