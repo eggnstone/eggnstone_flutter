@@ -20,7 +20,6 @@ class UrlLauncherService
             {
                 params['Action'] = 'LaunchSucceeded';
                 analytics.track(URL_LAUNCHER, params);
-                // TODO: analytics.trackUrl()
             }
             else
             {

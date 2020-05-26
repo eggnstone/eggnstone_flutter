@@ -121,3 +121,7 @@
 ## [0.1.22] - 24.05.2020
 
 * Renamed UrlLauncher to UrlLauncherService.
+
+## [0.1.23] - 26.05.2020
+
+* Added BusyDialog.
