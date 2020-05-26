@@ -125,3 +125,7 @@
 ## [0.1.23] - 26.05.2020
 
 * Added BusyDialog.
+
+## [0.1.24] - 26.05.2020
+
+* Added BusyDialog.
