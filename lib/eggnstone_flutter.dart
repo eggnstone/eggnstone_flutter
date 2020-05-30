@@ -5,8 +5,6 @@ export 'package:eggnstone_flutter/services/analytics/AnalyticsNavigatorObserver.
 export 'package:eggnstone_flutter/services/analytics/IAnalyticsService.dart';
 export 'package:eggnstone_flutter/services/crashlytics/CrashlyticsMixin.dart';
 export 'package:eggnstone_flutter/services/crashlytics/CrashlyticsService.dart';
-export 'package:eggnstone_flutter/services/google_analytics/GoogleAnalyticsNonWebService.dart' if (dart.library.html) 'services/google_analytics/GoogleAnalyticsWebService.dart';
-export 'package:eggnstone_flutter/services/google_analytics/IGoogleAnalyticsService.dart';
 export 'package:eggnstone_flutter/services/logger/LoggerMixin.dart';
 export 'package:eggnstone_flutter/services/logger/LoggerService.dart';
 export 'package:eggnstone_flutter/services/shared_preferences/SharedPreferencesMixin.dart';

@@ -129,3 +129,7 @@
 ## [0.1.24] - 26.05.2020
 
 * Added BusyDialog.
+
+## [0.2.0] - 30.05.2020
+
+* Moved GoogleAnalytics to separate package.
