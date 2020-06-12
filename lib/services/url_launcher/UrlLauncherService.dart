@@ -6,7 +6,7 @@ class UrlLauncherService
 {
     static const String URL_LAUNCHER = 'UrlLauncher';
 
-    void launch(String url, String source)
+    Future launch(String url, String source)
     async
     {
         Map<String, dynamic> params = {'Url': url};

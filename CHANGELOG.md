@@ -133,3 +133,7 @@
 ## [0.2.0] - 30.05.2020
 
 * Moved GoogleAnalytics to separate package.
+
+## [0.2.1] - 12.06.2020
+
+* Added textScaleFactor to BusyDialog.

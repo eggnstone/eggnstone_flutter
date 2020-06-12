@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class BusyDialog
 {
-    static void show(BuildContext context, String text)
+    static void show(BuildContext context, String text, {double textScaleFactor})
     {
         showDialog(
             context: context,
@@ -25,7 +25,7 @@ class BusyDialog
                                                 SizedBox(height: 32),
                                                 CircularProgressIndicator(),
                                                 SizedBox(height: 32),
-                                                Text(text),
+                                                Text(text, textScaleFactor: textScaleFactor),
                                                 SizedBox(height: 32)
                                             ]
                                         );
