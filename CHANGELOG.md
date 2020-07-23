@@ -137,3 +137,7 @@
 ## [0.2.1] - 12.06.2020
 
 * Added textScaleFactor to BusyDialog.
+
+## [0.2.2] - 23.07.2020
+
+* Updated dependencies.
