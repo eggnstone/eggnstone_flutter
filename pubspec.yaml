@@ -18,9 +18,7 @@ dependencies:
   # Storing+retrieving settings
   shared_preferences: ^0.5.10
   # URL launcher
-  url_launcher: 5.5.0 # 5.5.1 has error: No named parameter with the name 'webOnlyWindowName'.
-  # https://github.com/flutter/flutter/issues/64863
-  # https://github.com/flutter/plugins/pull/2979#issuecomment-683304067
+  url_launcher: ^5.5.2
 
 dev_dependencies:
   flutter_test:
