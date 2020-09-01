@@ -1,3 +1,7 @@
+## [0.3.1] - 01.09.2020
+
+* Adjusted environment.
+
 ## [0.3.0] - 01.09.2020
 
 * Extracted Google Crashlytics to eggnstone_google_crashlytics package.
