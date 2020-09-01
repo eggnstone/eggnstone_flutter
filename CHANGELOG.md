@@ -141,3 +141,7 @@
 ## [0.2.2] - 23.07.2020
 
 * Updated dependencies.
+
+## [0.3.0] - xx.08.2020
+
+* Extracted Google Crashlytics to eggnstone_google_craslytics package.

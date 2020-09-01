@@ -4,7 +4,7 @@ export 'package:eggnstone_flutter/services/analytics/AnalyticsMixin.dart';
 export 'package:eggnstone_flutter/services/analytics/AnalyticsNavigatorObserver.dart';
 export 'package:eggnstone_flutter/services/analytics/IAnalyticsService.dart';
 export 'package:eggnstone_flutter/services/crashlytics/CrashlyticsMixin.dart';
-export 'package:eggnstone_flutter/services/crashlytics/CrashlyticsService.dart';
+export 'package:eggnstone_flutter/services/crashlytics/ICrashlyticsService.dart';
 export 'package:eggnstone_flutter/services/logger/LoggerMixin.dart';
 export 'package:eggnstone_flutter/services/logger/LoggerService.dart';
 export 'package:eggnstone_flutter/services/shared_preferences/SharedPreferencesMixin.dart';

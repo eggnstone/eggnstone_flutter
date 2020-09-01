@@ -1,8 +1,11 @@
-import 'package:eggnstone_flutter/services/crashlytics/CrashlyticsService.dart';
+import 'package:eggnstone_flutter/services/crashlytics/ICrashlyticsService.dart';
 import 'package:get_it/get_it.dart';
 
 mixin CrashlyticsMixin
 {
-    CrashlyticsService get crashlytics
-    => GetIt.instance.get<CrashlyticsService>();
+    static ICrashlyticsService get staticCrashlytics
+    => GetIt.instance.get<ICrashlyticsService>();
+
+    ICrashlyticsService get crashlytics
+    => GetIt.instance.get<ICrashlyticsService>();
 }
