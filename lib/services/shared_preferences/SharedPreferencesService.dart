@@ -1,17 +1,22 @@
 import 'dart:async';
 
 import 'package:eggnstone_flutter/services/logger/LoggerMixin.dart';
+import 'package:eggnstone_flutter/services/logger/LoggerService.dart';
+
+// ignore: import_of_legacy_library_into_null_safe
 import 'package:shared_preferences/shared_preferences.dart' as sp;
 
 /// Requires [LoggerService]
 class SharedPreferencesService
     with LoggerMixin
 {
-    sp.SharedPreferences _sharedPreferences;
+    late sp.SharedPreferences _sharedPreferences;
+    late LoggerService _logger;
 
     SharedPreferencesService._internal()
     {
         assert(logger != null, 'Unable to find via GetIt: Logger');
+        _logger = logger!;
     }
 
     /// Requires [LoggerService]
@@ -33,21 +38,21 @@ class SharedPreferencesService
     {
         try
         {
-            return _sharedPreferences?.getBool(key) ?? def;
+            if (_sharedPreferences.containsKey(key) == false)
+                return def;
+
+            return _sharedPreferences.getBool(key);
         }
         catch (e)
         {
-            logger.logInfo(e.toString());
-            logger.logInfo(_sharedPreferences?.get(key));
+            _logger.logInfo(e.toString());
+            _logger.logInfo(_sharedPreferences.get(key));
             return def;
         }
     }
 
-    void setBool(String key, bool value)
+    void setBool(String key, bool? value)
     {
-        if (_sharedPreferences == null)
-            return;
-
         if (value == null)
             _sharedPreferences.remove(key);
         else
@@ -58,25 +63,25 @@ class SharedPreferencesService
     {
         try
         {
-            String s = _sharedPreferences?.getString(key);
-            if (s == null)
+            if (_sharedPreferences.containsKey(key) == false)
+                return def;
+
+            String s = _sharedPreferences.getString(key);
+            if (s.isEmpty)
                 return def;
 
             return DateTime.parse(s);
         }
         catch (e)
         {
-            logger.logInfo(e.toString());
-            logger.logInfo(_sharedPreferences?.get(key));
+            _logger.logInfo(e.toString());
+            _logger.logInfo(_sharedPreferences.get(key));
             return def;
         }
     }
 
-    void setDateTime(String key, DateTime value)
+    void setDateTime(String key, DateTime? value)
     {
-        if (_sharedPreferences == null)
-            return;
-
         if (value == null)
             _sharedPreferences.remove(key);
         else
@@ -87,21 +92,21 @@ class SharedPreferencesService
     {
         try
         {
-            return _sharedPreferences?.getInt(key) ?? def;
+            if (_sharedPreferences.containsKey(key) == false)
+                return def;
+
+            return _sharedPreferences.getInt(key);
         }
         catch (e)
         {
-            logger.logInfo(e.toString());
-            logger.logInfo(_sharedPreferences?.get(key));
+            _logger.logInfo(e.toString());
+            _logger.logInfo(_sharedPreferences.get(key));
             return def;
         }
     }
 
-    void setInt(String key, int value)
+    void setInt(String key, int? value)
     {
-        if (_sharedPreferences == null)
-            return;
-
         if (value == null)
             _sharedPreferences.remove(key);
         else
@@ -112,11 +117,11 @@ class SharedPreferencesService
     {
         try
         {
-            List<String> stringList = _sharedPreferences?.getStringList(key);
-            if (stringList == null)
+            if (_sharedPreferences.containsKey(key) == false)
                 return def;
 
-            var intList = List<int>();
+            List<String> stringList = _sharedPreferences.getStringList(key);
+            var intList = List<int>.empty();
             for (String s in stringList)
                 intList.add(int.parse(s));
 
@@ -124,24 +129,21 @@ class SharedPreferencesService
         }
         catch (e)
         {
-            logger.logInfo(e.toString());
-            logger.logInfo(_sharedPreferences?.get(key));
+            _logger.logInfo(e.toString());
+            _logger.logInfo(_sharedPreferences.get(key));
             return def;
         }
     }
 
-    void setIntList(String key, List<int> intList, {bool removeIfEmpty = true})
+    void setIntList(String key, List<int>? intList, {bool removeIfEmpty = true})
     {
-        if (_sharedPreferences == null)
-            return;
-
         if (intList == null)
             _sharedPreferences.remove(key);
         else if (intList.length == 0 && removeIfEmpty)
             _sharedPreferences.remove(key);
         else
         {
-            var stringList = List<String>();
+            var stringList = List<String>.empty();
 
             for (int i in intList)
                 stringList.add(i.toString());
@@ -154,21 +156,21 @@ class SharedPreferencesService
     {
         try
         {
-            return _sharedPreferences?.getString(key) ?? def;
+            if (_sharedPreferences.containsKey(key) == false)
+                return def;
+
+            return _sharedPreferences.getString(key);
         }
         catch (e)
         {
-            logger.logInfo(e.toString());
-            logger.logInfo(_sharedPreferences?.get(key));
+            _logger.logInfo(e.toString());
+            _logger.logInfo(_sharedPreferences.get(key));
             return def;
         }
     }
 
-    void setString(String key, String value)
+    void setString(String key, String? value)
     {
-        if (_sharedPreferences == null)
-            return;
-
         if (value == null)
             _sharedPreferences.remove(key);
         else
@@ -179,21 +181,21 @@ class SharedPreferencesService
     {
         try
         {
-            return _sharedPreferences?.getStringList(key) ?? def;
+            if (_sharedPreferences.containsKey(key) == false)
+                return def;
+
+            return _sharedPreferences.getStringList(key);
         }
         catch (e)
         {
-            logger.logInfo(e.toString());
-            logger.logInfo(_sharedPreferences?.get(key));
+            _logger.logInfo(e.toString());
+            _logger.logInfo(_sharedPreferences.get(key));
             return def;
         }
     }
 
-    void setStringList(String key, List<String> stringList, {bool removeIfEmpty = true})
+    void setStringList(String key, List<String>? stringList, {bool removeIfEmpty = true})
     {
-        if (_sharedPreferences == null)
-            return;
-
         if (stringList == null)
             _sharedPreferences.remove(key);
         else if (stringList.length == 0 && removeIfEmpty)

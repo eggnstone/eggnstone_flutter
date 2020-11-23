@@ -1,18 +1,38 @@
+import 'package:eggnstone_flutter/services/analytics/AnalyticsMixin.dart';
 import 'package:eggnstone_flutter/services/analytics/IAnalyticsService.dart';
 import 'package:flutter/widgets.dart';
-import 'package:get_it/get_it.dart';
 
-typedef String ScreenNameExtractor(RouteSettings settings);
+// ignore: import_of_legacy_library_into_null_safe
+//import 'package:get_it/get_it.dart';
 
-String defaultNameExtractor(RouteSettings settings)
+typedef String? ScreenNameExtractor(RouteSettings settings);
+
+String? defaultNameExtractor(RouteSettings settings)
 => settings.name;
 
 class AnalyticsNavigatorObserver extends NavigatorObserver
+    with AnalyticsMixin
 {
     final ScreenNameExtractor nameExtractor = defaultNameExtractor;
 
+    late IAnalyticsService _analytics;
+
+    AnalyticsNavigatorObserver._internal()
+    {
+        assert(analytics != null, 'Unable to find via GetIt: Analytics');
+        _analytics = analytics!;
+    }
+
+    /// Requires [AnalyticsService]
+    static Future<AnalyticsNavigatorObserver> create()
+    async
+    {
+        var analyticsNavigatorObserver = AnalyticsNavigatorObserver._internal();
+        return Future.value(analyticsNavigatorObserver);
+    }
+
     @override
-    void didPush(Route<dynamic> route, Route<dynamic> previousRoute)
+    void didPush(Route<dynamic> route, Route<dynamic>? previousRoute)
     {
         super.didPush(route, previousRoute);
 
@@ -21,7 +41,7 @@ class AnalyticsNavigatorObserver extends NavigatorObserver
     }
 
     @override
-    void didReplace({Route<dynamic> newRoute, Route<dynamic> oldRoute})
+    void didReplace({Route<dynamic>? newRoute, Route<dynamic>? oldRoute})
     {
         super.didReplace(newRoute: newRoute, oldRoute: oldRoute);
 
@@ -30,7 +50,7 @@ class AnalyticsNavigatorObserver extends NavigatorObserver
     }
 
     @override
-    void didPop(Route<dynamic> route, Route<dynamic> previousRoute)
+    void didPop(Route<dynamic> route, Route<dynamic>? previousRoute)
     {
         super.didPop(route, previousRoute);
 
@@ -40,10 +60,8 @@ class AnalyticsNavigatorObserver extends NavigatorObserver
 
     void _setCurrentScreen(PageRoute<dynamic> route)
     {
-        String screenName = nameExtractor(route.settings);
+        String? screenName = nameExtractor(route.settings);
         if (screenName != null)
-            GetIt.instance
-                .get<IAnalyticsService>()
-                .currentScreen = screenName;
+            _analytics.currentScreen = screenName;
     }
 }
