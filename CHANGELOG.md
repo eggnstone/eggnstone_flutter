@@ -1,7 +1,3 @@
-## [0.4.0-nullsafety.0] - 23.11.2020
-
-* Preparing sound null safety.
-
 ## [0.3.1] - 01.09.2020
 
 * Adjusted environment.

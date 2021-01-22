@@ -1,4 +1,3 @@
-/*
 class StringTools
 {
     static bool isEmpty(String s)
@@ -7,4 +6,3 @@ class StringTools
     static bool isNotEmpty(String s)
     => (s != null && s.length > 0);
 }
-*/
