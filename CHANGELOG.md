@@ -1,3 +1,7 @@
+## [0.3.3] - 03.02.2021
+
+* Added PackageInfo.
+
 ## [0.3.2] - 22.01.2021
 
 * Updated dependencies.
