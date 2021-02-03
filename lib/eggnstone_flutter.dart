@@ -12,5 +12,6 @@ export 'package:eggnstone_flutter/services/shared_preferences/SharedPreferencesS
 export 'package:eggnstone_flutter/services/url_launcher/UrlLauncherMixin.dart';
 export 'package:eggnstone_flutter/services/url_launcher/UrlLauncherService.dart';
 export 'package:eggnstone_flutter/tools/DartTools.dart';
+export 'package:eggnstone_flutter/tools/PackageInfo.dart';
 export 'package:eggnstone_flutter/tools/StringTools.dart';
 export 'package:eggnstone_flutter/widgets/BusyDialog.dart';

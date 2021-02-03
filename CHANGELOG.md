@@ -1,3 +1,7 @@
+## [0.3.4] - 03.02.2021
+
+* Fixed exports.
+
 ## [0.3.3] - 03.02.2021
 
 * Added PackageInfo.
