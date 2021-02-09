@@ -41,22 +41,23 @@ class SharedPreferencesService
             if (_sharedPreferences.containsKey(key) == false)
                 return def;
 
-            return _sharedPreferences.getBool(key);
+            bool? b = _sharedPreferences.getBool(key);
+            if (b == null)
+                return def;
+
+            return b;
         }
         catch (e)
         {
             _logger.logInfo(e.toString());
-            _logger.logInfo(_sharedPreferences.get(key));
+            _logger.logInfo('${_sharedPreferences.get(key)}');
             return def;
         }
     }
 
-    void setBool(String key, bool? value)
+    void setBool(String key, bool value)
     {
-        if (value == null)
-            _sharedPreferences.remove(key);
-        else
-            _sharedPreferences.setBool(key, value);
+        _sharedPreferences.setBool(key, value);
     }
 
     DateTime getDateTime(String key, DateTime def)
@@ -66,8 +67,8 @@ class SharedPreferencesService
             if (_sharedPreferences.containsKey(key) == false)
                 return def;
 
-            String s = _sharedPreferences.getString(key);
-            if (s.isEmpty)
+            String? s = _sharedPreferences.getString(key);
+            if (s == null)
                 return def;
 
             return DateTime.parse(s);
@@ -75,17 +76,14 @@ class SharedPreferencesService
         catch (e)
         {
             _logger.logInfo(e.toString());
-            _logger.logInfo(_sharedPreferences.get(key));
+            _logger.logInfo('${_sharedPreferences.get(key)}');
             return def;
         }
     }
 
-    void setDateTime(String key, DateTime? value)
+    void setDateTime(String key, DateTime value)
     {
-        if (value == null)
-            _sharedPreferences.remove(key);
-        else
-            _sharedPreferences.setString(key, value.toIso8601String());
+        _sharedPreferences.setString(key, value.toIso8601String());
     }
 
     int getInt(String key, int def)
@@ -95,22 +93,23 @@ class SharedPreferencesService
             if (_sharedPreferences.containsKey(key) == false)
                 return def;
 
-            return _sharedPreferences.getInt(key);
+            int? i = _sharedPreferences.getInt(key);
+            if (i == null)
+                return def;
+
+            return i;
         }
         catch (e)
         {
             _logger.logInfo(e.toString());
-            _logger.logInfo(_sharedPreferences.get(key));
+            _logger.logInfo('${_sharedPreferences.get(key)}');
             return def;
         }
     }
 
-    void setInt(String key, int? value)
+    void setInt(String key, int value)
     {
-        if (value == null)
-            _sharedPreferences.remove(key);
-        else
-            _sharedPreferences.setInt(key, value);
+        _sharedPreferences.setInt(key, value);
     }
 
     List<int> getIntList(String key, List<int> def)
@@ -120,7 +119,10 @@ class SharedPreferencesService
             if (_sharedPreferences.containsKey(key) == false)
                 return def;
 
-            List<String> stringList = _sharedPreferences.getStringList(key);
+            List<String>? stringList = _sharedPreferences.getStringList(key);
+            if (stringList == null)
+                return def;
+
             var intList = List<int>.empty();
             for (String s in stringList)
                 intList.add(int.parse(s));
@@ -130,16 +132,14 @@ class SharedPreferencesService
         catch (e)
         {
             _logger.logInfo(e.toString());
-            _logger.logInfo(_sharedPreferences.get(key));
+            _logger.logInfo('${_sharedPreferences.get(key)}');
             return def;
         }
     }
 
-    void setIntList(String key, List<int>? intList, {bool removeIfEmpty = true})
+    void setIntList(String key, List<int> intList, {bool removeIfEmpty = true})
     {
-        if (intList == null)
-            _sharedPreferences.remove(key);
-        else if (intList.length == 0 && removeIfEmpty)
+        if (intList.length == 0 && removeIfEmpty)
             _sharedPreferences.remove(key);
         else
         {
@@ -159,22 +159,23 @@ class SharedPreferencesService
             if (_sharedPreferences.containsKey(key) == false)
                 return def;
 
-            return _sharedPreferences.getString(key);
+            String? s = _sharedPreferences.getString(key);
+            if (s == null)
+                return def;
+
+            return s;
         }
         catch (e)
         {
             _logger.logInfo(e.toString());
-            _logger.logInfo(_sharedPreferences.get(key));
+            _logger.logInfo('${_sharedPreferences.get(key)}');
             return def;
         }
     }
 
-    void setString(String key, String? value)
+    void setString(String key, String value)
     {
-        if (value == null)
-            _sharedPreferences.remove(key);
-        else
-            _sharedPreferences.setString(key, value);
+        _sharedPreferences.setString(key, value);
     }
 
     List<String> getStringList(String key, List<String> def)
@@ -184,21 +185,23 @@ class SharedPreferencesService
             if (_sharedPreferences.containsKey(key) == false)
                 return def;
 
-            return _sharedPreferences.getStringList(key);
+            List<String>? stringList = _sharedPreferences.getStringList(key);
+            if (stringList == null)
+                return def;
+
+            return stringList;
         }
         catch (e)
         {
             _logger.logInfo(e.toString());
-            _logger.logInfo(_sharedPreferences.get(key));
+            _logger.logInfo('${_sharedPreferences.get(key)}');
             return def;
         }
     }
 
-    void setStringList(String key, List<String>? stringList, {bool removeIfEmpty = true})
+    void setStringList(String key, List<String> stringList, {bool removeIfEmpty = true})
     {
-        if (stringList == null)
-            _sharedPreferences.remove(key);
-        else if (stringList.length == 0 && removeIfEmpty)
+        if (stringList.length == 0 && removeIfEmpty)
             _sharedPreferences.remove(key);
         else
             _sharedPreferences.setStringList(key, stringList);
