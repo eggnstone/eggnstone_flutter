@@ -8,11 +8,11 @@ abstract class IAnalyticsService
 
     set currentScreen(String newValue);
 
-    Future track(String name, [Map<String, dynamic> params]);
+    Future track(String name, [Map<String, dynamic?>? params]);
 
-    Future trackWarning(String message, [Map<String, dynamic> params]);
+    Future trackWarning(String message, [Map<String, dynamic?>? params]);
 
-    Future trackError(String message, [Map<String, dynamic> params]);
+    Future trackError(String message, [Map<String, dynamic?>? params]);
 
     Future trackWarningWithException(String source, dynamic e, dynamic stackTrace);
 
