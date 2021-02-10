@@ -1,3 +1,7 @@
+## [0.4.0-nullsafety.3] - 10.02.2021
+
+* Preparing sound null safety.
+
 ## [0.4.0-nullsafety.2] - 09.02.2021
 
 * Preparing sound null safety.
@@ -9,6 +13,18 @@
 ## [0.4.0-nullsafety.0] - 23.11.2020
 
 * Preparing sound null safety.
+
+## [0.3.4] - 03.02.2021
+
+* Fixed exports.
+
+## [0.3.3] - 03.02.2021
+
+* Added PackageInfo.
+
+## [0.3.2] - 22.01.2021
+
+* Updated dependencies.
 
 ## [0.3.1] - 01.09.2020
 

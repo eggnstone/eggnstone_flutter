@@ -1,9 +1,6 @@
 import 'dart:async';
 
 import 'package:eggnstone_flutter/services/logger/LoggerMixin.dart';
-import 'package:eggnstone_flutter/services/logger/LoggerService.dart';
-
-// ignore: import_of_legacy_library_into_null_safe
 import 'package:shared_preferences/shared_preferences.dart' as sp;
 
 /// Requires [LoggerService]
@@ -11,13 +8,8 @@ class SharedPreferencesService
     with LoggerMixin
 {
     late sp.SharedPreferences _sharedPreferences;
-    late LoggerService _logger;
 
-    SharedPreferencesService._internal()
-    {
-        assert(logger != null, 'Unable to find via GetIt: Logger');
-        _logger = logger!;
-    }
+    SharedPreferencesService._internal();
 
     /// Requires [LoggerService]
     static Future<SharedPreferencesService> create()
@@ -49,8 +41,8 @@ class SharedPreferencesService
         }
         catch (e)
         {
-            _logger.logInfo(e.toString());
-            _logger.logInfo('${_sharedPreferences.get(key)}');
+            logger.logInfo(e.toString());
+            logger.logInfo('${_sharedPreferences.get(key)}');
             return def;
         }
     }
@@ -75,8 +67,8 @@ class SharedPreferencesService
         }
         catch (e)
         {
-            _logger.logInfo(e.toString());
-            _logger.logInfo('${_sharedPreferences.get(key)}');
+            logger.logInfo(e.toString());
+            logger.logInfo('${_sharedPreferences.get(key)}');
             return def;
         }
     }
@@ -101,8 +93,8 @@ class SharedPreferencesService
         }
         catch (e)
         {
-            _logger.logInfo(e.toString());
-            _logger.logInfo('${_sharedPreferences.get(key)}');
+            logger.logInfo(e.toString());
+            logger.logInfo('${_sharedPreferences.get(key)}');
             return def;
         }
     }
@@ -131,8 +123,8 @@ class SharedPreferencesService
         }
         catch (e)
         {
-            _logger.logInfo(e.toString());
-            _logger.logInfo('${_sharedPreferences.get(key)}');
+            logger.logInfo(e.toString());
+            logger.logInfo('${_sharedPreferences.get(key)}');
             return def;
         }
     }
@@ -167,8 +159,8 @@ class SharedPreferencesService
         }
         catch (e)
         {
-            _logger.logInfo(e.toString());
-            _logger.logInfo('${_sharedPreferences.get(key)}');
+            logger.logInfo(e.toString());
+            logger.logInfo('${_sharedPreferences.get(key)}');
             return def;
         }
     }
@@ -193,8 +185,8 @@ class SharedPreferencesService
         }
         catch (e)
         {
-            _logger.logInfo(e.toString());
-            _logger.logInfo('${_sharedPreferences.get(key)}');
+            logger.logInfo(e.toString());
+            logger.logInfo('${_sharedPreferences.get(key)}');
             return def;
         }
     }
