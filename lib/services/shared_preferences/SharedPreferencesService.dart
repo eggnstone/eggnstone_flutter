@@ -116,7 +116,7 @@ class SharedPreferencesService
             if (stringList == null)
                 return def;
 
-            var intList = List<int>();
+            List<int> intList = [];
             for (String s in stringList)
                 intList.add(int.parse(s));
 
@@ -141,7 +141,7 @@ class SharedPreferencesService
             _sharedPreferences.remove(key);
         else
         {
-            var stringList = List<String>();
+            List<String> stringList = [];
 
             for (int i in intList)
                 stringList.add(i.toString());
