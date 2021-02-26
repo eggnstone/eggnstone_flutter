@@ -12,19 +12,19 @@ dependencies:
     sdk: flutter
 
   # Service locator
-  get_it: ^6.0.0-nullsafety.2
+  get_it: ^6.0.0
   # Internationalization
-  intl: ^0.17.0-nullsafety.2
+  intl: ^0.17.0
   # Version and build number
-  package_info: ^0.5.0-nullsafety
+  package_info: ^2.0.0
   # Storing+retrieving settings
-  shared_preferences: ^2.0.0-nullsafety
+  shared_preferences: ^2.0.1
   # URL launcher
-  url_launcher: ^6.0.0-nullsafety.6
+  url_launcher: ^6.0.1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
   # Mocking
-  mockito: ^5.0.0-nullsafety.7
+  mockito: any

@@ -136,7 +136,6 @@ class SharedPreferencesService
         else
         {
             var stringList = List<String>.empty();
-
             for (int i in intList)
                 stringList.add(i.toString());
 
