@@ -1,3 +1,7 @@
+## [0.4.1] - 27.02.2021
+
+* Improved API documentation.
+
 ## [0.4.0] - 27.02.2021
 
 * Released with sound null safety.
