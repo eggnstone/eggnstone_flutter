@@ -12,29 +12,19 @@ abstract class IAnalyticsService
     /// The current screen.
     set currentScreen(String newValue);
 
-    /// Track an event.
-    /// @param name The name of the event.
-    /// @param params The optional parameters.
+    /// Track an event using a @name and optional @params.
     Future track(String name, [Map<String, dynamic>? params]);
 
-    /// Track a warning.
-    /// @param message The warning message.
-    /// @param params The optional parameters.
+    /// Track a warning using a warning @message and optional @params.
     Future trackWarning(String message, [Map<String, dynamic>? params]);
 
-    /// Track an error.
-    /// @param message The error message.
-    /// @param params The optional parameters.
+    /// Track an error using an error @message and optional @params.
     Future trackError(String message, [Map<String, dynamic>? params]);
 
-    /// Track a warning with an exception.
-    /// @param source The source of the warning.
-    /// @param stackTrace The stack trace.
+    /// Track a warning specifying its @source, with exception @e and @stackTrace.
     Future trackWarningWithException(String source, dynamic e, dynamic stackTrace);
 
-    /// Track an error with an exception.
-    /// @param source The source of the error.
-    /// @param stackTrace The stack trace.
+    /// Track an error specifying its @source, with exception @e and @stackTrace.
     Future trackErrorWithException(String source, dynamic e, dynamic stackTrace);
 
     /// Track an action event.
