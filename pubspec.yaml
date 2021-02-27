@@ -13,7 +13,7 @@ dependencies:
 
   # Service locator
   get_it: ^6.0.0
-  # Internationalization
+  # Internationalization (for logger)
   intl: ^0.17.0
   # Version and build number
   package_info: ^2.0.0
