@@ -22,10 +22,10 @@ abstract class IAnalyticsService
     Future trackError(String message, [Map<String, dynamic>? params]);
 
     /// Track a warning specifying its [source], with exception [e] and [stackTrace].
-    Future trackWarningWithException(String source, dynamic e, dynamic stackTrace);
+    Future trackWarningWithException(String source, dynamic e, dynamic? stackTrace);
 
     /// Track an error specifying its [source], with exception [e] and [stackTrace].
-    Future trackErrorWithException(String source, dynamic e, dynamic stackTrace);
+    Future trackErrorWithException(String source, dynamic e, dynamic? stackTrace);
 
     /// Track an action event with [name] and [action].
     void trackAction(String name, String action);
