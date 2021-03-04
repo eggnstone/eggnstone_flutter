@@ -1,10 +1,14 @@
+## 2.0.0-pre0
+
+* Replaced Logger Mixin/Service with LogTools.
+
 ## 1.1.1
 
 * Switched to package_info_plus.
 
 ## 1.1.0
 
-* Supporting/requiring Dart 2.12.0 now.
+* Supporting null safety / requiring Dart 2.12.0 now.
 
 ## 1.0.2
 

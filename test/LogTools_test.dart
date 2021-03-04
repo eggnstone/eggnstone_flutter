@@ -20,16 +20,16 @@ void testLogDebug()
         List<String> loggerNotEnabledLog = [];
         test('Logger not enabled => no log', overridePrint(loggerNotEnabledLog, ()
         {
-            LoggerService logger = LoggerService(false);
-            logger.logDebug('Test');
+            isLoggerEnabled = false;
+            logDebug('Test');
             expect(loggerNotEnabledLog.length, 0);
         }));
 
         List<String> loggerEnabledLog = [];
         test('Logger enabled => log', overridePrint(loggerEnabledLog, ()
         {
-            LoggerService logger = LoggerService(true);
-            logger.logDebug('Test');
+            isLoggerEnabled = true;
+            logDebug('Test');
             expect(loggerEnabledLog.length, 1);
         }));
 
@@ -39,8 +39,8 @@ void testLogDebug()
             const String MESSAGE = 'TestDebug';
             const String ANNOTATED_MESSAGE = 'Debug: ' + MESSAGE;
 
-            LoggerService logger = LoggerService(true);
-            logger.logDebug(MESSAGE);
+            isLoggerEnabled = true;
+            logDebug(MESSAGE);
             expect(RegExp('^' + TIME_REGEX + ' ' + ANNOTATED_MESSAGE + '\$').hasMatch(log[0]), isTrue);
         }));
     });
@@ -53,16 +53,16 @@ void testLogInfo()
         List<String> loggerNotEnabledLog = [];
         test('Logger not enabled => no log', overridePrint(loggerNotEnabledLog, ()
         {
-            LoggerService logger = LoggerService(false);
-            logger.logInfo('Test');
+            isLoggerEnabled = false;
+            logInfo('Test');
             expect(loggerNotEnabledLog.length, 0);
         }));
 
         List<String> loggerEnabledLog = [];
         test('Logger enabled => log', overridePrint(loggerEnabledLog, ()
         {
-            LoggerService logger = LoggerService(true);
-            logger.logInfo('Test');
+            isLoggerEnabled = true;
+            logInfo('Test');
             expect(loggerEnabledLog.length, 1);
         }));
 
@@ -72,8 +72,8 @@ void testLogInfo()
             const String MESSAGE = 'TestInfo';
             const String ANNOTATED_MESSAGE = 'Info:  ' + MESSAGE;
 
-            LoggerService logger = LoggerService(true);
-            logger.logInfo(MESSAGE);
+            isLoggerEnabled = true;
+            logInfo(MESSAGE);
             expect(RegExp('^' + TIME_REGEX + ' ' + ANNOTATED_MESSAGE + '\$').hasMatch(log[0]), isTrue);
         }));
     });
@@ -86,16 +86,16 @@ void testLogWarning()
         List<String> loggerNotEnabledLog = [];
         test('Logger not enabled => no log', overridePrint(loggerNotEnabledLog, ()
         {
-            LoggerService logger = LoggerService(false);
-            logger.logWarning('Test');
+            isLoggerEnabled = false;
+            logWarning('Test');
             expect(loggerNotEnabledLog.length, 0);
         }));
 
         List<String> loggerEnabledLog = [];
         test('Logger enabled => log', overridePrint(loggerEnabledLog, ()
         {
-            LoggerService logger = LoggerService(true);
-            logger.logWarning('Test');
+            isLoggerEnabled = true;
+            logWarning('Test');
             expect(loggerEnabledLog.length, 1);
         }));
 
@@ -105,8 +105,8 @@ void testLogWarning()
             const String MESSAGE = 'TestWarning';
             const String ANNOTATED_MESSAGE = 'Warn:  ' + MESSAGE;
 
-            LoggerService logger = LoggerService(true);
-            logger.logWarning(MESSAGE);
+            isLoggerEnabled = true;
+            logWarning(MESSAGE);
             expect(RegExp('^' + TIME_REGEX + ' ' + ANNOTATED_MESSAGE + '\$').hasMatch(log[0]), isTrue);
         }));
     });
@@ -119,16 +119,16 @@ void testLogError()
         List<String> loggerNotEnabledLog = [];
         test('Logger not enabled => no log', overridePrint(loggerNotEnabledLog, ()
         {
-            LoggerService logger = LoggerService(false);
-            logger.logError('Test');
+            isLoggerEnabled = false;
+            logError('Test');
             expect(loggerNotEnabledLog.length, 0);
         }));
 
         List<String> loggerEnabledLog = [];
         test('Logger enabled => log', overridePrint(loggerEnabledLog, ()
         {
-            LoggerService logger = LoggerService(true);
-            logger.logError('Test');
+            isLoggerEnabled = true;
+            logError('Test');
             expect(loggerEnabledLog.length, 1);
         }));
 
@@ -138,8 +138,8 @@ void testLogError()
             const String MESSAGE = 'TestError';
             const String ANNOTATED_MESSAGE = 'ERROR: ' + MESSAGE;
 
-            LoggerService logger = LoggerService(true);
-            logger.logError(MESSAGE);
+            isLoggerEnabled = true;
+            logError(MESSAGE);
             expect(RegExp('^' + TIME_REGEX + ' ' + ANNOTATED_MESSAGE + '\$').hasMatch(log[0]), isTrue);
         }));
     });
