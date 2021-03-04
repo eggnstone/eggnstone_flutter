@@ -15,18 +15,6 @@ abstract class IAnalyticsService
     /// Track an event using a [name] and optional [params].
     void track(String name, [Map<String, dynamic> params]);
 
-    /// Track a warning using a warning [message] and optional [params].
-    void trackWarning(String message, [Map<String, dynamic> params]);
-
-    /// Track an error using an error [message] and optional [params].
-    void trackError(String message, [Map<String, dynamic> params]);
-
-    /// Track a warning specifying its [source], with exception [e] and [stackTrace].
-    void trackWarningWithException(String source, dynamic e, [dynamic stackTrace]);
-
-    /// Track an error specifying its [source], with exception [e] and [stackTrace].
-    void trackErrorWithException(String source, dynamic e, [dynamic stackTrace]);
-
     /// Track an action event with [name] and [action].
     void trackAction(String name, String action);
 
@@ -35,4 +23,16 @@ abstract class IAnalyticsService
 
     /// Track an action-and-value event with [name] and [action] and [value].
     void trackActionAndValue(String name, String action, Object value);
+
+    /// Track a warning using a warning [message] and optional [params].
+    void trackWarning(String message, [Map<String, dynamic> params]);
+
+    /// Track an error using an error [message] and optional [params].
+    void trackError(String message, [Map<String, dynamic> params]);
+
+    /// Track a warning specifying its [source], with exception [e] and optional [stackTrace].
+    void trackWarningWithException(String source, dynamic e, [dynamic stackTrace]);
+
+    /// Track an error specifying its [source], with exception [e] and optional [stackTrace].
+    void trackErrorWithException(String source, dynamic e, [dynamic stackTrace]);
 }
