@@ -31,8 +31,8 @@ abstract class IAnalyticsService
     void trackError(String message, [Map<String, dynamic> params]);
 
     /// Track a warning specifying its [source], with exception [e] and optional [stackTrace].
-    void trackWarningWithException(String source, dynamic e, [dynamic stackTrace]);
+    void trackWarningWithException(String source, dynamic e, [StackTrace stackTrace]);
 
     /// Track an error specifying its [source], with exception [e] and optional [stackTrace].
-    void trackErrorWithException(String source, dynamic e, [dynamic stackTrace]);
+    void trackErrorWithException(String source, dynamic e, [StackTrace stackTrace]);
 }

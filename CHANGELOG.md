@@ -1,3 +1,7 @@
+## 2.0.0-pre1
+
+* Fixed type of stacktrace.
+
 ## 2.0.0-pre0
 
 * Replaced Logger Mixin/Service with LogTools.
