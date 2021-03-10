@@ -44,8 +44,9 @@ class AnalyticsNavigatorObserver extends NavigatorObserver
 
         // From navigator.dart:
         // If null, the route is anonymous.
+        // Firebase / Google Analytics seems to use "(not set)" therefore also using this exact phrase.
         if (screenName == null)
-            screenName = '<anonymous>';
+            screenName = '(not set)';
 
         analytics.currentScreen = screenName;
     }

@@ -1,3 +1,7 @@
+## 2.0.0-pre3
+
+* Added setUserId/setUserProperty to Analytics/Crashlytics. Changed empty screen name.
+
 ## 2.0.0-pre2
 
 * Fixed type of stacktrace.

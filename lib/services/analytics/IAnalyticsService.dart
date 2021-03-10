@@ -12,6 +12,10 @@ abstract class IAnalyticsService
     /// The current screen.
     set currentScreen(String newValue);
 
+    void setUserId(String value);
+
+    void setUserProperty(String key, String value);
+
     /// Track an event using a [name] and optional [params].
     void track(String name, [Map<String, dynamic> params]);
 
