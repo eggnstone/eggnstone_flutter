@@ -17,7 +17,7 @@ abstract class IAnalyticsService
     void setUserProperty(String key, String value);
 
     /// Track an event using a [name] and optional [params].
-    void track(String name, [Map<String, dynamic> params]);
+    void track(String name, [Map<String, dynamic>? params]);
 
     /// Track an action event with [name] and [action].
     void trackAction(String name, String action);
@@ -29,10 +29,10 @@ abstract class IAnalyticsService
     void trackActionAndValue(String name, String action, Object value);
 
     /// Track a warning using a warning [message] and optional [params].
-    void trackWarning(String message, [Map<String, dynamic> params]);
+    void trackWarning(String message, [Map<String, dynamic>? params]);
 
     /// Track an error using an error [message] and optional [params].
-    void trackError(String message, [Map<String, dynamic> params]);
+    void trackError(String message, [Map<String, dynamic>? params]);
 
     /// Track a warning specifying its [source], with exception [e] and optional [stackTrace].
     void trackWarningWithException(String source, dynamic e, [StackTrace? stackTrace]);

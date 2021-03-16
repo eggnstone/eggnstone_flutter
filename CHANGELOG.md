@@ -1,17 +1,7 @@
-## 2.0.0-pre3
+## 2.0.0
 
 * Added setUserId/setUserProperty to Analytics/Crashlytics. Changed empty screen name.
-
-## 2.0.0-pre2
-
 * Fixed type of stacktrace.
-
-## 2.0.0-pre1
-
-* Fixed type of stacktrace.
-
-## 2.0.0-pre0
-
 * Replaced Logger Mixin/Service with LogTools.
 
 ## 1.1.1
@@ -237,11 +227,5 @@
 ## 0.0.1
 
 * Added AnalyticsService.
-
-## 0.0.1-pre2
-
 * Removed ILoggerService (YAGNI).
-
-## 0.0.1-pre1
-
 * Added LoggerService.
