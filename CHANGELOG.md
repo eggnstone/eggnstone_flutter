@@ -1,3 +1,7 @@
+## 3.0.0
+
+* Replaced UrlLauncherService/UrlLauncherMixin with UrlLauncherTools.
+
 ## 2.0.0
 
 * Added setUserId/setUserProperty to Analytics/Crashlytics. Changed empty screen name.
