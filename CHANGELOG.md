@@ -8,9 +8,9 @@
 
 ## 2.0.0
 
+* Breaking change: Replaced Logger Mixin/Service with LogTools.
 * Added setUserId/setUserProperty to Analytics/Crashlytics. Changed empty screen name.
 * Fixed type of stacktrace.
-* Breaking change: Replaced Logger Mixin/Service with LogTools.
 
 ## 1.1.1
 
