@@ -1,6 +1,9 @@
 ## 3.0.0
 
 * Replaced UrlLauncherService/UrlLauncherMixin with UrlLauncherTools.
+* Added HyperLink.
+* Added PlatformTools.
+* Added ClipboardTools.
 
 ## 2.0.0
 
