@@ -7,4 +7,7 @@ abstract class ICrashlyticsService
     void setUserId(String value);
 
     void setUserProperty(String key, String value);
+
+    // TODO: log()
+    // TODO: crash()
 }

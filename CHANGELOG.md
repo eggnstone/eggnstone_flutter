@@ -4,6 +4,7 @@
 * Added HyperLink.
 * Added PlatformTools.
 * Added ClipboardTools.
+* Removed DartTools (You can use kDebugMode from foundation.dart).
 
 ## 2.0.0
 

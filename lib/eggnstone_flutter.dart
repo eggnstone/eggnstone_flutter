@@ -7,7 +7,6 @@ export 'package:eggnstone_flutter/services/crashlytics/CrashlyticsMixin.dart';
 export 'package:eggnstone_flutter/services/crashlytics/ICrashlyticsService.dart';
 export 'package:eggnstone_flutter/services/shared_preferences/SharedPreferencesMixin.dart';
 export 'package:eggnstone_flutter/services/shared_preferences/SharedPreferencesService.dart';
-export 'package:eggnstone_flutter/tools/DartTools.dart';
 export 'package:eggnstone_flutter/tools/LogTools.dart';
 export 'package:eggnstone_flutter/tools/PackageInfo.dart';
 export 'package:eggnstone_flutter/tools/UrlLauncherTools.dart';
