@@ -1,16 +1,16 @@
 ## 3.0.0
 
-* Replaced UrlLauncherService/UrlLauncherMixin with UrlLauncherTools.
+* Breaking change: Replaced UrlLauncherService/UrlLauncherMixin with UrlLauncherTools.
+* Breaking change: Removed DartTools (You can use kDebugMode from foundation.dart).
 * Added HyperLink.
 * Added PlatformTools.
 * Added ClipboardTools.
-* Removed DartTools (You can use kDebugMode from foundation.dart).
 
 ## 2.0.0
 
 * Added setUserId/setUserProperty to Analytics/Crashlytics. Changed empty screen name.
 * Fixed type of stacktrace.
-* Replaced Logger Mixin/Service with LogTools.
+* Breaking change: Replaced Logger Mixin/Service with LogTools.
 
 ## 1.1.1
 
