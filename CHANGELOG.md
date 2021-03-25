@@ -1,3 +1,7 @@
+## 3.0.1
+
+* Added PlatformTools.htmlNavigatorUserAgent()
+
 ## 3.0.0
 
 * Breaking change: Replaced UrlLauncherService/UrlLauncherMixin with UrlLauncherTools.

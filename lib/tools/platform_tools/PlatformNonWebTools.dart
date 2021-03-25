@@ -6,6 +6,9 @@ class PlatformTools
     static set jsContextLocationHref(String value)
     {}
 
+    static String? htmlNavigatorUserAgent()
+    => null;
+
     static void htmlWindowHistoryPushState(String url)
     {}
 

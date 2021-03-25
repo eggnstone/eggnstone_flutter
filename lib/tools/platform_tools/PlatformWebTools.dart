@@ -13,6 +13,9 @@ class PlatformTools
     static set jsContextLocationHref(String value)
     => js.context['location']['href'] = value;
 
+    static String? htmlNavigatorUserAgent()
+    => html.window.navigator.userAgent;
+
     // html.window.history.pushState(data, title, url)
     static void htmlWindowHistoryPushState(String url)
     => html.window.history.pushState(null, '', url);
