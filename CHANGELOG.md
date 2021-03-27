@@ -1,3 +1,7 @@
+## 3.0.3
+
+* UrlLauncherTools.launch now returns its result.
+
 ## 3.0.2
 
 * Added ActionLink.

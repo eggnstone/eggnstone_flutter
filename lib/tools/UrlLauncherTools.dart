@@ -7,7 +7,7 @@ class UrlLauncherTools
 {
     static const String URL_LAUNCHER = 'UrlLauncher';
 
-    static Future launch(String url, String source)
+    static Future<bool> launch(String url, String source)
     async
     {
         Map<String, dynamic> params = {'Url': url};
@@ -21,19 +21,20 @@ class UrlLauncherTools
                 params['Action'] = 'LaunchSucceeded';
                 if (GetIt.instance.isRegistered<IAnalyticsService>())
                     GetIt.instance.get<IAnalyticsService>().track(URL_LAUNCHER, params);
+                return true;
             }
-            else
-            {
-                params['Action'] = 'LaunchFailed';
-                if (GetIt.instance.isRegistered<IAnalyticsService>())
-                    GetIt.instance.get<IAnalyticsService>().track(URL_LAUNCHER, params);
-            }
-        }
-        else
-        {
-            params['Action'] = 'CanLaunchFailed';
+
+            params['Action'] = 'LaunchFailed';
             if (GetIt.instance.isRegistered<IAnalyticsService>())
                 GetIt.instance.get<IAnalyticsService>().track(URL_LAUNCHER, params);
+
+            return false;
         }
+
+        params['Action'] = 'CanLaunchFailed';
+        if (GetIt.instance.isRegistered<IAnalyticsService>())
+            GetIt.instance.get<IAnalyticsService>().track(URL_LAUNCHER, params);
+
+        return false;
     }
 }
