@@ -7,6 +7,11 @@ const String TIME_REGEX = r'\d{2}:\d{2}:\d{2}';
 
 void main()
 {
+    setUp(()
+    {
+        useNewLogger = false;
+    });
+
     testLogDebug();
     testLogInfo();
     testLogWarning();
@@ -136,11 +141,11 @@ void testLogError()
         test('Prefixes text with time and type annotation', overridePrint(log, ()
         {
             const String MESSAGE = 'TestError';
-            const String ANNOTATED_MESSAGE = 'ERROR: ' + MESSAGE;
+            const String ANNOTATED_MESSAGE = 'Error: ' + MESSAGE;
 
             isLoggerEnabled = true;
             logError(MESSAGE);
-            expect(RegExp('^' + TIME_REGEX + ' ' + ANNOTATED_MESSAGE + '\$').hasMatch(log[0]), isTrue);
+            expect(RegExp('^' + TIME_REGEX + ' ' + ANNOTATED_MESSAGE + '\$').hasMatch(log[0]), isTrue, reason: '"${log[0]}" did not match expected format.');
         }));
     });
 }

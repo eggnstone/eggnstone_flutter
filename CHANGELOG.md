@@ -1,3 +1,7 @@
+## 3.0.4
+
+* Nicer logging for non-Web. Old behavior available via: useNewLogger = false;
+
 ## 3.0.3
 
 * UrlLauncherTools.launch now returns its result.
