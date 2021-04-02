@@ -1,5 +1,6 @@
-import 'package:eggnstone_flutter/services/analytics/IAnalyticsService.dart';
 import 'package:get_it/get_it.dart';
+
+import 'IAnalyticsService.dart';
 
 mixin AnalyticsMixin
 {

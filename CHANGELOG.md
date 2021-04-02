@@ -1,3 +1,10 @@
+## 3.0.5
+
+* UrlLauncherTools now doesn't call canLaunch() anymore.
+* Added StringExtensions.
+* Added StackTraceTools.
+* Library cleanup.
+
 ## 3.0.4
 
 * Nicer logging for non-Web. Old behavior available via: useNewLogger = false;

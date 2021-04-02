@@ -1,5 +1,6 @@
-import 'package:eggnstone_flutter/services/shared_preferences/SharedPreferencesService.dart';
 import 'package:get_it/get_it.dart';
+
+import 'SharedPreferencesService.dart';
 
 mixin SharedPreferencesMixin
 {
