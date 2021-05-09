@@ -1,3 +1,7 @@
+## 3.1.0
+
+Updated dependencies.
+
 ## 3.0.5
 
 * UrlLauncherTools now doesn't call canLaunch() anymore.
