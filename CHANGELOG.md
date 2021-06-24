@@ -1,6 +1,7 @@
 ## 3.1.0
 
-Updated dependencies.
+* Updated dependencies.
+* Removed PackageInfo because it does not any value over package_info_plus, which you can use instead.
 
 ## 3.0.5
 
