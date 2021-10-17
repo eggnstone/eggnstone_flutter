@@ -13,9 +13,9 @@ class SharedPreferencesService
     static Future<SharedPreferencesService> create()
     async
     {
-        var sharedPreferences = SharedPreferencesService._internal();
+        final SharedPreferencesService sharedPreferences = SharedPreferencesService._internal();
         await sharedPreferences._init();
-        return Future.value(sharedPreferences);
+        return sharedPreferences;
     }
 
     Future<void> _init()
@@ -24,6 +24,7 @@ class SharedPreferencesService
         _sharedPreferences = await sp.SharedPreferences.getInstance();
     }
 
+    // ignore: avoid_positional_boolean_parameters
     bool getBool(String key, bool def)
     {
         try
@@ -31,7 +32,7 @@ class SharedPreferencesService
             if (_sharedPreferences.containsKey(key) == false)
                 return def;
 
-            bool? b = _sharedPreferences.getBool(key);
+            final bool? b = _sharedPreferences.getBool(key);
             if (b == null)
                 return def;
 
@@ -45,6 +46,7 @@ class SharedPreferencesService
         }
     }
 
+    // ignore: avoid_positional_boolean_parameters
     void setBool(String key, bool value)
     {
         _sharedPreferences.setBool(key, value);
@@ -57,7 +59,7 @@ class SharedPreferencesService
             if (_sharedPreferences.containsKey(key) == false)
                 return def;
 
-            String? s = _sharedPreferences.getString(key);
+            final String? s = _sharedPreferences.getString(key);
             if (s == null)
                 return def;
 
@@ -83,7 +85,7 @@ class SharedPreferencesService
             if (_sharedPreferences.containsKey(key) == false)
                 return def;
 
-            int? i = _sharedPreferences.getInt(key);
+            final int? i = _sharedPreferences.getInt(key);
             if (i == null)
                 return def;
 
@@ -109,12 +111,12 @@ class SharedPreferencesService
             if (_sharedPreferences.containsKey(key) == false)
                 return def;
 
-            List<String>? stringList = _sharedPreferences.getStringList(key);
+            final List<String>? stringList = _sharedPreferences.getStringList(key);
             if (stringList == null)
                 return def;
 
-            var intList = List<int>.empty();
-            for (String s in stringList)
+            final List<int> intList = <int>[];
+            for (final String s in stringList)
                 intList.add(int.parse(s));
 
             return intList;
@@ -129,12 +131,12 @@ class SharedPreferencesService
 
     void setIntList(String key, List<int> intList, {bool removeIfEmpty = true})
     {
-        if (intList.length == 0 && removeIfEmpty)
+        if (intList.isEmpty && removeIfEmpty)
             _sharedPreferences.remove(key);
         else
         {
-            var stringList = List<String>.empty();
-            for (int i in intList)
+            final List<String> stringList = <String>[];
+            for (final int i in intList)
                 stringList.add(i.toString());
 
             _sharedPreferences.setStringList(key, stringList);
@@ -148,7 +150,7 @@ class SharedPreferencesService
             if (_sharedPreferences.containsKey(key) == false)
                 return def;
 
-            String? s = _sharedPreferences.getString(key);
+            final String? s = _sharedPreferences.getString(key);
             if (s == null)
                 return def;
 
@@ -174,7 +176,7 @@ class SharedPreferencesService
             if (_sharedPreferences.containsKey(key) == false)
                 return def;
 
-            List<String>? stringList = _sharedPreferences.getStringList(key);
+            final List<String>? stringList = _sharedPreferences.getStringList(key);
             if (stringList == null)
                 return def;
 
@@ -190,7 +192,7 @@ class SharedPreferencesService
 
     void setStringList(String key, List<String> stringList, {bool removeIfEmpty = true})
     {
-        if (stringList.length == 0 && removeIfEmpty)
+        if (stringList.isEmpty && removeIfEmpty)
             _sharedPreferences.remove(key);
         else
             _sharedPreferences.setStringList(key, stringList);

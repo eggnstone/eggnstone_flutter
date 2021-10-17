@@ -25,8 +25,8 @@ class PlatformTools
 
     static dynamic htmlWindowDocumentGetFirstElementByTagName(String tagName)
     {
-        List<html.Node> nodes = html.window.document.getElementsByTagName(tagName);
-        if (nodes.length == 0)
+        final List<html.Node> nodes = html.window.document.getElementsByTagName(tagName);
+        if (nodes.isEmpty)
             return null;
 
         return nodes[0];

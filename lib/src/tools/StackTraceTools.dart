@@ -4,17 +4,16 @@ class StackTraceTools
     {
         int pos;
 
-        if (stackTrace == null)
-            stackTrace = StackTrace.current;
+        final StackTrace safeStackTrace = stackTrace ?? StackTrace.current;
 
-        String s = stackTrace.toString();
+        String s = safeStackTrace.toString();
 
-        String prefix = '#$removeLevelsBefore'.padRight(7);
+        final String prefix = '#$removeLevelsBefore'.padRight(7);
         pos = s.indexOf(prefix);
         if (pos >= 0)
             s = s.substring(pos);
 
-        String postfix = '#${removeLevelsAfter + 1}'.padRight(7);
+        final String postfix = '#${removeLevelsAfter + 1}'.padRight(7);
         pos = s.indexOf(postfix);
         if (pos >= 0)
             s = s.substring(0, pos);

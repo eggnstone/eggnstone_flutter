@@ -22,17 +22,25 @@ void logError(String message, [Object? error])
 
 void _log(String level, String message, [Object? error])
 {
-    if (isLoggerEnabled)
-        if (useNewLogger && !kIsWeb)
+    if (!isLoggerEnabled)
+        return;
+
+    if (useNewLogger && !kIsWeb)
+    {
+        final String levelPadded = level.padRight(5);
+        // ignore: prefer_interpolation_to_compose_strings
+        developer.log(_dateFormat.format(DateTime.now()) + ' ' + message, name: levelPadded, error: error);
+    }
+    else
+    {
+        // ignore: prefer_interpolation_to_compose_strings
+        final String levelWithColonPadded = (level + ':').padRight(6);
+        // ignore: prefer_interpolation_to_compose_strings, avoid_print
+        print(_dateFormat.format(DateTime.now()) + ' ' + levelWithColonPadded + ' ' + message);
+        if (error != null)
         {
-            String levelPadded = level.padRight(5);
-            developer.log(_dateFormat.format(DateTime.now()) + ' ' + message, name: levelPadded, error: error);
+            // ignore: avoid_print
+            print('         $error');
         }
-        else
-        {
-            String levelWithColonPadded = (level + ':').padRight(6);
-            print(_dateFormat.format(DateTime.now()) + ' ' + levelWithColonPadded + ' ' + message);
-            if (error != null)
-                print('         $error');
-        }
+    }
 }

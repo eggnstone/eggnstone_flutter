@@ -4,7 +4,7 @@ class ClipboardTools
 {
     static void setData(String text)
     {
-        final textArea = html.TextAreaElement();
+        final html.TextAreaElement textArea = html.TextAreaElement();
         html.document.body!.append(textArea);
         textArea.style.border = '0';
         textArea.style.margin = '0';

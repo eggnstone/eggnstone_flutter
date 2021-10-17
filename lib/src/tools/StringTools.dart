@@ -16,8 +16,8 @@ extension StringX on String
     => '';
 
     static bool isNullOrEmpty(String? s)
-    => (s == null || s.isEmpty);
+    => s == null || s.isEmpty;
 
     static bool isNotNullAndNotEmpty(String? s)
-    => (s != null && s.isNotEmpty);
+    => s != null && s.isNotEmpty;
 }

@@ -2,7 +2,7 @@ import 'package:flutter/widgets.dart';
 
 import 'AnalyticsMixin.dart';
 
-typedef String? ScreenNameExtractor(RouteSettings settings);
+typedef ScreenNameExtractor = String? Function(RouteSettings settings);
 
 String? defaultNameExtractor(RouteSettings settings)
 => settings.name;
@@ -46,8 +46,7 @@ class AnalyticsNavigatorObserver extends NavigatorObserver
         // From navigator.dart:
         // If null, the route is anonymous.
         // Firebase / Google Analytics seems to use "(not set)" therefore also using this exact phrase.
-        if (screenName == null)
-            screenName = '(not set)';
+        screenName ??= '(not set)';
 
         analytics.currentScreen = screenName;
     }
