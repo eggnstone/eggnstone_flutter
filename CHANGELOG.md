@@ -1,3 +1,7 @@
+## 3.3.1
+
+* Added recordError() to ICrashlyticsService.
+
 ## 3.3.0
 
 * Added recordError() to ICrashlyticsService.
