@@ -8,6 +8,8 @@ abstract class ICrashlyticsService
 
     void setUserProperty(String key, String value);
 
+    void recordError(dynamic error, StackTrace? stackTrace);
+
 // TODO: log()
 // TODO: crash()
 }
