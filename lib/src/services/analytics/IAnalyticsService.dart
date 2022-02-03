@@ -12,7 +12,7 @@ abstract class IAnalyticsService
     /// The current screen.
     set currentScreen(String newValue);
 
-    void setUserId(String value);
+    void setUserId(String id);
 
     void setUserProperty(String key, String value);
 

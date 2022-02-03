@@ -4,7 +4,7 @@ abstract class ICrashlyticsService
 {
     void run(Widget app);
 
-    void setUserId(String value);
+    void setUserId(String id);
 
     void setUserProperty(String key, String value);
 
