@@ -1,3 +1,7 @@
+## 3.2.2
+
+* Updated dependencies.
+
 ## 3.3.1
 
 * Added recordError() to ICrashlyticsService.
