@@ -1,3 +1,7 @@
+## 3.4.1
+
+* Added onError() to ICrashlyticsService.
+
 ## 3.4.0
 
 * Added runAsync() to ICrashlyticsService.

@@ -2,10 +2,10 @@ import 'package:flutter/widgets.dart';
 
 abstract class ICrashlyticsService
 {
-    @Deprecated('Use runAsync instead.')
+    @Deprecated('Use runZonedGuarded and onError instead.')
     void run(Widget app);
 
-    Future<void> runAsync(Function prepareFunction, Widget app);
+    void onError(Object error, StackTrace stackTrace);
 
     void setUserId(String id);
 
