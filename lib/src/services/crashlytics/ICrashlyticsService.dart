@@ -2,7 +2,10 @@ import 'package:flutter/widgets.dart';
 
 abstract class ICrashlyticsService
 {
+    @Deprecated('Use runAsync instead.')
     void run(Widget app);
+
+    Future<void> runAsync(Function prepareFunction, Widget app);
 
     void setUserId(String id);
 
