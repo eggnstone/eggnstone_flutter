@@ -6,6 +6,12 @@ abstract class IAnalyticsService
     /// The state of the service (if it reports to Analytics or not).
     set isEnabled(bool newValue);
 
+    /// The state of debug messages (if additional logging is on or not).
+    bool get isDebugEnabled;
+
+    /// The state of debug messages (if additional logging is on or not).
+    set isDebugEnabled(bool newValue);
+
     /// The current screen.
     String get currentScreen;
 

@@ -6,7 +6,7 @@ import 'package:intl/intl.dart';
 DateFormat _dateFormat = DateFormat('HH:mm:ss');
 
 bool isLoggerEnabled = true;
-bool useNewLogger = true;
+bool useNewLogger = kDebugMode;
 
 void logDebug(String message)
 => _log('Debug', message);
