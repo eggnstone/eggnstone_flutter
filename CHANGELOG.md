@@ -1,3 +1,7 @@
+## 3.4.3
+
+* Added isDebugEnabled to ICrashlyticsService.
+
 ## 3.4.2
 
 * Added isDebugEnabled to IAnalyticsService.

@@ -2,6 +2,12 @@ import 'package:flutter/widgets.dart';
 
 abstract class ICrashlyticsService
 {
+    /// The state of debug messages (if additional logging is on or not).
+    bool get isDebugEnabled;
+
+    /// The state of debug messages (if additional logging is on or not).
+    set isDebugEnabled(bool newValue);
+
     @Deprecated('Use runZonedGuarded and onError instead.')
     void run(Widget app);
 
