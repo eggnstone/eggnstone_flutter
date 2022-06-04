@@ -29,10 +29,24 @@ abstract class IAnalyticsService
     void trackAction(String name, String action);
 
     /// Track a value event with [name] and [value].
+    @Deprecated('Use trackTextValue or trackNumberValue instead.')
     void trackValue(String name, Object value);
 
+    /// Track a value event with [name] and [numberValue].
+    void trackNumberValue(String name, Object numberValue);
+
+    /// Track a value event with [name] and [textValue].
+    void trackTextValue(String name, Object textValue);
+
     /// Track an action-and-value event with [name] and [action] and [value].
+    @Deprecated('Use trackActionAndTextValue or trackActionAndNumberValue instead.')
     void trackActionAndValue(String name, String action, Object value);
+
+    /// Track an action-and-value event with [name] and [action] and [numberValue].
+    void trackActionAndNumberValue(String name, String action, Object numberValue);
+
+    /// Track an action-and-value event with [name] and [action] and [textValue].
+    void trackActionAndTextValue(String name, String action, Object textValue);
 
     /// Track a warning using a warning [message] and optional [params].
     void trackWarning(String message, [Map<String, dynamic>? params]);

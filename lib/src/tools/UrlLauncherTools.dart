@@ -12,7 +12,7 @@ class UrlLauncherTools
     {
         final Map<String, dynamic> params = <String, dynamic>{'Url': url, 'Source': source};
 
-        if (await ul.launch(url))
+        if (await ul.launchUrl(Uri.parse(url)))
         {
             params['Action'] = 'LaunchSucceeded';
             if (GetIt.instance.isRegistered<IAnalyticsService>())
