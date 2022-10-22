@@ -78,6 +78,32 @@ class SharedPreferencesService
         _sharedPreferences.setString(key, value.toIso8601String());
     }
 
+    double getDouble(String key, double def)
+    {
+        try
+        {
+            if (_sharedPreferences.containsKey(key) == false)
+                return def;
+
+            final double? d = _sharedPreferences.getDouble(key);
+            if (d == null)
+                return def;
+
+            return d;
+        }
+        catch (e)
+        {
+            logInfo(e.toString());
+            logInfo('${_sharedPreferences.get(key)}');
+            return def;
+        }
+    }
+
+    void setDouble(String key, double value)
+    {
+        _sharedPreferences.setDouble(key, value);
+    }
+
     int getInt(String key, int def)
     {
         try

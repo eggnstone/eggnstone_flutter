@@ -1,3 +1,11 @@
+## 3.5.0
+
+* Updated dependencies.
+
+## 3.4.5
+
+* Added SharedPreferencesService.getDouble/setDouble().
+
 ## 3.4.4
 
 * Added trackNumberValue,trackTextValue,trackActionAndNumberValue,trackActionAndTextValue to IAnalyticsService.
