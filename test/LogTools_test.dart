@@ -48,13 +48,11 @@ void testLogDebug()
             overridePrint(log, ()
             {
                 const String MESSAGE = 'TestDebug';
-                // ignore: prefer_interpolation_to_compose_strings
-                const String ANNOTATED_MESSAGE = 'Debug: ' + MESSAGE;
+                const String ANNOTATED_MESSAGE = 'Debug: $MESSAGE';
 
                 isLoggerEnabled = true;
                 logDebug(MESSAGE);
-                // ignore: prefer_interpolation_to_compose_strings
-                expect(RegExp('^' + TIME_REGEX + ' ' + ANNOTATED_MESSAGE + r'$').hasMatch(log[0]), isTrue);
+                expect(RegExp('^$TIME_REGEX $ANNOTATED_MESSAGE' r'$').hasMatch(log[0]), isTrue);
             }));
     });
 }
@@ -89,13 +87,11 @@ void testLogInfo()
             overridePrint(log, ()
             {
                 const String MESSAGE = 'TestInfo';
-                // ignore: prefer_interpolation_to_compose_strings
-                const String ANNOTATED_MESSAGE = 'Info:  ' + MESSAGE;
+                const String ANNOTATED_MESSAGE = 'Info:  $MESSAGE';
 
                 isLoggerEnabled = true;
                 logInfo(MESSAGE);
-                // ignore: prefer_interpolation_to_compose_strings
-                expect(RegExp('^' + TIME_REGEX + ' ' + ANNOTATED_MESSAGE + r'$').hasMatch(log[0]), isTrue);
+                expect(RegExp('^$TIME_REGEX $ANNOTATED_MESSAGE' r'$').hasMatch(log[0]), isTrue);
             }));
     });
 }
@@ -130,13 +126,11 @@ void testLogWarning()
             overridePrint(log, ()
             {
                 const String MESSAGE = 'TestWarning';
-                // ignore: prefer_interpolation_to_compose_strings
-                const String ANNOTATED_MESSAGE = 'Warn:  ' + MESSAGE;
+                const String ANNOTATED_MESSAGE = 'Warn:  $MESSAGE';
 
                 isLoggerEnabled = true;
                 logWarning(MESSAGE);
-                // ignore: prefer_interpolation_to_compose_strings
-                expect(RegExp('^' + TIME_REGEX + ' ' + ANNOTATED_MESSAGE + r'$').hasMatch(log[0]), isTrue);
+                expect(RegExp('^$TIME_REGEX $ANNOTATED_MESSAGE' r'$').hasMatch(log[0]), isTrue);
             }));
     });
 }
@@ -171,13 +165,11 @@ void testLogError()
             overridePrint(log, ()
             {
                 const String MESSAGE = 'TestError';
-                // ignore: prefer_interpolation_to_compose_strings
-                const String ANNOTATED_MESSAGE = 'Error: ' + MESSAGE;
+                const String ANNOTATED_MESSAGE = 'Error: $MESSAGE';
 
                 isLoggerEnabled = true;
                 logError(MESSAGE);
-                // ignore: prefer_interpolation_to_compose_strings
-                expect(RegExp('^' + TIME_REGEX + ' ' + ANNOTATED_MESSAGE + r'$').hasMatch(log[0]), isTrue, reason: '"${log[0]}" did not match expected format.');
+                expect(RegExp('^$TIME_REGEX $ANNOTATED_MESSAGE' r'$').hasMatch(log[0]), isTrue, reason: '"${log[0]}" did not match expected format.');
             }));
     });
 }
