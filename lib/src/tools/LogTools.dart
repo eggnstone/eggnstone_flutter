@@ -38,19 +38,25 @@ void _log(String level, String message, [Object? error])
 
         if (logColors == 'Ansi')
         {
+            // https://stackoverflow.com/questions/32573654/is-there-a-way-to-create-an-orange-color-from-ansi-escape-characters
+            const String COLOR_DEBUG = '\x1B[38:2:48:141:108m';
+            const String COLOR_INFO = '\x1B[38:2:13:113:166m';
+            const String COLOR_WARN = '\x1B[38:2:255:152:0m';
+            const String COLOR_ERROR = '\x1B[38:2:255:51:44m';
+            const String COLOR_RESET = '\x1B[0m';
             switch (level)
             {
                 case 'Debug':
-                //messageForPrint = '\x1B[32m$messageForPrint\x1B[0m';
+                    messageForPrint = COLOR_DEBUG + messageForPrint + COLOR_RESET;
                     break;
                 case 'Info':
-                    messageForPrint = '\x1B[34m$messageForPrint\x1B[0m';
+                    messageForPrint = COLOR_INFO + messageForPrint + COLOR_RESET;
                     break;
                 case 'Warn':
-                    messageForPrint = '\x1B[33m$messageForPrint\x1B[0m';
+                    messageForPrint = COLOR_WARN + messageForPrint + COLOR_RESET;
                     break;
                 case 'Error':
-                    messageForPrint = '\x1B[31m$messageForPrint\x1B[0m';
+                    messageForPrint = COLOR_ERROR + messageForPrint + COLOR_RESET;
                     break;
             }
         }

@@ -1,8 +1,4 @@
-## 3.6.1
-
-* Added colors to logging.
-
-## 3.6.0
+## 3.6.2
 
 * Added colors to logging.
 
