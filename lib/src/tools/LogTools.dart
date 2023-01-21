@@ -7,6 +7,7 @@ DateFormat _dateFormat = DateFormat('HH:mm:ss');
 
 bool isLoggerEnabled = true;
 bool useNewLogger = kDebugMode;
+String? logColors;
 
 void logDebug(String message)
 => _log('Debug', message);
@@ -35,8 +36,29 @@ void _log(String level, String message, [Object? error])
     {
         // ignore: prefer_interpolation_to_compose_strings
         final String levelWithColonPadded = (level + ':').padRight(6);
+        String messageForPrint = '${_dateFormat.format(DateTime.now())} $levelWithColonPadded $message';
+
+        if (logColors == 'Ansi')
+        {
+            switch (level)
+            {
+                case 'Debug':
+                    messageForPrint = '\x1B[32m$messageForPrint\x1B[0m';
+                    break;
+                case 'Info':
+                    messageForPrint = '\x1B[34m$messageForPrint\x1B[0m';
+                    break;
+                case 'Warn':
+                    messageForPrint = '\x1B[33m$messageForPrint\x1B[0m';
+                    break;
+                case 'Error':
+                    messageForPrint = '\x1B[31m$messageForPrint\x1B[0m';
+                    break;
+            }
+        }
+
         // ignore: prefer_interpolation_to_compose_strings, avoid_print
-        print(_dateFormat.format(DateTime.now()) + ' ' + levelWithColonPadded + ' ' + message);
+        print(messageForPrint);
         if (error != null)
         {
             // ignore: avoid_print

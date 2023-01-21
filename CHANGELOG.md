@@ -1,5 +1,9 @@
 ## 3.5.0
 
+* Added colors to logging.
+
+## 3.5.0
+
 * Updated dependencies.
 
 ## 3.4.5
