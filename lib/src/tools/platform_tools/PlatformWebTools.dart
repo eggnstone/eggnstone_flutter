@@ -8,7 +8,10 @@ class PlatformTools
     // js.context['location']['search']
 
     static String get jsContextLocationHref
-    => js.context['location']['href'] as String;
+    {
+        final dynamic href = js.context['location']['href'];
+        return href is String ? href : '';
+    }
 
     static set jsContextLocationHref(String value)
     => js.context['location']['href'] = value;

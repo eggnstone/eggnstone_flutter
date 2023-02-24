@@ -46,10 +46,8 @@ class SharedPreferencesService
     }
 
     // ignore: avoid_positional_boolean_parameters
-    void setBool(String key, bool value)
-    {
-        _sharedPreferences.setBool(key, value);
-    }
+    Future<bool> setBool(String key, bool value)
+    => _sharedPreferences.setBool(key, value);
 
     DateTime getDateTime(String key, DateTime def)
     {
@@ -72,10 +70,8 @@ class SharedPreferencesService
         }
     }
 
-    void setDateTime(String key, DateTime value)
-    {
-        _sharedPreferences.setString(key, value.toIso8601String());
-    }
+    Future<bool> setDateTime(String key, DateTime value)
+    => _sharedPreferences.setString(key, value.toIso8601String());
 
     double getDouble(String key, double def)
     {
@@ -98,10 +94,8 @@ class SharedPreferencesService
         }
     }
 
-    void setDouble(String key, double value)
-    {
-        _sharedPreferences.setDouble(key, value);
-    }
+    Future<bool> setDouble(String key, double value)
+    => _sharedPreferences.setDouble(key, value);
 
     int getInt(String key, int def)
     {
@@ -124,10 +118,8 @@ class SharedPreferencesService
         }
     }
 
-    void setInt(String key, int value)
-    {
-        _sharedPreferences.setInt(key, value);
-    }
+    Future<bool> setInt(String key, int value)
+    => _sharedPreferences.setInt(key, value);
 
     List<int> getIntList(String key, List<int> def)
     {
@@ -154,18 +146,17 @@ class SharedPreferencesService
         }
     }
 
-    void setIntList(String key, List<int> intList, {bool removeIfEmpty = true})
+    Future<bool> setIntList(String key, List<int> intList, {bool removeIfEmpty = true})
+    async
     {
-        if (intList.isEmpty && removeIfEmpty)
-            _sharedPreferences.remove(key);
-        else
-        {
-            final List<String> stringList = <String>[];
-            for (final int i in intList)
-                stringList.add(i.toString());
+        if (intList.isEmpty && removeIfEmpty) 
+            return _sharedPreferences.remove(key);
 
-            _sharedPreferences.setStringList(key, stringList);
-        }
+        final List<String> stringList = <String>[];
+        for (final int i in intList)
+            stringList.add(i.toString());
+
+        return _sharedPreferences.setStringList(key, stringList);
     }
 
     String getString(String key, String def)
@@ -189,10 +180,8 @@ class SharedPreferencesService
         }
     }
 
-    void setString(String key, String value)
-    {
-        _sharedPreferences.setString(key, value);
-    }
+    Future<bool> setString(String key, String value)
+    => _sharedPreferences.setString(key, value);
 
     List<String> getStringList(String key, List<String> def)
     {
@@ -215,11 +204,11 @@ class SharedPreferencesService
         }
     }
 
-    void setStringList(String key, List<String> stringList, {bool removeIfEmpty = true})
+    Future<bool> setStringList(String key, List<String> stringList, {bool removeIfEmpty = true})
     {
         if (stringList.isEmpty && removeIfEmpty)
-            _sharedPreferences.remove(key);
-        else
-            _sharedPreferences.setStringList(key, stringList);
+            return _sharedPreferences.remove(key);
+
+        return _sharedPreferences.setStringList(key, stringList);
     }
 }

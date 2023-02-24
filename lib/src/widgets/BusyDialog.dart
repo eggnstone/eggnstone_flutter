@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 
 class BusyDialog
 {
-    static void show(BuildContext context, String text, {double? textScaleFactor})
+    static Future<void> show(BuildContext context, String text, {double? textScaleFactor})
+    async
     {
-        showDialog<void>(
+        await showDialog<void>(
             context: context,
             barrierDismissible: false,
             builder: (BuildContext context)

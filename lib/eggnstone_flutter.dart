@@ -1,3 +1,4 @@
+/// eggnstone_flutter;
 library eggnstone_flutter;
 
 export 'src/services/analytics/AnalyticsMixin.dart';

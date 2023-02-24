@@ -28,7 +28,7 @@ class HyperLink extends StatelessWidget
         return ActionLink(text,
             textStyle: textStyle,
             fontSizeFactor: fontSizeFactor,
-            onTap: ()
+            onTap: () async
             => UrlLauncherTools.launch(url, source)
         );
     }

@@ -32,7 +32,7 @@ class ActionLink extends StatelessWidget
         {
             final ThemeData theme = Theme.of(context);
             final TextTheme textTheme = theme.textTheme;
-            actualTextStyle = textTheme.bodyText2!;
+            actualTextStyle = textTheme.bodyMedium!;
         }
         else
         {
