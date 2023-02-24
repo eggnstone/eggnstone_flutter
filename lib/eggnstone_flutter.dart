@@ -7,7 +7,6 @@ export 'src/services/crashlytics/CrashlyticsMixin.dart';
 export 'src/services/crashlytics/ICrashlyticsService.dart';
 export 'src/services/shared_preferences/SharedPreferencesMixin.dart';
 export 'src/services/shared_preferences/SharedPreferencesService.dart';
-export 'src/tools/LogTools.dart';
 export 'src/tools/StackTraceTools.dart';
 export 'src/tools/StringTools.dart';
 export 'src/tools/UrlLauncherTools.dart';

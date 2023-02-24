@@ -2,9 +2,9 @@
 
 A collection of Flutter tools, including wrappers for logging, Analytics and Crashlytics.
 
-# Logging
+## Logging
 
-## Colors
+### Colors
 
 Set `useNewLogger = false;` and `logColors = 'Ansi';` to enable colors according to log level.
 Works for tests but not in the console.

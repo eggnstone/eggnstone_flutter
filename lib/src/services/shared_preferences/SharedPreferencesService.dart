@@ -1,8 +1,7 @@
 import 'dart:async';
 
+import 'package:eggnstone_dart/eggnstone_dart.dart';
 import 'package:shared_preferences/shared_preferences.dart' as sp;
-
-import '../../tools/LogTools.dart';
 
 class SharedPreferencesService
 {
