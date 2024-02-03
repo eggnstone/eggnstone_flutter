@@ -5,7 +5,7 @@ homepage: https://github.com/eggnstone/eggnstone_flutter
 version: 3.7.0
 
 environment:
-  sdk: '>=3.0.0 <4.0.0'
+  sdk: ^3.0.0
   flutter: ">=1.17.0"
 
 dependencies:
@@ -13,16 +13,16 @@ dependencies:
     sdk: flutter
 
   # Service locator
-  get_it: ^7.6.4
+  get_it: ^7.6.7
   # For logging
-  eggnstone_dart: ^1.0.0
+  eggnstone_dart: ^1.1.0
   # Storing+retrieving settings
-  shared_preferences: ^2.2.1
+  shared_preferences: ^2.2.2
   # URL launcher
-  url_launcher: ^6.1.14
+  url_launcher: ^6.2.4
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   # Mocking
-  mockito: ^5.4.2
+  mockito: ^5.4.4
