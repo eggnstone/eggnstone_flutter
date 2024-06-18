@@ -10,7 +10,7 @@ class UrlLauncherTools
     static Future<bool> launch(String url, String source)
     async
     {
-        final Map<String, dynamic> params = <String, dynamic>{'Url': url, 'Source': source};
+        final Map<String, Object> params = <String, Object>{'Url': url, 'Source': source};
 
         if (await ul.launchUrl(Uri.parse(url)))
         {
