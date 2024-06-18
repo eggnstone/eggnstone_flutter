@@ -2,7 +2,9 @@ import 'dart:html' as html; // ignore: avoid_web_libraries_in_flutter
 
 class ClipboardTools
 {
-    static void setData(String text)
+    // Must have the same signature as the ClipboardNonWebTools.setData method.
+    static Future<void> setData(String text)
+    async
     {
         final html.TextAreaElement textArea = html.TextAreaElement();
         html.document.body!.append(textArea);
