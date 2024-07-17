@@ -28,7 +28,7 @@ class SharedPreferencesService
     {
         try
         {
-            if (_sharedPreferences.containsKey(key) == false)
+            if (!_sharedPreferences.containsKey(key))
                 return def;
 
             final bool? b = _sharedPreferences.getBool(key);
@@ -53,7 +53,7 @@ class SharedPreferencesService
     {
         try
         {
-            if (_sharedPreferences.containsKey(key) == false)
+            if (!_sharedPreferences.containsKey(key))
                 return def;
 
             final String? s = _sharedPreferences.getString(key);
@@ -77,7 +77,7 @@ class SharedPreferencesService
     {
         try
         {
-            if (_sharedPreferences.containsKey(key) == false)
+            if (!_sharedPreferences.containsKey(key))
                 return def;
 
             final double? d = _sharedPreferences.getDouble(key);
@@ -101,7 +101,7 @@ class SharedPreferencesService
     {
         try
         {
-            if (_sharedPreferences.containsKey(key) == false)
+            if (!_sharedPreferences.containsKey(key))
                 return def;
 
             final int? i = _sharedPreferences.getInt(key);
@@ -125,7 +125,7 @@ class SharedPreferencesService
     {
         try
         {
-            if (_sharedPreferences.containsKey(key) == false)
+            if (!_sharedPreferences.containsKey(key))
                 return def;
 
             final List<String>? stringList = _sharedPreferences.getStringList(key);
@@ -163,7 +163,7 @@ class SharedPreferencesService
     {
         try
         {
-            if (_sharedPreferences.containsKey(key) == false)
+            if (!_sharedPreferences.containsKey(key))
                 return def;
 
             final String? s = _sharedPreferences.getString(key);
@@ -187,7 +187,7 @@ class SharedPreferencesService
     {
         try
         {
-            if (_sharedPreferences.containsKey(key) == false)
+            if (!_sharedPreferences.containsKey(key))
                 return def;
 
             final List<String>? stringList = _sharedPreferences.getStringList(key);

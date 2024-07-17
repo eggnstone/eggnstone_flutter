@@ -16,10 +16,10 @@ class HyperLink extends StatelessWidget
     const HyperLink(this.text, {
         required this.url,
         required this.source,
-        Key? key,
+        super.key,
         this.textStyle,
         this.fontSizeFactor = 1.0
-    }) : super(key: key);
+    });
 
     @override
     Widget build(BuildContext context)

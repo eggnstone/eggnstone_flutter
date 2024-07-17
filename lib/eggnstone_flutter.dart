@@ -1,6 +1,7 @@
 /// eggnstone_flutter
-library eggnstone_flutter;
+library;
 
+export 'src/FlutterRunner.dart';
 export 'src/services/analytics/AnalyticsMixin.dart';
 export 'src/services/analytics/AnalyticsNavigatorObserver.dart';
 export 'src/services/analytics/IAnalyticsService.dart';

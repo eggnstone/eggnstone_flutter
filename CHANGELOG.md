@@ -1,3 +1,7 @@
+## 3.7.3
+
+* Added FlutterRunner.
+
 ## 3.7.2
 
 * Updated dependencies.

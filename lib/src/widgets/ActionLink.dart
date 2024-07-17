@@ -18,10 +18,10 @@ class ActionLink extends StatelessWidget
 
     const ActionLink(this.text, {
         required this.onTap,
-        Key? key,
+        super.key,
         this.textStyle,
         this.fontSizeFactor = 1.0
-    }) : super(key: key);
+    });
 
     @override
     Widget build(BuildContext context)
