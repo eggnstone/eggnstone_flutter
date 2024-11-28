@@ -46,8 +46,39 @@ class SharedPreferencesService
     }
 
     // ignore: avoid_positional_boolean_parameters
+    bool? getNullableBool(String key, bool? def)
+    {
+        try
+        {
+            if (!_sharedPreferences.containsKey(key))
+                return def;
+
+            final bool? b = _sharedPreferences.getBool(key);
+            if (b == null)
+                return def;
+
+            return b;
+        }
+        catch (e)
+        {
+            logInfo(e.toString());
+            logInfo('${_sharedPreferences.get(key)}');
+            return def;
+        }
+    }
+
+    // ignore: avoid_positional_boolean_parameters
     Future<bool> setBool(String key, bool value)
     => _sharedPreferences.setBool(key, value);
+
+    // ignore: avoid_positional_boolean_parameters
+    Future<bool> setNullableBool(String key, bool? value)
+    {
+        if (value == null)
+            return _sharedPreferences.remove(key);
+
+      return _sharedPreferences.setBool(key, value);
+    }
 
     DateTime getDateTime(String key, DateTime def)
     {
