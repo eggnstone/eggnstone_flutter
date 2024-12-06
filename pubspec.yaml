@@ -15,7 +15,7 @@ dependencies:
   # Service locator
   get_it: ^8.0.2
   # For logging
-  eggnstone_dart: ^1.1.0
+  eggnstone_dart: ^1.1.1
   # Storing+retrieving settings
   shared_preferences: ^2.3.3
   # URL launcher

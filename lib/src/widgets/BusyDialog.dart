@@ -5,6 +5,7 @@ class BusyDialog
     static Future<void> show(BuildContext context, String text, {double? textScaleFactor})
     async
     {
+        final TextScaler? textScaler = textScaleFactor == null ? null : TextScaler.linear(textScaleFactor);
         await showDialog<void>(
             context: context,
             barrierDismissible: false,
@@ -28,7 +29,7 @@ class BusyDialog
                                                 const SizedBox(height: 32),
                                                 const CircularProgressIndicator(),
                                                 const SizedBox(height: 32),
-                                                Text(text, textScaleFactor: textScaleFactor),
+                                                Text(text, textScaler: textScaler),
                                                 const SizedBox(height: 32)
                                             ]
                                         );
