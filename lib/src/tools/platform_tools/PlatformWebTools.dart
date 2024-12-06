@@ -9,11 +9,13 @@ class PlatformTools
 
     static String get jsContextLocationHref
     {
+        // ignore: avoid_dynamic_calls
         final dynamic href = js.context['location']['href'];
         return href is String ? href : '';
     }
 
     static set jsContextLocationHref(String value)
+    // ignore: avoid_dynamic_calls
     => js.context['location']['href'] = value;
 
     static String? htmlNavigatorUserAgent()

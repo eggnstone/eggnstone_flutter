@@ -52,10 +52,6 @@ class LoggerAnalyticsService implements ILoggerAnalyticsService
         _isEnabled = value;
     }
 
-    // ignore: avoid_positional_boolean_parameters
-    static LoggerAnalyticsService create(bool useAnalyticsInThisRun, bool bool)
-    => LoggerAnalyticsService();
-
     @override
     void setUserId(String id)
     {

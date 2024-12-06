@@ -46,8 +46,10 @@ class ActionLink extends StatelessWidget
             child: MouseRegion(
                 child: Text(text, style: textStyleScaledUnderlined),
                 onEnter: (PointerEnterEvent event)
+                // ignore: avoid_dynamic_calls
                 => _appContainer.style.cursor = 'pointer',
                 onExit: (PointerExitEvent event)
+                // ignore: avoid_dynamic_calls
                 => _appContainer.style.cursor = 'default'
             ),
             onTap: onTap
