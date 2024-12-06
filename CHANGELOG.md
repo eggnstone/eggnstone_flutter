@@ -1,6 +1,11 @@
+## 3.8.1
+
+* SharedPreference: Added get/set nullable int.
+
 ## 3.8.0
 
 * Added LoggerAnalyticsService.
+* SharedPreference: Added get/set nullable bool.
 
 ## 3.7.3
 

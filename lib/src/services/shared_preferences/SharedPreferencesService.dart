@@ -149,8 +149,37 @@ class SharedPreferencesService
         }
     }
 
+    int? getNullableInt(String key, int? def)
+    {
+        try
+        {
+            if (!_sharedPreferences.containsKey(key))
+                return def;
+
+            final int? i = _sharedPreferences.getInt(key);
+            if (i == null)
+                return def;
+
+            return i;
+        }
+        catch (e)
+        {
+            logInfo(e.toString());
+            logInfo('${_sharedPreferences.get(key)}');
+            return def;
+        }
+    }
+
     Future<bool> setInt(String key, int value)
     => _sharedPreferences.setInt(key, value);
+
+    Future<bool> setNullableInt(String key, int? value)
+    {
+        if (value == null)
+            return _sharedPreferences.remove(key);
+
+        return _sharedPreferences.setInt(key, value);
+    }
 
     List<int> getIntList(String key, List<int> def)
     {
