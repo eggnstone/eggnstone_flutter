@@ -77,7 +77,7 @@ class SharedPreferencesService
         if (value == null)
             return _sharedPreferences.remove(key);
 
-      return _sharedPreferences.setBool(key, value);
+        return _sharedPreferences.setBool(key, value);
     }
 
     DateTime getDateTime(String key, DateTime def)
@@ -240,8 +240,37 @@ class SharedPreferencesService
         }
     }
 
+    String? getNullableString(String key, String? def)
+    {
+        try
+        {
+            if (!_sharedPreferences.containsKey(key))
+                return def;
+
+            final String? s = _sharedPreferences.getString(key);
+            if (s == null)
+                return def;
+
+            return s;
+        }
+        catch (e)
+        {
+            logInfo(e.toString());
+            logInfo('${_sharedPreferences.get(key)}');
+            return def;
+        }
+    }
+
     Future<bool> setString(String key, String value)
     => _sharedPreferences.setString(key, value);
+
+    Future<bool> setNullableString(String key, String? value)
+    {
+        if (value == null)
+            return _sharedPreferences.remove(key);
+
+        return _sharedPreferences.setString(key, value);
+    }
 
     List<String> getStringList(String key, List<String> def)
     {
