@@ -1,3 +1,7 @@
+## 3.8.0
+
+* Added LoggerAnalyticsService.
+
 ## 3.7.3
 
 * Added FlutterRunner.
