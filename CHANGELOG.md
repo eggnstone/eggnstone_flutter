@@ -1,3 +1,9 @@
+## 4.0.0
+
+* Improved FlutterRunner.
+* Removed run() from CrashlyticsService.
+* Removed CrashlyticsMixin.
+
 ## 3.8.2
 
 * SharedPreferences: Added get/set nullable string.
