@@ -1,5 +1,3 @@
-import 'package:flutter/widgets.dart';
-
 abstract class ICrashlyticsService
 {
     /// The state of debug messages (if additional logging is on or not).
@@ -7,9 +5,6 @@ abstract class ICrashlyticsService
 
     /// The state of debug messages (if additional logging is on or not).
     set isDebugEnabled(bool newValue);
-
-    @Deprecated('Use runZonedGuarded and onError instead.')
-    void run(Widget app);
 
     void onError(Object error, StackTrace stackTrace);
 
@@ -19,6 +14,6 @@ abstract class ICrashlyticsService
 
     void recordError(Object error, StackTrace stackTrace);
 
-// TODO: log()
-// TODO: crash()
+    // TODO: log()
+    // TODO: crash()
 }
