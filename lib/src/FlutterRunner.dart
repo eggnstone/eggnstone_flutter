@@ -2,13 +2,13 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 
-import 'AppContext.dart';
+import 'AppCallbacks.dart';
 
 class FlutterRunner
 {
-    final AppContext _appContext = AppContext();
+    final AppCallbacks _appContext = AppCallbacks();
 
-    Future<void> run(Future<void> Function(AppContext appContext) runApp)
+    Future<void> run(Future<void> Function(AppCallbacks appContext) runApp)
     async
     {
         FlutterError.onError = _onFlutterError;
@@ -21,13 +21,13 @@ class FlutterRunner
         // ProviderScope is missing: "Bad state: No ProviderScope found"
         // "A RenderFlex overflowed by X pixels on the bottom."
         // Exceptions from synchronous code, e.g. non-async _onPressed
-        _appContext.crashlyticsService?.onError(details.exception, details.stack ?? StackTrace.empty);
+        _appContext.onError?.call(details.exception, details.stack ?? StackTrace.empty);
     }
 
     void _onRunZonedGuardedError(Object error, StackTrace stack)
     {
         // Examples for errors caught here:
         // Exceptions from synchronous code, e.g. async _onPressed
-        _appContext.crashlyticsService?.onError(error, stack);
+        _appContext.onError?.call(error, stack);
     }
 }
