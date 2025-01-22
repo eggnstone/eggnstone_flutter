@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 
-import '../../Services2/Analytics2/AnalyticsMixin.dart';
+import '../../Services/Analytics/AnalyticsMixin.dart';
 
 typedef ScreenNameExtractor = String? Function(RouteSettings settings);
 

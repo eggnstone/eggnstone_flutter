@@ -1,6 +1,6 @@
 import 'package:get_it/get_it.dart';
 
-import '../../Services2/SharedPreferences/SharedPreferencesService.dart';
+import '../../Services/SharedPreferences/SharedPreferencesService.dart';
 
 mixin SharedPreferencesMixin
 {

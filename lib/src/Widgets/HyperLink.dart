@@ -2,8 +2,8 @@
 
 import 'package:flutter/widgets.dart';
 
-import '../Tools2/UrlLauncherTools.dart';
-import '../Widgets2/ActionLink.dart';
+import '../Tools/UrlLauncherTools.dart';
+import '../Widgets/ActionLink.dart';
 
 class HyperLink extends StatelessWidget
 {

@@ -1,7 +1,7 @@
 import 'package:get_it/get_it.dart';
 import 'package:url_launcher/url_launcher.dart' as ul;
 
-import '../Services2/Analytics2/IAnalyticsService.dart';
+import '../Services/Analytics/IAnalyticsService.dart';
 
 class UrlLauncherTools
 {

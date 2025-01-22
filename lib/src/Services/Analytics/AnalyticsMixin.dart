@@ -1,6 +1,6 @@
 import 'package:get_it/get_it.dart';
 
-import '../../Services2/Analytics2/IAnalyticsService.dart';
+import '../../Services/Analytics/IAnalyticsService.dart';
 
 mixin AnalyticsMixin
 {

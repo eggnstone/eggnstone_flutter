@@ -1,4 +1,4 @@
-import '../../Services2/Analytics2/IAnalyticsService.dart';
+import '../../Services/Analytics/IAnalyticsService.dart';
 
 abstract class ILoggerAnalyticsService extends IAnalyticsService
 {

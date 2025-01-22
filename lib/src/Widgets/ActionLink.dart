@@ -3,7 +3,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
-import '../Tools2/PlatformTools/PlatformNonWebTools.dart' if (dart.library.html) '../Tools2/PlatformTools/PlatformWebTools.dart';
+import '../Tools/PlatformTools/PlatformNonWebTools.dart' if (dart.library.html) '../Tools/PlatformTools/PlatformWebTools.dart';
 
 typedef ActionLinkCallback = void Function();
 
