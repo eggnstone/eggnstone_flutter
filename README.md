@@ -4,7 +4,6 @@ A collection of Flutter tools, including wrappers for logging, Analytics and Cra
 
 [![pub package](https://img.shields.io/pub/v/eggnstone_flutter.svg)](https://pub.dartlang.org/packages/eggnstone_flutter)
 [![GitHub Issues](https://img.shields.io/github/issues/eggnstone/eggnstone_flutter.svg)](https://github.com/eggnstone/eggnstone_flutter/issues)
-[![GitHub Forks](https://img.shields.io/github/forks/eggnstone/eggnstone_flutter.svg)](https://github.com/eggnstone/eggnstone_flutter/network)
 [![GitHub Stars](https://img.shields.io/github/stars/eggnstone/eggnstone_flutter.svg)](https://github.com/eggnstone/eggnstone_flutter/stargazers)
 
 ## Logging

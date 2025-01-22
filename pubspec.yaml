@@ -2,7 +2,7 @@ name: eggnstone_flutter
 copyright: 2020-2025 Mark Eggenstein
 description: A collection of Flutter tools, including wrappers for logging, Analytics and Crashlytics.
 homepage: https://github.com/eggnstone/eggnstone_flutter
-version: 4.0.1
+version: 4.1.0
 
 environment:
   sdk: '>=3.0.0 <4.0.0'
@@ -15,7 +15,9 @@ dependencies:
   # Service locator
   get_it: ^8.0.3
   # For logging
-  eggnstone_dart: ^1.1.1
+  eggnstone_dart: ^1.2.0
+  #eggnstone_dart:
+  #  path: ..\eggnstone_dart
   # Storing+retrieving settings
   shared_preferences: ^2.3.5
   # URL launcher
@@ -24,5 +26,3 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  # Mocking
-  #mockito: ^5.4.4
