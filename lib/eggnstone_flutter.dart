@@ -1,10 +1,10 @@
 /// eggnstone_flutter
 library;
 
-export 'src/AppCallbacks.dart';
 export 'src/DateAndTime/DateExtension.dart';
 export 'src/DateAndTime/TimeExtension.dart';
-export 'src/FlutterRunner.dart';
+export 'src/Runner/AppCallbacks.dart';
+export 'src/Runner/FlutterRunner.dart';
 export 'src/Services/Analytics/AnalyticsMixin.dart';
 export 'src/Services/Analytics/AnalyticsNavigatorObserver.dart';
 export 'src/Services/Analytics/IAnalyticsService.dart';
