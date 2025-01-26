@@ -292,7 +292,7 @@ class SharedPreferencesService
         if (value == null)
             return _sharedPreferences.remove(key);
 
-        return _sharedPreferences.setBool(key, value);
+        return setBool(key, value);
     }
 
     Future<bool> setNullableDateTime(String key, DateTime? value)
@@ -300,7 +300,7 @@ class SharedPreferencesService
         if (value == null)
             return _sharedPreferences.remove(key);
 
-        return _sharedPreferences.setString(key, value.toIso8601String());
+        return setDateTime(key, value);
     }
 
     Future<bool> setNullableInt(String key, int? value)
@@ -308,7 +308,7 @@ class SharedPreferencesService
         if (value == null)
             return _sharedPreferences.remove(key);
 
-        return _sharedPreferences.setInt(key, value);
+        return setInt(key, value);
     }
 
     Future<bool> setNullableString(String key, String? value)
@@ -316,7 +316,7 @@ class SharedPreferencesService
         if (value == null)
             return _sharedPreferences.remove(key);
 
-        return _sharedPreferences.setString(key, value);
+        return setString(key, value);
     }
 
     Future<bool> setString(String key, String value)
