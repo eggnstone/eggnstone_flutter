@@ -16,12 +16,14 @@ class ActionLink extends StatelessWidget
     final double fontSizeFactor;
     final ActionLinkCallback onTap;
 
-    const ActionLink(this.text, {
-        required this.onTap,
-        super.key,
-        this.textStyle,
-        this.fontSizeFactor = 1.0
-    });
+    const ActionLink(this.text, 
+        {
+            required this.onTap,
+            super.key,
+            this.textStyle,
+            this.fontSizeFactor = 1.0
+        }
+    );
 
     @override
     Widget build(BuildContext context)

@@ -45,6 +45,27 @@ class SharedPreferencesService
         }
     }
 
+    Date getDate(String key, Date def)
+    {
+        try
+        {
+            if (!_sharedPreferences.containsKey(key))
+                return def;
+
+            final String? s = _sharedPreferences.getString(key);
+            if (s == null)
+                return def;
+
+            return Date.fromString(s);
+        }
+        catch (e)
+        {
+            logInfo(e.toString());
+            logInfo('${_sharedPreferences.get(key)}');
+            return def;
+        }
+    }
+
     DateTime getDateTime(String key, DateTime def)
     {
         try
@@ -146,6 +167,27 @@ class SharedPreferencesService
                 return def;
 
             return b;
+        }
+        catch (e)
+        {
+            logInfo(e.toString());
+            logInfo('${_sharedPreferences.get(key)}');
+            return def;
+        }
+    }
+
+    Date? getNullableDate(String key, Date? def)
+    {
+        try
+        {
+            if (!_sharedPreferences.containsKey(key))
+                return def;
+
+            final String? s = _sharedPreferences.getString(key);
+            if (s == null)
+                return def;
+
+            return Date.fromString(s);
         }
         catch (e)
         {
@@ -264,6 +306,9 @@ class SharedPreferencesService
     Future<bool> setBool(String key, bool value)
     => _sharedPreferences.setBool(key, value);
 
+    Future<bool> setDate(String key, Date value)
+    => _sharedPreferences.setString(key, value.toString());
+
     Future<bool> setDateTime(String key, DateTime value)
     => _sharedPreferences.setString(key, value.toIso8601String());
 
@@ -293,6 +338,14 @@ class SharedPreferencesService
             return _sharedPreferences.remove(key);
 
         return setBool(key, value);
+    }
+
+    Future<bool> setNullableDate(String key, Date? value)
+    {
+        if (value == null)
+            return _sharedPreferences.remove(key);
+
+        return setDate(key, value);
     }
 
     Future<bool> setNullableDateTime(String key, DateTime? value)

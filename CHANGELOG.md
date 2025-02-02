@@ -1,3 +1,7 @@
+## 4.1.2
+
+* Added (Nullable)Date to SharedPreferencesService.
+
 ## 4.1.1
 
 * Added NullableDateTime to SharedPreferencesService.
