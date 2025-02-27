@@ -1,3 +1,7 @@
+## 4.2.1
+
+* Added CrashlyticsMixin.
+
 ## 4.2.0
 
 * Using freezed 3.0.0 now.

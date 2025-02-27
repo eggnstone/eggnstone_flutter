@@ -10,6 +10,7 @@ export 'src/Services/Analytics/AnalyticsNavigatorObserver.dart';
 export 'src/Services/Analytics/IAnalyticsService.dart';
 export 'src/Services/Analytics/ILoggerAnalyticsService.dart';
 export 'src/Services/Analytics/LoggerAnalyticsService.dart';
+export 'src/Services/Crashlytics/CrashlyticsMixin.dart';
 export 'src/Services/Crashlytics/ICrashlyticsService.dart';
 export 'src/Services/SharedPreferences/SharedPreferencesMixin.dart';
 export 'src/Services/SharedPreferences/SharedPreferencesService.dart';
