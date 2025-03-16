@@ -83,7 +83,19 @@ class LoggerAnalyticsService implements ILoggerAnalyticsService
     }
 
     @override
-    void trackActionAndTextValue(String name, String action, Object textValue)
+    void trackActionAndDoubleValue(String name, String action, double doubleValue)
+    {
+        logDebug('### trackActionAndDoubleValue: $name, $action, $doubleValue');
+    }
+
+    @override
+    void trackActionAndIntValue(String name, String action, int intValue)
+    {
+        logDebug('### trackActionAndIntValue: $name, $action, $intValue');
+    }
+
+    @override
+    void trackActionAndTextValue(String name, String action, String textValue)
     {
         logDebug('### trackActionAndTextValue: $name, $action, $textValue');
     }
@@ -110,6 +122,18 @@ class LoggerAnalyticsService implements ILoggerAnalyticsService
     void trackNumberValue(String name, Object numberValue)
     {
         logDebug('### trackNumberValue: $name, $numberValue');
+    }
+
+    @override
+    void trackDoubleValue(String name, double doubleValue)
+    {
+        logDebug('### trackDoubleValue: $name, $doubleValue');
+    }
+
+    @override
+    void trackIntValue(String name, int intValue)
+    {
+        logDebug('### trackIntValue: $name, $intValue');
     }
 
     @override

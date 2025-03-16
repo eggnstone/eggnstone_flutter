@@ -29,24 +29,38 @@ abstract class IAnalyticsService
     void trackAction(String name, String action);
 
     /// Track a value event with [name] and [value].
-    @Deprecated('Use trackTextValue or trackNumberValue instead.')
+    @Deprecated('Use trackTextValue or trackDoubleValue or trackIntValue instead.')
     void trackValue(String name, Object value);
 
     /// Track a value event with [name] and [numberValue].
+    @Deprecated('Use trackDoubleValue or trackIntValue instead.')
     void trackNumberValue(String name, Object numberValue);
 
+    /// Track a value event with [name] and [doubleValue].
+    void trackDoubleValue(String name, double doubleValue);
+
+    /// Track a value event with [name] and [intValue].
+    void trackIntValue(String name, int intValue);
+
     /// Track a value event with [name] and [textValue].
-    void trackTextValue(String name, Object textValue);
+    void trackTextValue(String name, String textValue);
 
     /// Track an action-and-value event with [name] and [action] and [value].
-    @Deprecated('Use trackActionAndTextValue or trackActionAndNumberValue instead.')
+    @Deprecated('Use trackActionAndTextValue or trackActionAndDoubleValue or trackActionAndIntValue instead.')
     void trackActionAndValue(String name, String action, Object value);
 
     /// Track an action-and-value event with [name] and [action] and [numberValue].
+    @Deprecated('Use trackActionAndDoubleValue or trackActionAndIntValue instead.')
     void trackActionAndNumberValue(String name, String action, Object numberValue);
 
+    /// Track an action-and-value event with [name] and [action] and [doubleValue].
+    void trackActionAndDoubleValue(String name, String action, double doubleValue);
+
+    /// Track an action-and-value event with [name] and [action] and [intValue].
+    void trackActionAndIntValue(String name, String action, int intValue);
+
     /// Track an action-and-value event with [name] and [action] and [textValue].
-    void trackActionAndTextValue(String name, String action, Object textValue);
+    void trackActionAndTextValue(String name, String action, String textValue);
 
     /// Track a warning using a warning [message] and optional [params].
     void trackWarning(String message, [Map<String, Object>? params]);

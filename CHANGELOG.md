@@ -1,3 +1,7 @@
+## 4.3.0
+
+* Deprecated trackNumberValue and trackActionAndNumberValue.
+
 ## 4.2.1
 
 * Added CrashlyticsMixin.
