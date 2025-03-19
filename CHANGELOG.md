@@ -1,3 +1,7 @@
+## 4.3.2
+
+* Migrated to dart:js_interop and package:web.
+ 
 ## 4.3.1
 
 * Added PlatformTools.isAndroid/isFuchsia/isIos/isLinux/isMacOs/isWeb/isWindows.
