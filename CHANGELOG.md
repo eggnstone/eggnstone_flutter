@@ -1,3 +1,7 @@
+## 4.3.1
+
+* Added PlatformTools.isAndroid/isFuchsia/isIos/isLinux/isMacOs/isWeb/isWindows.
+
 ## 4.3.0
 
 * Deprecated trackNumberValue and trackActionAndNumberValue.

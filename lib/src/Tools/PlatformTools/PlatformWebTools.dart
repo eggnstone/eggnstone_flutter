@@ -3,6 +3,27 @@ import 'dart:js' as js; // ignore: avoid_web_libraries_in_flutter
 
 class PlatformTools
 {
+    static bool get isAndroid
+    => false;
+
+    static bool get isFuchsia
+    => false;
+
+    static bool get isIos
+    => false;
+
+    static bool get isLinux
+    => false;
+
+    static bool get isMacOs
+    => false;
+
+    static bool get isWeb
+    => true;
+
+    static bool get isWindows
+    => false;
+
     // js.context['location']['pathname']
 
     // js.context['location']['search']

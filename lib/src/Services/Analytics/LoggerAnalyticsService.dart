@@ -137,7 +137,7 @@ class LoggerAnalyticsService implements ILoggerAnalyticsService
     }
 
     @override
-    void trackTextValue(String name, Object textValue)
+    void trackTextValue(String name, String textValue)
     {
         logDebug('### trackTextValue: $name, $textValue');
     }
