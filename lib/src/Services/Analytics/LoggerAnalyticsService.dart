@@ -67,7 +67,7 @@ class LoggerAnalyticsService implements ILoggerAnalyticsService
     @override
     void track(String name, [Map<String, Object>? params])
     {
-        logDebug('### track: $name');
+        logDebug('### track: $name params: $params');
     }
 
     @override
@@ -109,13 +109,13 @@ class LoggerAnalyticsService implements ILoggerAnalyticsService
     @override
     void trackError(String message, [Map<String, Object>? params])
     {
-        logDebug('### trackError: $message');
+        logDebug('### trackError: "$message" params: $params');
     }
 
     @override
     void trackErrorWithException(String source, dynamic e, [StackTrace? stackTrace])
     {
-        logDebug('### trackErrorWithException: $source');
+        logDebug('### trackErrorWithException: $e');
     }
 
     @override
@@ -151,12 +151,12 @@ class LoggerAnalyticsService implements ILoggerAnalyticsService
     @override
     void trackWarning(String message, [Map<String, Object>? params])
     {
-        logDebug('### trackWarning: $message');
+        logDebug('### trackWarning: "$message" params: $params');
     }
 
     @override
     void trackWarningWithException(String source, dynamic e, [StackTrace? stackTrace])
     {
-        logDebug('### trackWarningWithException: $source');
+        logDebug('### trackWarningWithException: $e');
     }
 }

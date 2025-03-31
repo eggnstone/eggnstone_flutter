@@ -1,3 +1,7 @@
+## 4.3.3
+
+* Fixed LoggerAnalyticsService.
+ 
 ## 4.3.2
 
 * Migrated to dart:js_interop and package:web.
