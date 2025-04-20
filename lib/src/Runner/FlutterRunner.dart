@@ -7,13 +7,13 @@ import 'AppCallbacks.dart';
 
 class FlutterRunner
 {
-    final AppCallbacks _appContext = AppCallbacks();
+    final AppCallbacks _appCallbacks = AppCallbacks();
 
-    Future<void> run(Future<void> Function(AppCallbacks appContext) runApp)
+    Future<void> run(Future<void> Function(AppCallbacks appCallbacks) runApp)
     async
     {
         FlutterError.onError = _onFlutterError;
-        await runZonedGuarded<Future<void>>(() => runApp(_appContext), _onRunZonedGuardedError);
+        await runZonedGuarded<Future<void>>(() => runApp(_appCallbacks), _onRunZonedGuardedError);
     }
 
     void _onFlutterError(FlutterErrorDetails details)
@@ -23,10 +23,10 @@ class FlutterRunner
         // "A RenderFlex overflowed by X pixels on the bottom."
         // Exceptions from synchronous code, e.g. non-async _onPressed
 
-        if (_appContext.onError == null)
+        if (_appCallbacks.onError == null)
             logError('FlutterRunner._onFlutterError', details.exception, details.stack);
         else
-            _appContext.onError!.call(details.exception, details.stack ?? StackTrace.empty);
+            _appCallbacks.onError!.call(details.exception, details.stack ?? StackTrace.empty);
     }
 
     void _onRunZonedGuardedError(Object error, StackTrace stack)
@@ -34,9 +34,9 @@ class FlutterRunner
         // Examples for errors caught here:
         // Exceptions from synchronous code, e.g. async _onPressed
 
-        if (_appContext.onError == null)
+        if (_appCallbacks.onError == null)
             logError('FlutterRunner._onFlutterError', error, stack);
         else
-            _appContext.onError!.call(error, stack);
+            _appCallbacks.onError!.call(error, stack);
     }
 }

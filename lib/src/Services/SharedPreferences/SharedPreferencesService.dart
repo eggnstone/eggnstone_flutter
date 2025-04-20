@@ -319,7 +319,6 @@ class SharedPreferencesService
     => _sharedPreferences.setInt(key, value);
 
     Future<bool> setIntList(String key, List<int> intList, {bool removeIfEmpty = true})
-    async
     {
         if (intList.isEmpty && removeIfEmpty)
             return _sharedPreferences.remove(key);

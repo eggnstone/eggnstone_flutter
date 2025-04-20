@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/widgets.dart';
 
 import '../Tools/UrlLauncherTools.dart';
@@ -28,8 +30,8 @@ class HyperLink extends StatelessWidget
         return ActionLink(text,
             textStyle: textStyle,
             fontSizeFactor: fontSizeFactor,
-            onTap: () async
-            => UrlLauncherTools.launch(url, source)
+            onTap: ()
+            => unawaited(UrlLauncherTools.launch(url, source))
         );
     }
 }

@@ -1,3 +1,7 @@
+## 4.3.4
+
+* Updated dependencies.
+ 
 ## 4.3.3
 
 * Fixed LoggerAnalyticsService.
