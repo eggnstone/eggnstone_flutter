@@ -12,10 +12,10 @@ dependencies:
   flutter:
     sdk: flutter
 
-  get_it: ^8.0.3
-  eggnstone_dart: ^1.4.0
+  eggnstone_dart: ^1.4.1
   #eggnstone_dart:
   #  path: ..\eggnstone_dart
+  get_it: ^8.0.3
   intl: ^0.20.2
   shared_preferences: ^2.5.3
   url_launcher: ^6.3.1
