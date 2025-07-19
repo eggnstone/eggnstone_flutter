@@ -1,14 +1,9 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-
-import '../Tools/PlatformTools/PlatformNonWebTools.dart' if (dart.library.js_util) '../Tools/PlatformTools/PlatformWebTools.dart';
 
 typedef ActionLinkCallback = void Function();
 
 class ActionLink extends StatelessWidget
 {
-    static final dynamic _appContainer = PlatformTools.htmlWindowDocumentGetFirstElementByTagName('flt-glass-pane');
-
     final String text;
     final TextStyle? textStyle;
     final double fontSizeFactor;
@@ -46,13 +41,7 @@ class ActionLink extends StatelessWidget
         return GestureDetector(
             child: MouseRegion(
                 child: Text(text, style: textStyleScaledUnderlined),
-                cursor: SystemMouseCursors.click,
-                onEnter: (PointerEnterEvent event)
-                // ignore: avoid_dynamic_calls
-                => _appContainer.style.cursor = 'pointer',
-                onExit: (PointerExitEvent event)
-                // ignore: avoid_dynamic_calls
-                => _appContainer.style.cursor = 'default'
+                cursor: SystemMouseCursors.click
             ),
             onTap: onTap
         );
