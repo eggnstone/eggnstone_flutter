@@ -1,3 +1,7 @@
+## 4.3.5
+
+* Updated dependencies. Added appropriate mouse cursor to ActionLink.
+ 
 ## 4.3.4
 
 * Updated dependencies.

@@ -14,7 +14,8 @@ class ActionLink extends StatelessWidget
     final double fontSizeFactor;
     final ActionLinkCallback onTap;
 
-    const ActionLink(this.text, 
+    const ActionLink(
+        this.text,
         {
             required this.onTap,
             super.key,
@@ -45,6 +46,7 @@ class ActionLink extends StatelessWidget
         return GestureDetector(
             child: MouseRegion(
                 child: Text(text, style: textStyleScaledUnderlined),
+                cursor: SystemMouseCursors.click,
                 onEnter: (PointerEnterEvent event)
                 // ignore: avoid_dynamic_calls
                 => _appContainer.style.cursor = 'pointer',
