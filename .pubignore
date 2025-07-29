@@ -1,2 +1,10 @@
-/build
-/Publish.bat
+/build/
+/doc/
+/test/
+
+*.bat
+*.iml
+*.ps1
+
+/all_lint_rules.yaml
+/analysis_options.yaml
