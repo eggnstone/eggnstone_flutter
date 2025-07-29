@@ -1,3 +1,7 @@
+## 4.3.7
+
+* Updated dependencies as far as possible while waiting for riverpod_generator.
+
 ## 4.3.6
 
 * Updated dependencies. Added appropriate mouse cursor to ActionLink.
