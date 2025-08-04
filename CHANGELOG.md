@@ -1,3 +1,7 @@
+## 4.3.8
+
+* Added get/set-NullableMap.
+
 ## 4.3.7
 
 * Updated dependencies as far as possible while waiting for riverpod_generator.

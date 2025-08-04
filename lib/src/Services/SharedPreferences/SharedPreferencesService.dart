@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:eggnstone_dart/eggnstone_dart.dart';
 import 'package:shared_preferences/shared_preferences.dart' as sp;
@@ -239,6 +240,36 @@ class SharedPreferencesService
         }
     }
 
+    Map<K, V>? getNullableMap<K, V>(String key, Map<K, V>? def)
+    {
+        try
+        {
+            if (!_sharedPreferences.containsKey(key))
+                return def;
+
+            final String? s = _sharedPreferences.getString(key);
+            if (s == null)
+                return def;
+
+            final Map<String, dynamic> dynamicMap = jsonDecode(s) as Map<String, dynamic>;
+            final Map<K, V> map = <K, V>{};
+            for (final MapEntry<String, dynamic> entry in dynamicMap.entries)
+            {
+                final K k = entry.key as K;
+                final V v = entry.value as V;
+                map[k] = v;
+            }
+
+            return map;
+        }
+        catch (e)
+        {
+            logInfo(e.toString());
+            logInfo('${_sharedPreferences.get(key)}');
+            return def;
+        }
+    }
+
     String? getNullableString(String key, String? def)
     {
         try
@@ -361,6 +392,14 @@ class SharedPreferencesService
             return _sharedPreferences.remove(key);
 
         return setInt(key, value);
+    }
+
+    Future<bool> setNullableMap<K, V>(String key, Map<K, V>? value)
+    {
+        if (value == null)
+            return _sharedPreferences.remove(key);
+
+        return setString(key, jsonEncode(value));
     }
 
     Future<bool> setNullableString(String key, String? value)
