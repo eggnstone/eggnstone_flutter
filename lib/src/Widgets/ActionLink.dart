@@ -5,6 +5,7 @@ typedef ActionLinkCallback = void Function();
 class ActionLink extends StatelessWidget
 {
     final String text;
+    final TextScaler? textScaler;
     final TextStyle? textStyle;
     final double fontSizeFactor;
     final ActionLinkCallback onTap;
@@ -14,6 +15,7 @@ class ActionLink extends StatelessWidget
         {
             required this.onTap,
             super.key,
+            this.textScaler,
             this.textStyle,
             this.fontSizeFactor = 1.0
         }
@@ -40,7 +42,11 @@ class ActionLink extends StatelessWidget
 
         return GestureDetector(
             child: MouseRegion(
-                child: Text(text, style: textStyleScaledUnderlined),
+                child: Text(
+                    text,
+                    textScaler: textScaler,
+                    style: textStyleScaledUnderlined
+                ),
                 cursor: SystemMouseCursors.click
             ),
             onTap: onTap

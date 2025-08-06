@@ -1,3 +1,7 @@
+## 4.3.9
+
+* Added textScaler to ActionLink.
+ 
 ## 4.3.8
 
 * Added get/set-NullableMap.
