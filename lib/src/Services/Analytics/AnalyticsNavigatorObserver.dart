@@ -1,6 +1,7 @@
 import 'package:flutter/widgets.dart';
 
 import '../../Services/Analytics/AnalyticsMixin.dart';
+import 'IAnalyticsService.dart';
 
 typedef ScreenNameExtractor = String? Function(RouteSettings settings);
 
@@ -11,6 +12,9 @@ class AnalyticsNavigatorObserver extends NavigatorObserver
     with AnalyticsMixin
 {
     final ScreenNameExtractor nameExtractor = defaultNameExtractor;
+    final IAnalyticsService? externalAnalytics;
+
+    AnalyticsNavigatorObserver([this.externalAnalytics]);
 
     @override
     void didPush(Route<dynamic> route, Route<dynamic>? previousRoute)
@@ -48,6 +52,9 @@ class AnalyticsNavigatorObserver extends NavigatorObserver
         // Firebase / Google Analytics seems to use "(not set)" therefore also using this exact phrase.
         screenName ??= '(not set)';
 
-        analytics.currentScreen = screenName;
+        if (externalAnalytics == null)
+            analytics.currentScreen = screenName;
+        else
+            externalAnalytics!.currentScreen = screenName;
     }
 }

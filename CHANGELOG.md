@@ -1,3 +1,7 @@
+## 4.4.3
+
+* Added the possibility to pass an external analytics service to AnalyticsNavigatorObserver.
+ 
 ## 4.4.2
 
 * Updated dependencies. Added isEnabled to ICrashlyticsService.
