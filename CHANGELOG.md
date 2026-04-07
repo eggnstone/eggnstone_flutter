@@ -1,3 +1,7 @@
+## 4.4.2
+
+* Updated dependencies. Added isEnabled to ICrashlyticsService.
+ 
 ## 4.3.9
 
 * Added textScaler to ActionLink.

@@ -1,5 +1,11 @@
 abstract class ICrashlyticsService
 {
+    /// The state of the service (if it reports to Crashlytics or not).
+    bool get isEnabled;
+
+    /// The state of the service (if it reports to Crashlytics or not).
+    set isEnabled(bool newValue);
+
     /// The state of debug messages (if additional logging is on or not).
     bool get isDebugEnabled;
 
